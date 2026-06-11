@@ -55,8 +55,8 @@ function Sidebar({ onClose }: { onClose?: () => void }) {
       {/* Logo */}
       <div className="flex items-center justify-between p-5 border-b border-gray-800">
         <Link href="/admin" className="flex items-center gap-2.5" aria-label="Admin Home">
-          <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center">
-            <BookOpen className="text-white" size={16} />
+          <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center overflow-hidden border border-blue-500/20">
+            <img src="/favicon.webp" alt="Logo" className="w-4 h-4 object-contain" />
           </div>
           <span className="font-bold text-base text-white">LEET Admin</span>
         </Link>

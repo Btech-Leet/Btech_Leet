@@ -75,8 +75,8 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0" aria-label="BTech LEET Home">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-              <BookOpen className="w-4.5 h-4.5 text-white" size={18} />
+            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center overflow-hidden border border-blue-500/20">
+              <img src="/favicon.webp" alt="Logo" className="w-5 h-5 object-contain" />
             </div>
             <span className="font-bold text-lg text-gray-900 dark:text-white font-display">
               BTech <span className="text-blue-600">LEET</span>
