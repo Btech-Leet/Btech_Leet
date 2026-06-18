@@ -1,0 +1,872 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────────
+enum Role {
+  USER
+  ADMIN
+  EDITOR
+}
+
+enum ExamType {
+  STATE
+  CENTRAL
+  PRIVATE
+}
+
+enum PaperType {
+  PREVIOUS_YEAR
+  MOCK
+  SAMPLE
+}
+
+enum NotificationPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum MockTestStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum QuestionType {
+  MCQ
+  TRUE_FALSE
+  SHORT_ANSWER
+}
+
+// ─── User ────────────────────────────────────────────────────
+model User {
+  id                String          @id @default(cuid())
+  name              String
+  email             String          @unique
+  password          String
+  role              Role            @default(USER)
+  emailVerified     Boolean         @default(false)
+  verificationToken String?
+  resetToken        String?
+  resetTokenExpiry  DateTime?
+  avatar            String?
+  mobile            String?
+  state             String?
+  collegeName       String?
+  branch            String?
+  passingYear       Int?
+  examTargets       String[]
+  profileComplete   Int             @default(0)
+  premiumStatus     Boolean         @default(false)
+  lastLogin         DateTime?
+  approvalStatus    String          @default("APPROVED")
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  subscriptions     EmailSubscription[]
+  testAttempts      TestAttempt[]
+  savedPapers       SavedPaper[]
+  bookmarkedBlogs   BlogBookmark[]
+  reviews           Review[]
+  premiumAccess     PremiumAccess[]
+  adminNotes        AdminNote[]
+  activities        UserActivity[]
+  loginHistories    LoginHistory[]
+  lead              Lead?
+  dailyStudies      DailyStudy[]
+  googleId          String?         @unique
+  badges            UserBadge[]
+  transactions      Transaction[]
+
+  @@map("users")
+}
+
+// ─── State ───────────────────────────────────────────────────
+model State {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  code      String    @unique
+  createdAt DateTime  @default(now())
+
+  exams     Exam[]
+  colleges  College[]
+
+  @@map("states")
+}
+
+// ─── Exam ────────────────────────────────────────────────────
+model Exam {
+  id               String     @id @default(cuid())
+  name             String
+  fullName         String
+  slug             String     @unique
+  type             ExamType
+  stateId          String?
+  description      String?    @db.Text
+  officialWebsite  String?
+  applicationFee   String?
+  eligibility      String?    @db.Text
+  importantDates   Json?
+  syllabus         Json?
+  examPattern      Json?
+  contactInfo      Json?
+  featured         Boolean    @default(false)
+  active           Boolean    @default(true)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  state            State?     @relation(fields: [stateId], references: [id])
+  papers           Paper[]
+  notifications    Notification[]
+  counselling      Counselling[]
+  mockTests        MockTest[]
+
+  @@map("exams")
+}
+
+// ─── Paper ───────────────────────────────────────────────────
+model Paper {
+  id          String      @id @default(cuid())
+  title       String
+  examId      String
+  year        Int?
+  type        PaperType
+  subject     String?
+  branch      String?
+  fileUrl     String
+  fileKey     String
+  fileSize    Int?
+  mimeType    String?
+  downloads   Int         @default(0)
+  views       Int         @default(0)
+  active      Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  exam        Exam        @relation(fields: [examId], references: [id], onDelete: Cascade)
+  savedBy     SavedPaper[]
+
+  @@map("papers")
+}
+
+model SavedPaper {
+  id        String   @id @default(cuid())
+  userId    String
+  paperId   String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  paper     Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, paperId])
+  @@map("saved_papers")
+}
+
+// ─── Notification ─────────────────────────────────────────────
+model Notification {
+  id          String               @id @default(cuid())
+  title       String
+  content     String               @db.Text
+  examId      String?
+  priority    NotificationPriority @default(MEDIUM)
+  published   Boolean              @default(true)
+  pinned      Boolean              @default(false)
+  expiresAt   DateTime?
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  exam        Exam?                @relation(fields: [examId], references: [id], onDelete: SetNull)
+
+  @@map("notifications")
+}
+
+// ─── Counselling ─────────────────────────────────────────────
+model Counselling {
+  id              String   @id @default(cuid())
+  examId          String
+  title           String
+  description     String?  @db.Text
+  schedule        Json?
+  rounds          Json?
+  documents       Json?
+  helplineNumbers Json?
+  officialPortal  String?
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  exam            Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+
+  @@map("counsellings")
+}
+
+// ─── College ──────────────────────────────────────────────────
+model College {
+  id            String    @id @default(cuid())
+  name          String
+  slug          String    @unique
+  stateId       String?
+  city          String?
+  type          String?
+  affiliation   String?
+  website       String?
+  logo          String?
+  description   String?   @db.Text
+  accreditation String?
+  ranking       Int?
+  established   Int?
+  featured      Boolean   @default(false)
+  active        Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  state         State?    @relation(fields: [stateId], references: [id], onDelete: SetNull)
+  branches      CollegeBranch[]
+
+  @@map("colleges")
+}
+
+// ─── Branch ───────────────────────────────────────────────────
+model Branch {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  code        String    @unique
+  description String?   @db.Text
+  createdAt   DateTime  @default(now())
+
+  colleges    CollegeBranch[]
+  resources   Resource[]
+
+  @@map("branches")
+}
+
+model CollegeBranch {
+  id          String   @id @default(cuid())
+  collegeId   String
+  branchId    String
+  intake      Int?
+  fees        String?
+  duration    String?
+
+  college     College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  branch      Branch   @relation(fields: [branchId], references: [id], onDelete: Cascade)
+
+  @@unique([collegeId, branchId])
+  @@map("college_branches")
+}
+
+// ─── Resource ─────────────────────────────────────────────────
+model Resource {
+  id          String   @id @default(cuid())
+  title       String
+  description String?  @db.Text
+  branchId    String?
+  subject     String?
+  semester    Int?
+  type        String
+  price       Float?   @default(0)
+  fileUrl     String
+  fileKey     String
+  fileSize    Int?
+  mimeType    String?
+  downloads   Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  branch      Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  @@map("resources")
+}
+
+// ─── Blog ─────────────────────────────────────────────────────
+model BlogCategory {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now())
+
+  posts     BlogPost[]
+
+  @@map("blog_categories")
+}
+
+model BlogPost {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  excerpt     String?    @db.Text
+  content     String     @db.Text
+  coverImage  String?
+  categoryId  String?
+  tags        String[]
+  status      PostStatus @default(DRAFT)
+  featured    Boolean    @default(false)
+  views       Int        @default(0)
+  readTime    Int?
+  metaTitle   String?
+  metaDesc    String?    @db.Text
+  authorName  String?
+  publishedAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  category    BlogCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  bookmarks   BlogBookmark[]
+
+  @@map("blog_posts")
+}
+
+model BlogBookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post      BlogPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@map("blog_bookmarks")
+}
+
+// ─── Mock Tests ───────────────────────────────────────────────
+model MockTest {
+  id          String         @id @default(cuid())
+  title       String
+  slug        String         @unique
+  description String?        @db.Text
+  examId      String?
+  duration    Int
+  totalMarks  Int
+  passMark    Int?
+  status      MockTestStatus @default(DRAFT)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  questions   Question[]
+  attempts    TestAttempt[]
+  exam        Exam?          @relation(fields: [examId], references: [id], onDelete: SetNull)
+
+  @@map("mock_tests")
+}
+
+model Question {
+  id           String       @id @default(cuid())
+  testId       String
+  text         String       @db.Text
+  type         QuestionType @default(MCQ)
+  options      Json?
+  answer       String
+  explanation  String?      @db.Text
+  marks        Int          @default(1)
+  order        Int          @default(0)
+  subject      String?
+  topic        String?
+  createdAt    DateTime     @default(now())
+
+  test         MockTest     @relation(fields: [testId], references: [id], onDelete: Cascade)
+
+  @@map("questions")
+}
+
+model TestAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  testId      String
+  answers     Json
+  score       Int
+  totalMarks  Int
+  timeTaken   Int?
+  completedAt DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  test        MockTest @relation(fields: [testId], references: [id], onDelete: Cascade)
+
+  @@map("test_attempts")
+}
+
+// ─── Email Subscriptions ─────────────────────────────────────
+model EmailSubscription {
+  id        String   @id @default(cuid())
+  email     String
+  userId    String?
+  name      String?
+  tags      String[]
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@unique([email])
+  @@map("email_subscriptions")
+}
+
+// ─── Site Settings ────────────────────────────────────────────
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
+
+// ─── FAQ ──────────────────────────────────────────────────────
+model FAQ {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String   @db.Text
+  pageUrl   String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faqs")
+}
+
+// ─── Topper ───────────────────────────────────────────────────
+model Topper {
+  id           String   @id @default(cuid())
+  name         String
+  image        String?
+  rank         Int?
+  score        String?
+  collegeName  String?
+  branch       String?
+  year         Int?
+  successStory String?  @db.Text
+  description  String?  @db.Text
+  active       Boolean  @default(true)
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("toppers")
+}
+
+// ─── Expert ───────────────────────────────────────────────────
+model Expert {
+  id            String   @id @default(cuid())
+  name          String
+  photo         String?
+  designation   String?
+  qualification String?
+  experience    String?  @db.Text
+  description   String?  @db.Text
+  linkedinUrl   String?
+  socialLinks   Json?
+  active        Boolean  @default(true)
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("experts")
+}
+
+// ─── Author ───────────────────────────────────────────────────
+model Author {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  photo       String?
+  designation String?
+  biography   String?    @db.Text
+  experience  String?    @db.Text
+  linkedinUrl String?
+  active      Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  books       Book[]
+
+  @@map("authors")
+}
+
+// ─── Book / Note ──────────────────────────────────────────────
+model Book {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  coverImage  String?
+  description String?  @db.Text
+  price       Float?   @default(0)
+  category    String?
+  fileUrl     String?
+  fileKey     String?
+  fileSize    Int?
+  authorId    String?
+  active      Boolean  @default(true)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  author      Author?  @relation(fields: [authorId], references: [id], onDelete: SetNull)
+
+  @@map("books")
+}
+
+// ─── Best Answer Page (AI SEO) ────────────────────────────────
+model BestAnswerPage {
+  id            String     @id @default(cuid())
+  title         String
+  slug          String     @unique
+  content       String     @db.Text
+  faqSection    Json?
+  internalLinks Json?
+  metaTitle     String?
+  metaDesc      String?    @db.Text
+  keywords      String[]
+  status        PostStatus @default(DRAFT)
+  views         Int        @default(0)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@map("best_answer_pages")
+}
+
+// ─── CMS Page ─────────────────────────────────────────────────
+model CmsPage {
+  id            String     @id @default(cuid())
+  title         String
+  slug          String     @unique
+  content       String     @db.Text
+  featuredImage String?
+  metaTitle     String?
+  metaDesc      String?    @db.Text
+  keywords      String[]
+  status        PostStatus @default(DRAFT)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@map("cms_pages")
+}
+
+// ─── Review ───────────────────────────────────────────────────
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  rating    Int
+  text      String   @db.Text
+  pageUrl   String?
+  status    String   @default("PENDING")
+  userId    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("reviews")
+}
+
+// ─── Coupon ───────────────────────────────────────────────────
+model Coupon {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  discountType  String
+  discountValue Float
+  applicableTo  String[]
+  startDate     DateTime
+  endDate       DateTime
+  active        Boolean  @default(true)
+  usageLimit    Int?
+  usedCount     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("coupons")
+}
+
+// ─── Premium Access ───────────────────────────────────────────
+model PremiumAccess {
+  id        String   @id @default(cuid())
+  userId    String
+  userName  String
+  email     String
+  mobile    String?
+  planName  String
+  startDate DateTime
+  endDate   DateTime
+  status    String   @default("ACTIVE")
+  grantedBy String?
+  notes     String?  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("premium_access")
+}
+
+// ─── Contact Inquiry ──────────────────────────────────────────
+model ContactInquiry {
+  id        String    @id @default(cuid())
+  name      String
+  email     String
+  mobile    String?
+  subject   String
+  message   String    @db.Text
+  status    String    @default("NEW")
+  reply     String?   @db.Text
+  repliedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@map("contact_inquiries")
+}
+
+// ─── Email Template ───────────────────────────────────────────
+model EmailTemplate {
+  id        String   @id @default(cuid())
+  name      String
+  subject   String
+  content   String   @db.Text
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("email_templates")
+}
+
+// ─── Email Campaign ───────────────────────────────────────────
+model EmailCampaign {
+  id             String    @id @default(cuid())
+  subject        String
+  content        String    @db.Text
+  templateId     String?
+  recipientType  String
+  recipientCount Int       @default(0)
+  sentCount      Int       @default(0)
+  failedCount    Int       @default(0)
+  status         String    @default("DRAFT")
+  sentAt         DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@map("email_campaigns")
+}
+
+// ─── SEO Meta ─────────────────────────────────────────────────
+model SeoMeta {
+  id              String   @id @default(cuid())
+  pageUrl         String   @unique
+  seoTitle        String?
+  metaDescription String?  @db.Text
+  keywords        String[]
+  canonicalUrl    String?
+  ogTitle         String?
+  ogDescription   String?  @db.Text
+  ogImage         String?
+  indexable       Boolean  @default(true)
+  robotsTags      String?
+  urlSlug         String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("seo_meta")
+}
+
+// ─── Lead ─────────────────────────────────────────────────────
+model Lead {
+  id           String    @id @default(cuid())
+  name         String?
+  email        String?
+  mobile       String?
+  collegeName  String?
+  branch       String?
+  sourcePage   String?
+  sourceUrl    String?
+  landingPage  String?
+  referrerPage String?
+  utmSource    String?
+  utmMedium    String?
+  utmCampaign  String?
+  status       String    @default("NEW")
+  remarks      String?   @db.Text
+  userId       String?   @unique
+  convertedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  user         User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  notes        LeadNote[]
+
+  @@map("leads")
+}
+
+model LeadNote {
+  id        String   @id @default(cuid())
+  leadId    String
+  content   String   @db.Text
+  createdBy String?
+  createdAt DateTime @default(now())
+
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@map("lead_notes")
+}
+
+// ─── Admin Note ───────────────────────────────────────────────
+model AdminNote {
+  id        String   @id @default(cuid())
+  userId    String
+  content   String   @db.Text
+  createdBy String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("admin_notes")
+}
+
+// ─── User Activity ────────────────────────────────────────────
+model UserActivity {
+  id        String   @id @default(cuid())
+  userId    String
+  action    String
+  metadata  Json?
+  ipAddress String?
+  device    String?
+  browser   String?
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_activities")
+}
+
+// ─── Login History ────────────────────────────────────────────
+model LoginHistory {
+  id        String   @id @default(cuid())
+  userId    String
+  ipAddress String?
+  device    String?
+  browser   String?
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("login_histories")
+}
+
+// ─── Media Library ────────────────────────────────────────────
+model MediaFile {
+  id           String   @id @default(cuid())
+  name         String
+  url          String
+  path         String
+  mimeType     String
+  size         Int
+  folder       String?
+  thumbnailUrl String?
+  createdAt    DateTime @default(now())
+
+  @@map("media_files")
+}
+
+// ─── Backup Log ───────────────────────────────────────────────
+model BackupLog {
+  id        String   @id @default(cuid())
+  type      String
+  fileUrl   String?
+  filePath  String?
+  size      Int?
+  status    String   @default("IN_PROGRESS")
+  createdAt DateTime @default(now())
+
+  @@map("backup_logs")
+}
+
+// ─── Daily Study Tracker ──────────────────────────────────────
+model DailyStudy {
+  id              String   @id @default(cuid())
+  userId          String
+  date            DateTime @default(now())
+  studyTime       Int      @default(0) // in minutes
+  questionsSolved Int      @default(0)
+  notesViewed     Int      @default(0)
+  testsAttempted  Int      @default(0)
+
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@map("daily_study")
+}
+
+// ─── Achievements & Badges ─────────────────────────────────────
+model UserBadge {
+  id         String   @id @default(cuid())
+  userId     String
+  badgeType  String   // BEGINNER, INTERMEDIATE, ADVANCED, EXPERT, TOP_PERFORMER, WEEKLY_TOPPER, CONSISTENCY, STREAK_7, STREAK_30, STREAK_100, IMPROVEMENT, FAST_LEARNER
+  title      String
+  unlockedAt DateTime @default(now())
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeType])
+  @@map("user_badges")
+}
+
+// ─── Premium Membership Plans ──────────────────────────────────
+model PremiumPlan {
+  id          String   @id @default(cuid())
+  name        String   // e.g. "1 Month Premium", "12 Months Premium"
+  price       Float
+  duration    Int      // duration in days
+  features    String[] // list of plan benefits
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("premium_plans")
+}
+
+// ─── Transactions & Purchase History ───────────────────────────
+enum PurchaseType {
+  PLAN
+  BOOK
+  RESOURCE
+}
+
+model Transaction {
+  id             String       @id @default(cuid())
+  userId         String
+  orderId        String       @unique // Razorpay Order ID
+  paymentId      String?      @unique // Razorpay Payment ID
+  signature      String?      // Razorpay verification signature
+  amount         Float
+  currency       String       @default("INR")
+  status         String       @default("PENDING") // PENDING, SUCCESSFUL, FAILED, REFUNDED
+  purchaseType   PurchaseType
+  purchaseItemId String       // points to PremiumPlan or Book ID
+  purchaseName   String       // Plan Name or Book Title
+  failureReason  String?
+  refundStatus   String       @default("NONE") // NONE, REQUESTED, APPROVED, REJECTED
+  refundReason   String?
+  refundRemarks  String?
+  invoiceNumber  String?      @unique
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("transactions")
+  @@index([userId])
+}
+

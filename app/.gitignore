@@ -1,0 +1,74 @@
+# ========================================
+# BTech LEET – Git Ignore Configuration
+# ========================================
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Testing
+/coverage
+
+# Next.js build output
+/.next/
+/out/
+
+# Production build
+/build
+/dist
+
+# Environment variables (NEVER commit secrets)
+.env
+.env.*
+!.env.example
+
+# Misc
+.DS_Store
+*.pem
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Vercel
+.vercel
+
+# TypeScript build artifacts
+*.tsbuildinfo
+next-env.d.ts
+
+# Prisma generated client
+/src/generated/prisma
+
+# Package manager lock files (keep only one)
+# Uncomment the ones you don't use:
+# package-lock.json
+# bun.lock
+
+# IDE / Editor
+.vscode/settings.json
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Agents / AI tooling
+.agents/
+skills-lock.json
