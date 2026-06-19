@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input, FormField, Textarea } from "@/components/ui/input";
+import { parseMarkdown } from "@/lib/markdown";
 
 function nullableText(value: unknown) {
   return typeof value === "string" && value.trim() === "" ? null : value;
@@ -42,6 +43,7 @@ export function BlogForm({ categories, initialData, mode = "create" }: {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [activeTab, setActiveTab] = useState<"write" | "preview">("write");
   
   const [form, setForm] = useState<BlogFormValues>({ ...defaultForm, ...initialData });
 
@@ -152,7 +154,51 @@ export function BlogForm({ categories, initialData, mode = "create" }: {
         </FormField>
 
         <FormField label="Content (Markdown supported)" id="content" required>
-          <Textarea id="content" value={form.content || ""} onChange={e => setForm({...form, content: e.target.value})} required placeholder="Write your post content here..." rows={12} className="font-mono text-sm" />
+          <div className="space-y-3">
+            <div className="flex bg-gray-950 border border-gray-800 p-0.5 rounded-lg text-xs w-fit">
+              <button
+                type="button"
+                onClick={() => setActiveTab("write")}
+                className={`px-3 py-1 rounded-md font-medium transition-colors ${
+                  activeTab === "write" ? "bg-blue-600 text-white" : "text-gray-400 hover:text-gray-200"
+                }`}
+              >
+                Write
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab("preview")}
+                className={`px-3 py-1 rounded-md font-medium transition-colors ${
+                  activeTab === "preview" ? "bg-blue-600 text-white" : "text-gray-400 hover:text-gray-200"
+                }`}
+              >
+                Preview
+              </button>
+            </div>
+
+            {activeTab === "write" ? (
+              <Textarea
+                id="content"
+                value={form.content || ""}
+                onChange={e => setForm({ ...form, content: e.target.value })}
+                required
+                placeholder="Write your post content in Markdown here..."
+                rows={16}
+                className="font-mono text-sm bg-gray-950 border-gray-800 text-gray-200 focus:border-blue-500 focus:outline-none"
+              />
+            ) : (
+              <div className="min-h-[400px] max-h-[600px] overflow-y-auto px-4 py-3 bg-gray-950 border border-gray-800 rounded-xl text-gray-200">
+                {form.content ? (
+                  <div
+                    className="prose prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-400 prose-img:rounded-xl text-sm leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: parseMarkdown(form.content) }}
+                  />
+                ) : (
+                  <p className="text-sm text-gray-500 italic">Nothing to preview yet. Write some markdown content first.</p>
+                )}
+              </div>
+            )}
+          </div>
         </FormField>
 
         <div className="flex items-center gap-6 pt-2">
