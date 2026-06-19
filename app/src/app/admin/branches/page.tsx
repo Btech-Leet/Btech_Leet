@@ -65,10 +65,10 @@ export default async function AdminBranchesPage() {
                     </td>
                     <td className="px-5 py-4 text-right">
                       <div className="flex items-center justify-end gap-3">
-                        <Link href={`/admin/branches/${branch.slug}/edit`} className="text-gray-400 hover:text-white transition-colors">
+                        <Link href={`/admin/branches/${branch.id}/edit`} className="text-gray-400 hover:text-white transition-colors">
                           <Edit size={16} />
                         </Link>
-                        <DeleteButton endpoint={`/api/branches/${branch.slug}`} label={branch.name} />
+                        <DeleteButton endpoint={`/api/branches/${branch.id}`} label={branch.name} />
                       </div>
                     </td>
                   </tr>

@@ -33,6 +33,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ slug
   return apiResponse(updated);
 }
 
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
+  return PUT(req, { params });
+}
+
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const auth = await requireAdminOrEditor(req);
   if (isAuthResponse(auth)) return auth;

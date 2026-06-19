@@ -26,7 +26,7 @@ export function BranchForm({ initialData, mode = "create" }: {
     setError("");
 
     try {
-      const url = mode === "create" ? "/api/branches" : `/api/branches/${initialData.slug}`;
+      const url = mode === "create" ? "/api/branches" : `/api/branches/${initialData.id}`;
       const method = mode === "create" ? "POST" : "PATCH";
 
       const res = await fetch(url, {
