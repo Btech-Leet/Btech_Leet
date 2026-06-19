@@ -36,6 +36,7 @@ import {
   Book,
   User,
   Globe,
+  PhoneCall,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -59,6 +60,7 @@ const adminNav: { href: string; label: string; icon: any; exact?: boolean }[] = 
   { href: "/admin/reviews", label: "Reviews", icon: MessageSquare },
   { href: "/admin/coupons", label: "Coupons", icon: Tag },
   { href: "/admin/premium-access", label: "Premium Access", icon: Crown },
+  { href: "/admin/counselling", label: "Counselling", icon: PhoneCall },
   { href: "/admin/billing", label: "Billing", icon: CreditCard },
   { href: "/admin/leads", label: "Leads", icon: Target },
   { href: "/admin/contact", label: "Contact Inquiries", icon: MessageSquare },

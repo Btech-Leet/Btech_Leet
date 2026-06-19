@@ -91,6 +91,7 @@ model User {
   googleId          String?         @unique
   badges            UserBadge[]
   transactions      Transaction[]
+  counsellingRegistrations CounsellingRegistration[]
 
   @@map("users")
 }
@@ -842,6 +843,7 @@ enum PurchaseType {
   PLAN
   BOOK
   RESOURCE
+  COUNSELLING
 }
 
 model Transaction {
@@ -867,6 +869,28 @@ model Transaction {
   user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("transactions")
+  @@index([userId])
+}
+
+model CounsellingRegistration {
+  id            String   @id @default(cuid())
+  userId        String
+  name          String
+  email         String
+  mobile        String
+  leetExam      String
+  rank          String?
+  status        String   @default("PENDING") // PENDING, SUCCESSFUL, FAILED
+  paymentId     String?
+  orderId       String?
+  amountPaid    Float    @default(0)
+  invoiceNumber String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("counselling_registrations")
   @@index([userId])
 }
 

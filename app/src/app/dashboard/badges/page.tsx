@@ -83,29 +83,21 @@ export default function BadgesDashboard() {
 
   if (loading) {
     return (
-      <>
-        <Navbar />
-        <main className="min-h-screen pt-24 bg-gray-950 text-white flex flex-col items-center justify-center">
-          <RefreshCw className="animate-spin text-purple-500 mb-4" size={36} />
-          <p className="text-gray-400">Loading your achievement badges...</p>
-        </main>
-        <Footer />
-      </>
+      <div className="flex flex-col items-center justify-center py-20 text-slate-500 dark:text-slate-400">
+        <RefreshCw className="animate-spin text-purple-500 mb-4" size={36} />
+        <p className="text-sm">Loading your achievement badges...</p>
+      </div>
     );
   }
 
   if (!data) {
     return (
-      <>
-        <Navbar />
-        <main className="min-h-screen pt-24 bg-gray-950 text-white flex flex-col items-center justify-center p-4">
-          <AlertCircle className="text-red-500 mb-3" size={48} />
-          <h1 className="text-xl font-bold">Failed to load badges</h1>
-          <p className="text-gray-400 text-sm mt-1 mb-6 text-center">Please make sure you are signed in.</p>
-          <Button onClick={fetchBadges} className="bg-purple-600 hover:bg-purple-700">Retry</Button>
-        </main>
-        <Footer />
-      </>
+      <div className="flex flex-col items-center justify-center py-20 text-slate-500 dark:text-slate-400 text-center">
+        <AlertCircle className="text-red-500 mb-3" size={48} />
+        <h1 className="text-xl font-bold">Failed to load badges</h1>
+        <p className="text-sm mt-1 mb-6">Please make sure you are signed in.</p>
+        <Button onClick={fetchBadges} className="bg-purple-600 hover:bg-purple-700">Retry</Button>
+      </div>
     );
   }
 
@@ -113,10 +105,7 @@ export default function BadgesDashboard() {
   const lockedBadges = data.badges.filter((b) => !b.unlocked);
 
   return (
-    <>
-      <Navbar />
-      <main className="min-h-screen pt-24 pb-16 bg-gray-950 text-white selection:bg-purple-600 selection:text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-6xl mx-auto space-y-6">
           
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-gray-900 pb-6">
@@ -300,19 +289,15 @@ export default function BadgesDashboard() {
             </div>
           )}
 
-        </div>
-      </main>
-      <Footer />
-
-      <style jsx global>{`
-        @keyframes bounce-subtle {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-4px); }
-        }
-        .animate-bounce-subtle {
-          animation: bounce-subtle 0.6s ease-in-out;
-        }
-      `}</style>
-    </>
-  );
+        <style jsx global>{`
+          @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+          }
+          .animate-bounce-subtle {
+            animation: bounce-subtle 0.6s ease-in-out;
+          }
+        `}</style>
+      </div>
+    );
 }

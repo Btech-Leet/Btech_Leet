@@ -13,8 +13,13 @@ export async function GET(
 
   const { id } = await params;
 
-  const transaction = await prisma.transaction.findUnique({
-    where: { id },
+  const transaction = await prisma.transaction.findFirst({
+    where: {
+      OR: [
+        { id },
+        { purchaseItemId: id }
+      ]
+    },
     include: { user: { select: { name: true, email: true, mobile: true, state: true } } },
   });
 

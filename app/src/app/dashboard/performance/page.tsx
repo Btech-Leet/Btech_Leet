@@ -100,39 +100,28 @@ export default function PerformanceDashboard() {
 
   if (loading) {
     return (
-      <>
-        <Navbar />
-        <main className="min-h-screen pt-24 bg-gray-950 text-white flex flex-col items-center justify-center">
-          <RefreshCw className="animate-spin text-blue-500 mb-4" size={36} />
-          <p className="text-gray-400">Compiling your LEET performance analytics...</p>
-        </main>
-        <Footer />
-      </>
+      <div className="flex flex-col items-center justify-center py-20 text-slate-500 dark:text-slate-400">
+        <RefreshCw className="animate-spin text-blue-500 mb-4" size={36} />
+        <p className="text-sm">Compiling your LEET performance analytics...</p>
+      </div>
     );
   }
 
   if (!data) {
     return (
-      <>
-        <Navbar />
-        <main className="min-h-screen pt-24 bg-gray-950 text-white flex flex-col items-center justify-center p-4">
-          <AlertCircle className="text-red-500 mb-3" size={48} />
-          <h1 className="text-xl font-bold">Failed to load performance metrics</h1>
-          <p className="text-gray-400 text-sm mt-1 mb-6 text-center">Please make sure you are signed in and have database connections ready.</p>
-          <Button onClick={fetchPerformanceData} className="bg-blue-600 hover:bg-blue-700">Retry</Button>
-        </main>
-        <Footer />
-      </>
+      <div className="flex flex-col items-center justify-center py-20 text-slate-500 dark:text-slate-400 text-center">
+        <AlertCircle className="text-red-500 mb-3" size={48} />
+        <h1 className="text-xl font-bold">Failed to load performance metrics</h1>
+        <p className="text-sm mt-1 mb-6">Please make sure you are signed in and have database connections ready.</p>
+        <Button onClick={fetchPerformanceData} className="bg-blue-600 hover:bg-blue-700">Retry</Button>
+      </div>
     );
   }
 
   const { overview, streaks, predictions, subjectPerformance, branchPerformance, weakTopics, strongTopics, dailyStudyReport, testWisePerformance, leaderboards } = data;
 
   return (
-    <>
-      <Navbar />
-      <main className="min-h-screen pt-24 pb-16 bg-gray-950 text-white selection:bg-blue-600 selection:text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto space-y-6">
           
           {/* Header Banner */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-gray-900 pb-6">
@@ -741,9 +730,6 @@ export default function PerformanceDashboard() {
             </div>
           </div>
 
-        </div>
-      </main>
-
       {/* Log Study Session Modal */}
       {showLogModal && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[150] flex items-center justify-center p-4">
@@ -814,9 +800,7 @@ export default function PerformanceDashboard() {
           </div>
         </div>
       )}
-
-      <Footer />
-    </>
+    </div>
   );
 }
 

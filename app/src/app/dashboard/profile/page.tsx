@@ -253,18 +253,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <>
-      <Navbar />
-      <main className="min-h-screen pt-16 bg-gray-50 dark:bg-gray-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          
-          {/* Back button */}
-          <Link
-            href="/dashboard"
-            className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-6 transition-colors"
-          >
-            <ArrowLeft size={16} /> Back to Dashboard
-          </Link>
+    <div className="max-w-4xl mx-auto space-y-6">
 
           {/* Page Heading */}
           <div className="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -537,9 +526,6 @@ export default function ProfilePage() {
               </form>
             </div>
           </div>
-        </div>
-      </main>
-      <Footer />
-    </>
+    </div>
   );
 }

@@ -196,22 +196,15 @@ export default function BillingDashboard() {
 
   if (loading) {
     return (
-      <>
-        <Navbar />
-        <main className="min-h-screen pt-24 bg-gray-950 text-white flex flex-col items-center justify-center">
-          <RefreshCw className="animate-spin text-indigo-500 mb-4" size={36} />
-          <p className="text-gray-400">Loading billing information...</p>
-        </main>
-        <Footer />
-      </>
+      <div className="flex flex-col items-center justify-center py-20 text-slate-500 dark:text-slate-400">
+        <RefreshCw className="animate-spin text-indigo-500 mb-4" size={36} />
+        <p className="text-sm">Loading billing information...</p>
+      </div>
     );
   }
 
   return (
-    <>
-      <Navbar />
-      <main className="min-h-screen pt-24 pb-16 bg-gray-950 text-white selection:bg-indigo-600 selection:text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-6xl mx-auto space-y-6">
           
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-gray-900 pb-6">
@@ -467,12 +460,8 @@ export default function BillingDashboard() {
                   )}
                 </CardContent>
               </Card>
-            </div>
-          )}
-
         </div>
-      </main>
-      <Footer />
+      )}
 
       {/* Refund Request Modal */}
       {showRefundModal && (
@@ -518,6 +507,6 @@ export default function BillingDashboard() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -121,3 +121,48 @@ export async function sendWelcomeEmail(email: string) {
   }
   return data;
 }
+
+export async function sendCounsellingEmail(email: string, name: string) {
+  const { data, error } = await getResend().emails.send({
+    from: FROM,
+    to: email,
+    subject: `Counselling Registration Successful – ${APP_NAME}`,
+    html: `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px;">
+        <div style="text-align: center; margin-bottom: 32px;">
+          <h1 style="color: #2563eb; font-size: 28px; font-weight: 800; margin: 0;">${APP_NAME}</h1>
+          <p style="color: #64748b; font-size: 14px; margin: 8px 0 0;">Expert Counselling Services</p>
+        </div>
+        <div style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; margin-bottom: 24px;">
+          <h2 style="color: #0f172a; font-size: 20px; font-weight: 700; margin: 0 0 8px;">Thank You, ${name}!</h2>
+          <p style="color: #475569; font-size: 15px; line-height: 1.6; margin: 0;">
+            Your registration for the Premium LEET Counselling program has been successfully processed! We are extremely thrilled to help you guide through your lateral entry admission process and secure a seat in your dream college.
+          </p>
+        </div>
+        <div style="background: #f8fafc; border-radius: 12px; padding: 24px; margin-bottom: 24px; border: 1px solid #f1f5f9;">
+          <h3 style="color: #0f172a; font-size: 16px; font-weight: 700; margin: 0 0 12px;">Your Personal Point of Contact</h3>
+          <p style="color: #475569; font-size: 14px; margin: 0 0 8px; line-height: 1.5;">
+            Our expert counselling lead, <strong>Nishant</strong>, has been assigned to personally monitor and curate your choice lists, choice filling strategy, and document verification.
+          </p>
+          <p style="color: #0f172a; font-size: 15px; font-weight: 600; margin: 12px 0 4px;">
+             Nishant (Counselling Expert)
+          </p>
+          <p style="color: #2563eb; font-size: 15px; font-weight: 700; margin: 0;">
+            Mobile / WhatsApp: <a href="tel:+917988316241" style="color: #2563eb; text-decoration: none;">+91 7988316241</a>
+          </p>
+        </div>
+        <p style="color: #64748b; font-size: 14px; line-height: 1.6; margin: 0 0 24px;">
+          We are always here to support you at every phase of choice locking, document verification, and seat allotment rounds. You will receive a callback within the next 24 hours.
+        </p>
+        <div style="text-align: center; border-top: 1px solid #f1f5f9; padding-top: 24px;">
+          <p style="color: #94a3b8; font-size: 12px; margin: 0;">© ${new Date().getFullYear()} ${APP_NAME}. All rights reserved.</p>
+        </div>
+      </div>
+    `,
+  });
+
+  if (error) {
+    throw new Error(`Resend counselling email error: ${error.message}`);
+  }
+  return data;
+}

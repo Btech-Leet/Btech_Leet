@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { requireAuth, isAuthResponse } from "@/lib/middleware";
 import { apiResponse, apiError } from "@/lib/utils";
 import crypto from "crypto";
+import { sendCounsellingEmail } from "@/lib/email";
 
 const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID || "";
 const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || "";
@@ -114,6 +115,25 @@ export async function POST(req: NextRequest) {
           where: { id: auth.userId },
           data: { premiumStatus: true },
         });
+      }
+    } else if (transaction.purchaseType === "COUNSELLING") {
+      await prisma.counsellingRegistration.update({
+        where: { id: transaction.purchaseItemId },
+        data: {
+          status: "SUCCESSFUL",
+          paymentId: razorpay_payment_id,
+          orderId: razorpay_order_id,
+          invoiceNumber,
+        },
+      });
+
+      const user = await prisma.user.findUnique({ where: { id: auth.userId } });
+      if (user) {
+        try {
+          await sendCounsellingEmail(user.email, user.name);
+        } catch (err) {
+          console.error("Failed to send counselling email:", err);
+        }
       }
     }
 
