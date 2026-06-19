@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -272,4 +273,113 @@
 @utility font-label-md { font-family: var(--font-inter, 'Inter'), sans-serif; }
 @utility font-label-sm { font-family: var(--font-inter, 'Inter'), sans-serif; }
 @utility font-caption { font-family: var(--font-inter, 'Inter'), sans-serif; }
+
+/* Custom Prose & Markdown Beautification (e.g. Tables, Code Blocks, Blockquotes) */
+.prose {
+  width: 100%;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: left;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0; /* slate-200 */
+}
+.dark .prose table {
+  border-color: #1e293b; /* slate-800 */
+}
+.prose th {
+  background-color: #f1f5f9; /* slate-100 */
+  color: #1e293b; /* slate-800 */
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+.dark .prose th {
+  background-color: #0f172a; /* slate-900 */
+  color: #f1f5f9; /* slate-100 */
+  border-bottom: 2px solid #1e293b;
+}
+.prose td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155; /* slate-700 */
+}
+.dark .prose td {
+  border-bottom: 1px solid #1e293b;
+  color: #cbd5e1; /* slate-300 */
+}
+.prose tr:last-child td {
+  border-bottom: none;
+}
+.prose tr:nth-child(even) {
+  background-color: #f8fafc; /* slate-50 */
+}
+.dark .prose tr:nth-child(even) {
+  background-color: rgba(30, 41, 59, 0.3);
+}
+.prose tr:hover {
+  background-color: rgba(241, 245, 249, 0.5);
+}
+.dark .prose tr:hover {
+  background-color: rgba(30, 41, 59, 0.5);
+}
+
+/* Beautiful blockquotes, code blocks, and lists styling */
+.prose blockquote {
+  border-left: 4px solid #3b82f6; /* blue-500 */
+  padding-left: 1rem;
+  font-style: italic;
+  color: #475569;
+  margin: 1.5rem 0;
+}
+.dark .prose blockquote {
+  color: #94a3b8;
+}
+.prose pre {
+  background-color: #0f172a; /* slate-900 */
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid #1e293b;
+}
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background-color: #f1f5f9;
+  color: #ef4444; /* red-500 */
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+.dark .prose code {
+  background-color: #1e293b;
+  color: #f87171; /* red-400 */
+}
+.prose pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+.prose li {
+  margin: 0.25rem 0;
+}
+
 

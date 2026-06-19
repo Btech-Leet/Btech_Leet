@@ -96,10 +96,12 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           </div>
         )}
 
-        <div 
-          className="prose prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-img:rounded-xl text-gray-700 dark:text-gray-300 leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: parseMarkdown(post.content) }}
-        />
+        <div className="w-full overflow-x-auto">
+          <div 
+            className="prose prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-img:rounded-xl text-gray-700 dark:text-gray-300 leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: parseMarkdown(post.content) }}
+          />
+        </div>
 
         <footer className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
           <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:underline" aria-label="Back to blog">
