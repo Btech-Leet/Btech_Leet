@@ -74,9 +74,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="text-headline-md font-headline-md font-bold text-slate-900 dark:text-white flex items-center gap-2" aria-label="BTech LEET Home">
-            <span className="material-symbols-outlined text-orange-600" style={{ fontVariationSettings: "'FILL' 1" }}>
-              school
-            </span>
+            <img src="/logo.jpeg" alt="BTech LEET Logo" className="w-8 h-8 rounded-lg object-cover" />
             BTech LEET
           </Link>
 
@@ -197,90 +195,212 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden text-slate-900 dark:text-white p-2"
-            aria-label="Toggle mobile menu"
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? (
-              <span className="material-symbols-outlined">close</span>
-            ) : (
-              <span className="material-symbols-outlined">menu</span>
-            )}
-          </button>
+          {/* Mobile Actions */}
+          <div className="flex items-center gap-1 lg:hidden">
+            {/* Mobile Theme Toggle */}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 p-2"
+              title="Toggle Theme"
+              suppressHydrationWarning
+            >
+              {mounted && theme === "dark" ? (
+                <span className="material-symbols-outlined text-[22px]">light_mode</span>
+              ) : (
+                <span className="material-symbols-outlined text-[22px]">dark_mode</span>
+              )}
+            </button>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="text-slate-900 dark:text-white p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              aria-label="Toggle mobile menu"
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? (
+                <span className="material-symbols-outlined text-[22px]">close</span>
+              ) : (
+                <span className="material-symbols-outlined text-[22px]">menu</span>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer Overlay */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 fade-in">
-          <nav className="px-4 py-3 space-y-1" aria-label="Mobile navigation">
+        <div 
+          className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 lg:hidden"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      {/* Mobile Drawer Menu */}
+      <div
+        className={cn(
+          "fixed top-0 right-0 bottom-0 z-50 w-[300px] max-w-[85vw] h-screen h-[100dvh] bg-white dark:bg-slate-900 shadow-2xl flex flex-col border-l border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out lg:hidden",
+          mobileOpen ? "translate-x-0 visible" : "translate-x-full invisible"
+        )}
+      >
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-800">
+          <Link 
+            href="/" 
+            className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2" 
+            onClick={() => setMobileOpen(false)}
+          >
+            <img src="/logo.jpeg" alt="BTech LEET Logo" className="w-7 h-7 rounded-md object-cover" />
+            BTech LEET
+          </Link>
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="text-slate-500 dark:text-slate-400 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+            aria-label="Close menu"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* Drawer Body (Scrollable) */}
+        <div className="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+          {/* User Profile Info */}
+          {user && (
+            <div className="px-3 py-3.5 bg-slate-50 dark:bg-slate-800/40 rounded-2xl flex items-center gap-3 border border-slate-100 dark:border-slate-800">
+              <div className="w-10 h-10 rounded-full bg-orange-650 flex items-center justify-center text-white font-bold shadow-sm">
+                {user.name[0].toUpperCase()}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-semibold text-slate-950 dark:text-white truncate">{user.name}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
+              </div>
+              {user.role === "ADMIN" && (
+                <span className="text-[10px] font-bold bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-400 px-2 py-0.5 rounded-full border border-orange-200/40 dark:border-orange-900/30">
+                  Admin
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Nav Links */}
+          <nav className="space-y-1.5" aria-label="Mobile navigation">
+            <span className="block px-3 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Explore</span>
             {navLinks.map((link) => {
               const Icon = link.icon;
+              const isActive = pathname.startsWith(link.href);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
+                  onClick={() => setMobileOpen(false)}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
-                    pathname.startsWith(link.href)
-                      ? "text-orange-600 dark:text-orange-400 bg-slate-100 dark:bg-slate-800"
-                      : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
+                    "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                    isActive
+                      ? "text-orange-650 dark:text-orange-450 bg-orange-50 dark:bg-orange-950/20 font-semibold"
+                      : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50"
                   )}
                 >
-                  <Icon size={18} />
+                  <Icon size={18} className={isActive ? "text-orange-655" : "text-slate-500"} />
                   {link.label}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Mobile Auth */}
-          <div className="px-4 py-3 border-t border-slate-200 dark:border-slate-800">
-            {user ? (
-              <div className="space-y-1">
-                {user.role === "ADMIN" && (
-                  <Link
-                    href="/admin"
-                    className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
-                  >
-                    <LayoutDashboard size={18} /> Admin Dashboard
-                  </Link>
-                )}
+          {/* User Account / Dashboard Links */}
+          {user && (
+            <nav className="space-y-1.5 border-t border-slate-100 dark:border-slate-800/80 pt-6">
+              <span className="block px-3 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Account</span>
+              {user.role === "ADMIN" && (
                 <Link
-                  href="/dashboard"
-                  className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                  href="/admin"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-xl"
                 >
-                  <User size={18} /> My Dashboard
+                  <LayoutDashboard size={18} className="text-slate-500" />
+                  Admin Dashboard
                 </Link>
-                <Link
-                  href="/dashboard/performance"
-                  className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
-                >
-                  <BarChart3 size={18} /> My Performance
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-red-400 hover:bg-red-950/30 rounded-lg w-full"
-                >
-                  <LogOut size={18} /> Sign Out
-                </button>
-              </div>
-            ) : (
-              <div className="flex gap-2">
-                <Link href="/auth/login" className="flex-1 py-2.5 text-center text-sm font-medium border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                  Sign In
-                </Link>
-                <Link href="/auth/register" className="flex-1 py-2.5 text-center text-sm font-semibold bg-orange-700 text-white rounded-lg hover:bg-orange-600 transition-colors">
-                  Get Started
-                </Link>
-              </div>
-            )}
-          </div>
+              )}
+              <Link
+                href="/dashboard"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-xl"
+              >
+                <User size={18} className="text-slate-500" />
+                My Dashboard
+              </Link>
+              <Link
+                href="/dashboard/performance"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-xl"
+              >
+                <BarChart3 size={18} className="text-slate-500" />
+                My Performance
+              </Link>
+            </nav>
+          )}
         </div>
-      )}
+
+        {/* Drawer Footer / Theme & Sign out */}
+        <div className="p-5 border-t border-slate-100 dark:border-slate-800 space-y-5 bg-slate-50/50 dark:bg-slate-900/50">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Theme</span>
+            <div className="flex p-0.5 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200/50 dark:border-slate-700/50">
+              <button
+                onClick={() => setTheme("light")}
+                className={cn(
+                  "flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200",
+                  mounted && theme === "light"
+                    ? "bg-white text-slate-900 shadow-sm"
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                )}
+              >
+                <Sun size={14} /> Light
+              </button>
+              <button
+                onClick={() => setTheme("dark")}
+                className={cn(
+                  "flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200",
+                  mounted && theme === "dark"
+                    ? "bg-slate-950 text-white shadow-sm border border-slate-800"
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                )}
+              >
+                <Moon size={14} /> Dark
+              </button>
+            </div>
+          </div>
+
+          {user ? (
+            <button
+              onClick={() => {
+                setMobileOpen(false);
+                handleLogout();
+              }}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-red-50 dark:bg-red-950/20 text-red-650 dark:text-red-400 rounded-xl text-sm font-semibold hover:bg-red-100 dark:hover:bg-red-950/40 transition-colors"
+            >
+              <LogOut size={16} /> Sign Out
+            </button>
+          ) : (
+            <div className="space-y-2">
+              <Link
+                href="/auth/login"
+                onClick={() => setMobileOpen(false)}
+                className="w-full flex items-center justify-center py-2.5 text-sm font-medium border border-slate-250 dark:border-slate-700 text-slate-700 dark:text-slate-350 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/auth/register"
+                onClick={() => setMobileOpen(false)}
+                className="w-full flex items-center justify-center py-2.5 text-sm font-semibold bg-orange-700 hover:bg-orange-600 text-white rounded-xl transition-colors shadow-sm"
+              >
+                Get Started
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
     </header>
   );
 }

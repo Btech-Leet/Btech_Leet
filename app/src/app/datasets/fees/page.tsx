@@ -6,7 +6,7 @@ import { ComparisonTable } from "@/components/seo/comparison-table";
 import { Database } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "LEET College Fees Database 2025 | BTech LEET",
+  title: "LEET College Fees Database 2026 | BTech LEET",
   description: "Compare tuition, hostel, and total fees for BTech colleges admitting lateral entry students.",
 };
 

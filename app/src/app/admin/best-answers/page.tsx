@@ -177,7 +177,7 @@ export default function AdminBestAnswersPage() {
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-gray-400 uppercase">Page Title</label>
                 <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)}
-                  placeholder="What is BTech LEET? Complete Guide 2025"
+                  placeholder="What is BTech LEET? Complete Guide 2026"
                   className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
               </div>
 

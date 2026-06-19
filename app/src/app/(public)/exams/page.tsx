@@ -6,10 +6,15 @@ import { MapPin, Globe, Search, Filter } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "LEET Exam Directory – State & Central Lateral Entry Exams",
-  description: "Browse all state and central BTech Lateral Entry Exam (LEET) details including eligibility, syllabus, important dates, and application info.",
-};
+import { mergeSeoMetadata } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const fallback: Metadata = {
+    title: "LEET Exam Directory – State & Central Lateral Entry Exams",
+    description: "Browse all state and central BTech Lateral Entry Exam (LEET) details including eligibility, syllabus, important dates, and application info.",
+  };
+  return mergeSeoMetadata("/exams", fallback);
+}
 
 async function getExams(searchParams: Record<string, string>) {
   const where: Record<string, unknown> = { active: true };

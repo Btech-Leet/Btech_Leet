@@ -22,7 +22,7 @@ export default function DisclaimerPage() {
               </div>
               <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Disclaimer</h1>
             </div>
-            <p className="text-sm text-gray-500 mb-12">Last Updated: October 15, 2025</p>
+            <p className="text-sm text-gray-500 mb-12">Last Updated: October 15, 2026</p>
           </FadeIn>
 
           <FadeIn delay={0.1} className="space-y-8 text-base md:text-lg leading-relaxed">

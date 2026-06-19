@@ -6,7 +6,7 @@ import { ComparisonTable } from "@/components/seo/comparison-table";
 import { Database, Filter, Search } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "LEET Seat Matrix Database 2025 | BTech LEET",
+  title: "LEET Seat Matrix Database 2026 | BTech LEET",
   description: "Check lateral entry seat availability across various BTech colleges and branches.",
 };
 

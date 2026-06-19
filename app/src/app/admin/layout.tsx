@@ -34,6 +34,8 @@ import {
   Target,
   CreditCard,
   Book,
+  User,
+  Globe,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -49,6 +51,7 @@ const adminNav: { href: string; label: string; icon: any; exact?: boolean }[] = 
   { href: "/admin/resources", label: "Resources", icon: Library },
   { href: "/admin/blog", label: "Blog", icon: PenSquare },
   { href: "/admin/books", label: "Books & Notes", icon: Book },
+  { href: "/admin/authors", label: "Authors", icon: User },
   { href: "/admin/mock-tests", label: "Mock Tests", icon: ClipboardList },
   { href: "/admin/toppers", label: "Toppers", icon: Trophy },
   { href: "/admin/experts", label: "Experts", icon: UserCheck },
@@ -61,6 +64,7 @@ const adminNav: { href: string; label: string; icon: any; exact?: boolean }[] = 
   { href: "/admin/contact", label: "Contact Inquiries", icon: MessageSquare },
   { href: "/admin/email-marketing", label: "Email Marketing", icon: Send },
   { href: "/admin/seo", label: "SEO", icon: Search },
+  { href: "/admin/cms-pages", label: "CMS Pages", icon: Globe },
   { href: "/admin/users", label: "Users", icon: Users },
   { href: "/admin/subscribers", label: "Subscribers", icon: Mail },
   { href: "/admin/settings", label: "Settings", icon: Settings },

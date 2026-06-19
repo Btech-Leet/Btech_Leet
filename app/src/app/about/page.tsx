@@ -5,10 +5,15 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/fade-in";
 import { Users, GraduationCap, Target, Award } from "lucide-react";
 import Image from "next/image";
 
-export const metadata: Metadata = {
-  title: "About Us | BTech LEET",
-  description: "Learn about BTech LEET, our mission, and the team behind India's #1 platform for diploma lateral entry students.",
-};
+import { mergeSeoMetadata } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const fallback: Metadata = {
+    title: "About Us | BTech LEET",
+    description: "Learn about BTech LEET, our mission, and the team behind India's #1 platform for diploma lateral entry students.",
+  };
+  return mergeSeoMetadata("/about", fallback);
+}
 
 export default function AboutPage() {
   return (
@@ -58,7 +63,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl font-bold text-white mb-4">Meet Nishant</h2>
               <p className="text-gray-400 mb-6 leading-relaxed">
-                Nishant founded BTech LEET in 2024 after realizing the massive information gap existing for diploma students. 
+                Nishant founded BTech LEET in 2026 after realizing the massive information gap existing for diploma students. 
                 With a passion for tech and education, he built this platform to bring transparency to the chaotic LEET admission process.
               </p>
               <a href="/author/nishant" className="text-blue-400 hover:text-blue-300 font-semibold inline-flex items-center gap-1">

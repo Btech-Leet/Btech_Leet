@@ -73,7 +73,7 @@ export default function CutoffsDatabasePage() {
 
             <ComparisonTable 
               title="Recent Cutoff Statistics" 
-              description="Data collected from the 2024-2025 HSTES LEET counselling."
+              description="Data collected from the 2025-2026 HSTES LEET counselling."
               columns={[
                 { header: "College Name", accessor: "college" },
                 { header: "Branch", accessor: "branch" },

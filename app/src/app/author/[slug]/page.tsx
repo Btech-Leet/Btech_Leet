@@ -31,7 +31,7 @@ export default async function AuthorProfilePage({ params }: { params: { slug: st
       slug: "nishant",
       photo: "/images/nishant-profile.jpg",
       designation: "Founder & Chief Mentor",
-      biography: "Founder of BTechLeet. Helping Diploma Students since 2024. Nishant is deeply passionate about bridging the gap between diploma studies and B.Tech lateral entry.",
+      biography: "Founder of BTechLeet. Helping Diploma Students since 2026. Nishant is deeply passionate about bridging the gap between diploma studies and B.Tech lateral entry.",
       experience: "5+ years in EdTech, 3 years specifically guiding LEET aspirants.",
       linkedinUrl: "https://linkedin.com/in/nishant",
       active: true,

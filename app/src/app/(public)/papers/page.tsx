@@ -7,10 +7,15 @@ import { FileText, Download, Search, Filter } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "LEET Previous Year Papers – Download Question Papers",
-  description: "Download BTech Lateral Entry Exam (LEET) previous year question papers, mock tests, and sample papers for all states.",
-};
+import { mergeSeoMetadata } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const fallback: Metadata = {
+    title: "LEET Previous Year Papers – Download Question Papers",
+    description: "Download BTech Lateral Entry Exam (LEET) previous year question papers, mock tests, and sample papers for all states.",
+  };
+  return mergeSeoMetadata("/papers", fallback);
+}
 
 async function getPapers(params: Record<string, string>) {
   const where: Record<string, unknown> = { active: true };

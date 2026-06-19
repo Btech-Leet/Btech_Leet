@@ -35,12 +35,7 @@ export function Footer() {
               href="/"
               className="inline-flex items-center gap-3 text-slate-900 dark:text-white"
             >
-              <span
-                className="material-symbols-outlined text-orange-500 text-2xl"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                school
-              </span>
+              <img src="/logo.jpeg" alt="BTech LEET Logo" className="w-9 h-9 rounded-lg object-cover" />
 
               <span className="text-3xl font-bold">
                 BTech LEET
@@ -93,19 +88,40 @@ export function Footer() {
             © {new Date().getFullYear()} BTech LEET. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-8">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 justify-center md:justify-end">
             <Link
-              href="/privacy"
+              href="/legal/privacy-policy"
               className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               Privacy Policy
             </Link>
 
             <Link
-              href="/terms"
+              href="/legal/terms-and-conditions"
               className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
-              Terms of Service
+              Terms & Conditions
+            </Link>
+
+            <Link
+              href="/legal/disclaimer"
+              className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+            >
+              Disclaimer
+            </Link>
+
+            <Link
+              href="/legal/editorial-policy"
+              className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+            >
+              Editorial Policy
+            </Link>
+
+            <Link
+              href="/legal/refund-policy"
+              className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+            >
+              Refund Policy
             </Link>
           </div>
         </div>

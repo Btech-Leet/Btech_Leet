@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "lateral entry counselling",
     "engineering lateral entry India",
     "LEET exam eligibility",
-    "LEET 2024 2025",
+    "LEET 2026",
   ],
   authors: [{ name: "BTech LEET" }],
   creator: "BTech LEET",

@@ -6,10 +6,15 @@ import { Building2, MapPin, Globe, Star, Search, Filter } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "BTech Colleges with Lateral Entry – College Directory",
-  description: "Browse colleges offering BTech Lateral Entry admission across India with branches, fees, intake, and accreditation details.",
-};
+import { mergeSeoMetadata } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const fallback: Metadata = {
+    title: "BTech Colleges with Lateral Entry – College Directory",
+    description: "Browse colleges offering BTech Lateral Entry admission across India with branches, fees, intake, and accreditation details.",
+  };
+  return mergeSeoMetadata("/colleges", fallback);
+}
 
 async function getColleges(params: Record<string, string>) {
   const where: Record<string, unknown> = { active: true };

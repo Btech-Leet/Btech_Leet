@@ -18,7 +18,7 @@ export function HeroSection() {
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center gap-lg">
         <div className="inline-flex items-center gap-2 bg-slate-100/85 dark:bg-slate-800/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-200 dark:border-slate-600 shadow-sm mb-4 transition-colors duration-300">
           <span className="bg-orange-500 w-2 h-2 rounded-full animate-pulse"></span>
-          <span className="text-label-md font-label-md text-slate-700 dark:text-slate-200">New 2024 Exam Patterns Available</span>
+          <span className="text-label-md font-label-md text-slate-700 dark:text-slate-200">New 2026 Exam Patterns Available</span>
         </div>
         <h1 className="text-[48px] leading-[1.1] md:text-[72px] md:leading-[1.1] font-bold text-slate-900 dark:text-white tracking-tight transition-colors duration-300">
           Cracking <span className="text-orange-600 dark:text-orange-500">BTech LEET</span> Made Simple.

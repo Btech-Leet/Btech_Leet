@@ -15,12 +15,17 @@ import { SubscribeSection } from "@/components/home/subscribe-section";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "BTech LEET – Lateral Entry Exam Portal for Diploma Students in India",
-  description:
-    "India's most comprehensive BTech Lateral Entry Exam (LEET) portal. Access state-wise exam details, previous year question papers, mock tests, counselling schedules, college listings, and real-time notifications.",
-  alternates: { canonical: "/" },
-};
+import { mergeSeoMetadata } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const fallback: Metadata = {
+    title: "BTech LEET – Lateral Entry Exam Portal for Diploma Students in India",
+    description:
+      "India's most comprehensive BTech Lateral Entry Exam (LEET) portal. Access state-wise exam details, previous year question papers, mock tests, counselling schedules, college listings, and real-time notifications.",
+    alternates: { canonical: "/" },
+  };
+  return mergeSeoMetadata("/", fallback);
+}
 
 export default function HomePage() {
   return (
