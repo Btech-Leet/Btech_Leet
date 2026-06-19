@@ -108,16 +108,16 @@ export default function BadgesDashboard() {
     <div className="max-w-6xl mx-auto space-y-6">
           
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-gray-900 pb-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/5 text-purple-400 text-xs font-semibold mb-3">
                 <Award size={12} className="animate-pulse" />
                 Achievements
               </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-100 to-purple-400">
+              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
                 Your Achievement Badges
               </h1>
-              <p className="text-gray-400 text-sm mt-1">
+              <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
                 Complete challenges, maintain streaks, and ace your exams to unlock badges.
               </p>
             </div>
@@ -145,10 +145,10 @@ export default function BadgesDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             
             {/* Progress Ring */}
-            <Card className="bg-gray-900 border-gray-800 rounded-2xl flex flex-col items-center justify-center py-8">
+            <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl flex flex-col items-center justify-center py-8">
               <div className="relative w-32 h-32 flex items-center justify-center mb-4">
                 <svg className="w-full h-full transform -rotate-90">
-                  <circle cx="64" cy="64" r="55" stroke="#1f2937" strokeWidth="7" fill="transparent" />
+                  <circle cx="64" cy="64" r="55" stroke="#f1f5f9" strokeWidth="7" fill="transparent" className="dark:stroke-slate-800" />
                   <circle
                     cx="64" cy="64" r="55"
                     stroke="url(#badgeGrad)"
@@ -167,59 +167,59 @@ export default function BadgesDashboard() {
                   </defs>
                 </svg>
                 <div className="absolute text-center">
-                  <span className="text-2xl font-black text-white">{data.progress}%</span>
-                  <span className="text-[9px] text-gray-400 block font-semibold uppercase mt-0.5">Complete</span>
+                  <span className="text-2xl font-black text-slate-900 dark:text-white">{data.progress}%</span>
+                  <span className="text-[9px] text-slate-500 dark:text-gray-400 block font-semibold uppercase mt-0.5">Complete</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-400 font-medium">{data.totalUnlocked} / {data.totalBadges} Badges Unlocked</p>
+              <p className="text-xs text-slate-500 dark:text-gray-400 font-medium">{data.totalUnlocked} / {data.totalBadges} Badges Unlocked</p>
             </Card>
 
             {/* Quick Stats */}
-            <Card className="bg-gray-900 border-gray-800 rounded-2xl relative overflow-hidden">
+            <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 p-4 opacity-5">
                 <Trophy size={120} />
               </div>
               <CardHeader className="pb-2">
-                <CardTitle className="text-white text-base">Achievement Stats</CardTitle>
-                <CardDescription className="text-gray-400 text-xs">Your badge collection overview</CardDescription>
+                <CardTitle className="text-slate-900 dark:text-white text-base">Achievement Stats</CardTitle>
+                <CardDescription className="text-slate-550 dark:text-gray-400 text-xs">Your badge collection overview</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex justify-between items-center p-3 bg-gray-950 rounded-xl border border-gray-850">
+                <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-gray-850">
                   <div className="flex items-center gap-2">
                     <div className="p-1.5 bg-emerald-500/10 text-emerald-500 rounded-lg">
                       <Unlock size={14} />
                     </div>
-                    <span className="text-xs font-semibold text-gray-300">Unlocked</span>
+                    <span className="text-xs font-semibold text-slate-700 dark:text-gray-300">Unlocked</span>
                   </div>
-                  <span className="text-lg font-black text-emerald-400">{data.totalUnlocked}</span>
+                  <span className="text-lg font-black text-emerald-500 dark:text-emerald-400">{data.totalUnlocked}</span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-950 rounded-xl border border-gray-850">
+                <div className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-gray-850">
                   <div className="flex items-center gap-2">
-                    <div className="p-1.5 bg-gray-700/30 text-gray-500 rounded-lg">
+                    <div className="p-1.5 bg-slate-200 dark:bg-gray-700/30 text-slate-500 dark:text-gray-500 rounded-lg">
                       <Lock size={14} />
                     </div>
-                    <span className="text-xs font-semibold text-gray-300">Locked</span>
+                    <span className="text-xs font-semibold text-slate-700 dark:text-gray-300">Locked</span>
                   </div>
-                  <span className="text-lg font-black text-gray-500">{data.totalBadges - data.totalUnlocked}</span>
+                  <span className="text-lg font-black text-slate-500">{data.totalBadges - data.totalUnlocked}</span>
                 </div>
               </CardContent>
             </Card>
 
             {/* Recent Unlocks */}
-            <Card className="bg-gray-900 border-gray-800 rounded-2xl">
+            <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl">
               <CardHeader className="pb-2">
-                <CardTitle className="text-white text-base flex items-center gap-2">
+                <CardTitle className="text-slate-900 dark:text-white text-base flex items-center gap-2">
                   <Star className="text-amber-500" size={16} />
                   Latest Unlocks
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 {unlockedBadges.slice(0, 3).map((badge) => (
-                  <div key={badge.type} className="flex items-center gap-3 p-2.5 bg-gray-950 rounded-xl border border-gray-850">
+                  <div key={badge.type} className="flex items-center gap-3 p-2.5 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-gray-850">
                     <span className="text-xl">{badge.icon}</span>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs font-bold text-white truncate">{badge.title}</p>
-                      <p className="text-[10px] text-gray-500">
+                      <p className="text-xs font-bold text-slate-900 dark:text-white truncate">{badge.title}</p>
+                      <p className="text-[10px] text-slate-500 dark:text-gray-500">
                         {badge.unlockedAt ? new Date(badge.unlockedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short" }) : ""}
                       </p>
                     </div>
@@ -227,7 +227,7 @@ export default function BadgesDashboard() {
                   </div>
                 ))}
                 {unlockedBadges.length === 0 && (
-                  <p className="text-xs text-gray-500 text-center py-4">No badges unlocked yet. Keep going!</p>
+                  <p className="text-xs text-slate-500 dark:text-gray-500 text-center py-4">No badges unlocked yet. Keep going!</p>
                 )}
               </CardContent>
             </Card>
@@ -236,7 +236,7 @@ export default function BadgesDashboard() {
           {/* Unlocked Badges Grid */}
           {unlockedBadges.length > 0 && (
             <div className="mb-10">
-              <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <Unlock size={18} className="text-emerald-500" />
                 Unlocked Achievements
               </h2>
@@ -244,15 +244,15 @@ export default function BadgesDashboard() {
                 {unlockedBadges.map((badge) => (
                   <div
                     key={badge.type}
-                    className={`group relative p-5 bg-gradient-to-br ${BADGE_GLOW_COLORS[badge.type] || "from-gray-800/50 to-gray-900/50 border-gray-700/30"} border rounded-2xl hover:scale-[1.03] transition-all duration-300 cursor-default`}
+                    className={`group relative p-5 bg-white dark:bg-slate-900 bg-gradient-to-br ${BADGE_GLOW_COLORS[badge.type] || "from-slate-50 to-slate-100 dark:from-gray-800/50 dark:to-gray-900/50 border-slate-200 dark:border-gray-700/30"} border border-slate-200 dark:border-slate-800/80 rounded-2xl hover:scale-[1.03] transition-all duration-300 cursor-default`}
                   >
                     <div className="absolute top-3 right-3">
                       <CheckCircle size={14} className="text-emerald-500" />
                     </div>
                     <div className="text-4xl mb-3">{badge.icon}</div>
-                    <h3 className="text-sm font-bold text-white mb-1">{badge.title}</h3>
-                    <p className="text-[11px] text-gray-400 leading-relaxed mb-2">{badge.description}</p>
-                    <div className="text-[9px] text-gray-500 font-semibold uppercase">
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">{badge.title}</h3>
+                    <p className="text-[11px] text-slate-500 dark:text-gray-400 leading-relaxed mb-2">{badge.description}</p>
+                    <div className="text-[9px] text-slate-500 dark:text-gray-500 font-semibold uppercase">
                       {badge.unlockedAt ? `Unlocked ${new Date(badge.unlockedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}` : "Unlocked"}
                     </div>
                   </div>
@@ -264,23 +264,23 @@ export default function BadgesDashboard() {
           {/* Locked Badges Grid */}
           {lockedBadges.length > 0 && (
             <div>
-              <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                <Lock size={18} className="text-gray-500" />
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <Lock size={18} className="text-slate-500" />
                 Locked Badges — How to Unlock
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {lockedBadges.map((badge) => (
                   <div
                     key={badge.type}
-                    className="relative p-5 bg-gray-900/50 border border-gray-800/50 rounded-2xl opacity-60 hover:opacity-80 transition-all duration-300 cursor-default"
+                    className="relative p-5 bg-slate-50/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/50 rounded-2xl opacity-60 hover:opacity-80 transition-all duration-300 cursor-default"
                   >
                     <div className="absolute top-3 right-3">
-                      <Lock size={12} className="text-gray-600" />
+                      <Lock size={12} className="text-slate-400 dark:text-gray-600" />
                     </div>
                     <div className="text-4xl mb-3 grayscale">{badge.icon}</div>
-                    <h3 className="text-sm font-bold text-gray-400 mb-1">{badge.title}</h3>
-                    <p className="text-[11px] text-gray-500 leading-relaxed mb-2">{badge.description}</p>
-                    <div className="text-[9px] text-gray-600 font-semibold uppercase bg-gray-950/50 rounded-lg px-2 py-1 inline-block">
+                    <h3 className="text-sm font-bold text-slate-700 dark:text-gray-400 mb-1">{badge.title}</h3>
+                    <p className="text-[11px] text-slate-500 dark:text-gray-500 leading-relaxed mb-2">{badge.description}</p>
+                    <div className="text-[9px] text-slate-600 dark:text-gray-400 font-semibold uppercase bg-slate-100 dark:bg-gray-950/50 rounded-lg px-2 py-1 inline-block">
                       🔒 {badge.condition}
                     </div>
                   </div>

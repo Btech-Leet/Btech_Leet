@@ -207,23 +207,23 @@ export default function BillingDashboard() {
     <div className="max-w-6xl mx-auto space-y-6">
           
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-gray-900 pb-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-indigo-500/20 bg-indigo-500/5 text-indigo-400 text-xs font-semibold mb-3">
                 <Crown size={12} />
                 Premium Membership
               </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-indigo-400">
+              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
                 Membership & Billing
               </h1>
-              <p className="text-gray-400 text-sm mt-1">
+              <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
                 Unlock premium features, manage subscriptions, and view purchase history.
               </p>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="flex border-b border-gray-900 gap-4 mb-8">
+          <div className="flex border-b border-slate-200 dark:border-slate-800 gap-4 mb-8">
             {[
               { id: "plans", label: "Premium Plans", icon: Crown },
               { id: "history", label: "Purchase History", icon: Clock },
@@ -235,8 +235,8 @@ export default function BillingDashboard() {
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`flex items-center gap-2 py-3 text-xs font-bold border-b-2 -mb-px transition-all ${
                     activeTab === tab.id
-                      ? "border-indigo-500 text-indigo-400"
-                      : "border-transparent text-gray-400 hover:text-white"
+                      ? "border-indigo-500 text-indigo-550 dark:text-indigo-400"
+                      : "border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                   }`}
                 >
                   <Icon size={14} />
@@ -262,7 +262,7 @@ export default function BillingDashboard() {
                   return (
                     <div
                       key={plan.id}
-                      className={`relative bg-gradient-to-b ${visuals.color} border rounded-2xl p-6 flex flex-col justify-between hover:scale-[1.02] transition-all duration-300 ${
+                      className={`relative bg-white dark:bg-slate-900 bg-gradient-to-b ${visuals.color} border border-slate-200 dark:border-slate-800/80 rounded-2xl p-6 flex flex-col justify-between hover:scale-[1.02] transition-all duration-300 ${
                         visuals.popular ? "ring-2 ring-purple-500/50" : ""
                       }`}
                     >
@@ -275,20 +275,20 @@ export default function BillingDashboard() {
                       <div>
                         <div className="flex items-center gap-2 mb-3">
                           <Sparkles size={14} className="text-indigo-400" />
-                          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{visuals.badge}</span>
+                          <span className="text-[10px] font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider">{visuals.badge}</span>
                         </div>
-                        <h3 className="text-lg font-extrabold text-white mb-1">{plan.name}</h3>
+                        <h3 className="text-lg font-extrabold text-slate-900 dark:text-white mb-1">{plan.name}</h3>
                         <div className="mb-4">
-                          <span className="text-3xl font-black text-white">₹{finalPrice.toLocaleString("en-IN")}</span>
-                          <span className="text-xs text-gray-400 ml-1">/ {months} {months === 1 ? "month" : "months"}</span>
+                          <span className="text-3xl font-black text-slate-900 dark:text-white">₹{finalPrice.toLocaleString("en-IN")}</span>
+                          <span className="text-xs text-slate-500 dark:text-gray-400 ml-1">/ {months} {months === 1 ? "month" : "months"}</span>
                         </div>
-                        <p className="text-[10px] text-gray-500 mb-4">₹{monthlyPrice}/month</p>
+                        <p className="text-[10px] text-slate-400 dark:text-gray-500 mb-4">₹{monthlyPrice}/month</p>
                         
                         <div className="space-y-2 mb-6">
                           {plan.features.map((f, i) => (
                             <div key={i} className="flex items-start gap-2">
                               <Check size={12} className="text-emerald-500 mt-0.5 flex-shrink-0" />
-                              <span className="text-xs text-gray-300">{f}</span>
+                              <span className="text-xs text-slate-600 dark:text-gray-300">{f}</span>
                             </div>
                           ))}
                         </div>
@@ -319,8 +319,8 @@ export default function BillingDashboard() {
                         disabled={paying === plan.id}
                         className={`w-full font-bold rounded-xl ${
                           visuals.popular
-                            ? "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
-                            : "bg-white/10 hover:bg-white/20 text-white border border-white/10"
+                            ? "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white border-0"
+                            : "bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-800 dark:text-white border border-slate-200 dark:border-white/10"
                         }`}
                       >
                         {paying === plan.id ? (
@@ -343,9 +343,9 @@ export default function BillingDashboard() {
               )}
 
               {/* Features Highlight */}
-              <Card className="bg-gray-900 border-gray-800 rounded-2xl">
+              <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl">
                 <CardHeader>
-                  <CardTitle className="text-white text-base flex items-center gap-2">
+                  <CardTitle className="text-slate-900 dark:text-white text-base flex items-center gap-2">
                     <Zap className="text-amber-500" size={18} />
                     What&apos;s Included in Premium
                   </CardTitle>
@@ -358,10 +358,10 @@ export default function BillingDashboard() {
                       { icon: "📊", label: "Advanced Analytics", desc: "In-depth performance" },
                       { icon: "🏆", label: "Priority Support", desc: "24/7 expert guidance" },
                     ].map((f) => (
-                      <div key={f.label} className="p-4 bg-gray-950 rounded-xl border border-gray-850 text-center">
+                      <div key={f.label} className="p-4 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-slate-850 text-center">
                         <div className="text-2xl mb-2">{f.icon}</div>
-                        <p className="text-xs font-bold text-white">{f.label}</p>
-                        <p className="text-[10px] text-gray-500 mt-0.5">{f.desc}</p>
+                        <p className="text-xs font-bold text-slate-900 dark:text-white">{f.label}</p>
+                        <p className="text-[10px] text-slate-500 dark:text-gray-500 mt-0.5">{f.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -373,25 +373,25 @@ export default function BillingDashboard() {
           {/* ─── HISTORY TAB ─── */}
           {activeTab === "history" && (
             <div className="space-y-6 animate-fadeIn">
-              <Card className="bg-gray-900 border-gray-800 rounded-2xl">
+              <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-white text-base">Purchase History</CardTitle>
-                  <CardDescription className="text-gray-400 text-xs">All your transactions, invoices, and refund requests</CardDescription>
+                  <CardTitle className="text-slate-900 dark:text-white text-base">Purchase History</CardTitle>
+                  <CardDescription className="text-slate-550 dark:text-gray-400 text-xs">All your transactions, invoices, and refund requests</CardDescription>
                 </CardHeader>
                 <CardContent className="p-0 overflow-x-auto">
                   {transactions.length === 0 ? (
                     <div className="text-center py-16">
-                      <CreditCard className="text-gray-600 mx-auto mb-4" size={48} />
-                      <h3 className="text-lg font-bold text-gray-400">No Transactions Yet</h3>
-                      <p className="text-sm text-gray-500 mt-1">Your purchase history will appear here.</p>
-                      <Button onClick={() => setActiveTab("plans")} className="mt-4 bg-indigo-600 hover:bg-indigo-700">
+                      <CreditCard className="text-slate-400 dark:text-gray-600 mx-auto mb-4" size={48} />
+                      <h3 className="text-lg font-bold text-slate-700 dark:text-gray-400">No Transactions Yet</h3>
+                      <p className="text-sm text-slate-500 dark:text-gray-500 mt-1">Your purchase history will appear here.</p>
+                      <Button onClick={() => setActiveTab("plans")} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white">
                         Browse Plans
                       </Button>
                     </div>
                   ) : (
                     <table className="w-full text-left border-collapse text-xs">
                       <thead>
-                        <tr className="border-y border-gray-850 bg-gray-950 text-gray-400">
+                        <tr className="border-y border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-950 text-slate-550 dark:text-gray-400">
                           <th className="p-4 font-semibold">Date</th>
                           <th className="p-4 font-semibold">Item</th>
                           <th className="p-4 font-semibold text-center">Amount</th>
@@ -402,11 +402,11 @@ export default function BillingDashboard() {
                       </thead>
                       <tbody>
                         {transactions.map((tx) => (
-                          <tr key={tx.id} className="border-b border-gray-850 hover:bg-gray-850/20">
-                            <td className="p-4 text-gray-400">
+                          <tr key={tx.id} className="border-b border-slate-100 dark:border-slate-800/60 hover:bg-slate-50/50 dark:hover:bg-gray-850/20">
+                            <td className="p-4 text-slate-500 dark:text-gray-400">
                               {new Date(tx.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
                             </td>
-                            <td className="p-4 text-white font-medium">{tx.purchaseName}</td>
+                            <td className="p-4 text-slate-900 dark:text-white font-medium">{tx.purchaseName}</td>
                             <td className="p-4 text-center text-blue-400 font-bold">₹{tx.amount.toLocaleString("en-IN")}</td>
                             <td className="p-4 text-center">
                               <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
@@ -466,39 +466,39 @@ export default function BillingDashboard() {
       {/* Refund Request Modal */}
       {showRefundModal && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[150] flex items-center justify-center p-4">
-          <div className="bg-gray-900 border border-gray-800 rounded-2xl w-full max-w-md overflow-hidden">
-            <div className="p-6 border-b border-gray-800 flex justify-between items-center">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md overflow-hidden">
+            <div className="p-6 border-b border-slate-200 dark:border-slate-850 flex justify-between items-center">
               <div>
-                <h3 className="text-lg font-bold text-white">Request Refund</h3>
-                <p className="text-xs text-gray-400 mt-1">Please provide a reason for your refund request.</p>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Request Refund</h3>
+                <p className="text-xs text-slate-500 dark:text-gray-400 mt-1">Please provide a reason for your refund request.</p>
               </div>
-              <button onClick={() => setShowRefundModal(null)} className="text-gray-500 hover:text-white">
+              <button onClick={() => setShowRefundModal(null)} className="text-slate-400 hover:text-slate-900 dark:text-gray-500 dark:hover:text-white">
                 <X size={18} />
               </button>
             </div>
             <div className="p-6 space-y-4">
               <div className="space-y-1.5">
-                <label className="text-xs text-gray-400 font-bold uppercase">Reason for Refund</label>
+                <label className="text-xs text-slate-600 dark:text-gray-400 font-bold uppercase">Reason for Refund</label>
                 <textarea
                   value={refundReason}
                   onChange={(e) => setRefundReason(e.target.value)}
                   rows={3}
                   placeholder="Describe why you want a refund..."
-                  className="w-full px-3 py-2 rounded-lg border border-gray-800 bg-gray-950 text-sm text-white resize-none focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-gray-800 bg-slate-55 dark:bg-gray-950 text-sm text-slate-900 dark:text-white resize-none focus:outline-none focus:ring-1 focus:ring-indigo-500"
                 />
               </div>
               <div className="flex gap-3">
                 <Button
                   variant="outline"
                   onClick={() => setShowRefundModal(null)}
-                  className="flex-1 border-gray-700 text-gray-300"
+                  className="flex-1 border-slate-200 dark:border-gray-700 text-slate-700 dark:text-gray-300"
                 >
                   Cancel
                 </Button>
                 <Button
                   onClick={() => handleRefundRequest(showRefundModal)}
                   disabled={refunding === showRefundModal}
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                  className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0"
                 >
                   {refunding === showRefundModal ? "Submitting..." : "Submit Request"}
                 </Button>
