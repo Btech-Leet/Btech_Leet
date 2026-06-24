@@ -1,7 +1,7 @@
 import React from "react";
 
 type SchemaMarkupProps = {
-  schemaType: "WebSite" | "Organization" | "FAQPage" | "Course" | "Dataset" | "BreadcrumbList" | "Article" | "EducationalOrganization";
+  schemaType: "WebSite" | "Organization" | "FAQPage" | "Course" | "Dataset" | "BreadcrumbList" | "Article" | "EducationalOrganization" | "Service";
   data: Record<string, any>;
 };
 
