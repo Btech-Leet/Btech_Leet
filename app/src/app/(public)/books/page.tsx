@@ -5,10 +5,15 @@ import { BookOpen, Star, Download, User } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Books & Study Notes | BTech LEET",
-  description: "Download free and premium study materials, books, and notes for B.Tech Lateral Entry Examination preparation. Mathematics, Physics, English, and more.",
-};
+import { mergeSeoMetadata } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const fallback: Metadata = {
+    title: "Books & Study Notes | BTech LEET",
+    description: "Download free and premium study materials, books, and notes for B.Tech Lateral Entry Examination preparation. Mathematics, Physics, English, and more.",
+  };
+  return mergeSeoMetadata("/books", fallback);
+}
 
 export default async function BooksPage() {
   const books = await prisma.book.findMany({

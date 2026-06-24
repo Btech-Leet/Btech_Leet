@@ -20,9 +20,50 @@ export async function mergeSeoMetadata(
   fallbackMetadata: Metadata
 ): Promise<Metadata> {
   const override = await getSeoMeta(pageUrl);
-  if (!override) return fallbackMetadata;
 
   const metadata: Metadata = { ...fallbackMetadata };
+
+  // Auto-generate canonical URL if not explicitly set
+  const canonicalUrl = override?.canonicalUrl || (pageUrl === "/" ? "https://btechleet.com" : `https://btechleet.com${pageUrl}`);
+  metadata.alternates = {
+    ...metadata.alternates,
+    canonical: canonicalUrl,
+  };
+
+  // Determine fallback title and description
+  const titleVal = fallbackMetadata.title;
+  let fallbackTitle = "BTech LEET";
+  if (typeof titleVal === "string") {
+    fallbackTitle = titleVal;
+  } else if (titleVal && "default" in titleVal && typeof titleVal.default === "string") {
+    fallbackTitle = titleVal.default;
+  }
+  
+  const resolvedTitle = override?.seoTitle || fallbackTitle;
+  const resolvedDescription = override?.metaDescription || fallbackMetadata.description || "India's most comprehensive portal for BTech Lateral Entry Exam (LEET).";
+
+  // Handle OG metadata
+  const ogTitle = override?.ogTitle || resolvedTitle;
+  const ogDescription = override?.ogDescription || resolvedDescription;
+  const ogImage = override?.ogImage || "/og-image.jpg";
+
+  metadata.openGraph = {
+    ...metadata.openGraph,
+    title: ogTitle as string,
+    description: ogDescription as string,
+    url: canonicalUrl,
+    images: [{ url: ogImage }],
+  };
+
+  metadata.twitter = {
+    card: "summary_large_image",
+    ...metadata.twitter,
+    title: ogTitle as string,
+    description: ogDescription as string,
+    images: [ogImage],
+  };
+
+  if (!override) return metadata;
 
   if (override.seoTitle) {
     metadata.title = override.seoTitle;
@@ -33,26 +74,6 @@ export async function mergeSeoMetadata(
   if (override.keywords && override.keywords.length > 0) {
     metadata.keywords = override.keywords;
   }
-  if (override.canonicalUrl) {
-    metadata.alternates = {
-      ...metadata.alternates,
-      canonical: override.canonicalUrl,
-    };
-  }
-
-  // Handle OG metadata
-  const ogTitle = override.ogTitle || override.seoTitle || undefined;
-  const ogDescription = override.ogDescription || override.metaDescription || undefined;
-  const ogImage = override.ogImage || undefined;
-
-  if (ogTitle || ogDescription || ogImage) {
-    metadata.openGraph = {
-      ...metadata.openGraph,
-      ...(ogTitle && { title: ogTitle }),
-      ...(ogDescription && { description: ogDescription }),
-      ...(ogImage && { images: [{ url: ogImage }] }),
-    };
-  }
 
   // Handle robots tags
   if (!override.indexable) {
@@ -61,7 +82,7 @@ export async function mergeSeoMetadata(
       follow: false,
     };
   } else if (override.robotsTags) {
-    metadata.robots = override.robotsTags;
+    metadata.robots = override.robotsTags; // Could be parsed if it's a JSON string, assuming it's structured correctly
   }
 
   return metadata;

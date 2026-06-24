@@ -9,28 +9,34 @@ export const dynamic = "force-dynamic";
 
 type Params = Promise<{ slug: string }>;
 
+import { mergeSeoMetadata } from "@/lib/seo";
+
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params;
+  let fallback: Metadata = { title: "Exam Details" };
   try {
     const exam = await prisma.exam.findFirst({
       where: { OR: [{ slug }, { id: slug }], active: true },
       include: { state: { select: { name: true } } },
     });
 
-    if (!exam) return { title: "Exam Not Found" };
-
-    return {
-      title: `${exam.name} – ${exam.fullName}`,
-      description: `Complete details about ${exam.fullName} including eligibility, syllabus, important dates, application fee, and previous year papers.`,
-      openGraph: {
-        title: exam.name,
-        description: exam.fullName,
-      },
-    };
+    if (exam) {
+      fallback = {
+        title: `${exam.name} – ${exam.fullName}`,
+        description: `Complete details about ${exam.fullName} including eligibility, syllabus, important dates, application fee, and previous year papers.`,
+        openGraph: {
+          title: exam.name,
+          description: exam.fullName,
+        },
+      };
+    } else {
+      fallback = { title: "Exam Not Found" };
+    }
   } catch (err) {
     console.error("Failed to load metadata for exam:", err);
-    return { title: "Exam Details" };
   }
+  
+  return mergeSeoMetadata(`/exams/${slug}`, fallback);
 }
 
 export default async function ExamDetailPage({ params }: { params: Params }) {

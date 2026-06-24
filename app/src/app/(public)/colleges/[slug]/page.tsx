@@ -9,28 +9,34 @@ export const dynamic = "force-dynamic";
 
 type Params = Promise<{ slug: string }>;
 
+import { mergeSeoMetadata } from "@/lib/seo";
+
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params;
+  let fallback: Metadata = { title: "College Details" };
   try {
     const college = await prisma.college.findFirst({
       where: { OR: [{ slug }, { id: slug }], active: true },
       include: { state: { select: { name: true } } },
     });
 
-    if (!college) return { title: "College Not Found" };
-
-    return {
-      title: `${college.name} – BTech Admission & Lateral Entry Details`,
-      description: `Complete details about ${college.name} in ${college.city}, ${college.state?.name || ""}. Check BTech lateral entry branches, intake, fees structure, ranking and accreditation.`,
-      openGraph: {
-        title: college.name,
-        description: college.description || college.name,
-      },
-    };
+    if (college) {
+      fallback = {
+        title: `${college.name} – BTech Admission & Lateral Entry Details`,
+        description: `Complete details about ${college.name} in ${college.city}, ${college.state?.name || ""}. Check BTech lateral entry branches, intake, fees structure, ranking and accreditation.`,
+        openGraph: {
+          title: college.name,
+          description: college.description || college.name,
+        },
+      };
+    } else {
+      fallback = { title: "College Not Found" };
+    }
   } catch (err) {
     console.error("Failed to load metadata for college:", err);
-    return { title: "College Details" };
   }
+  
+  return mergeSeoMetadata(`/colleges/${slug}`, fallback);
 }
 
 export default async function CollegeDetailPage({ params }: { params: Params }) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2, MessageSquare } from "lucide-react";
+import { Mail, Send, Loader2, CheckCircle2, MessageSquare } from "lucide-react";
 import { useToast } from "@/components/ui/toaster";
 
 export default function ContactPage() {
@@ -104,37 +104,12 @@ export default function ContactPage() {
             <div className="space-y-4">
               <div className="flex gap-4 items-start">
                 <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center flex-shrink-0">
-                  <Phone size={18} />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Helpline Number</h4>
-                  <p className="text-sm font-extrabold text-gray-850 dark:text-white mt-0.5">+91 98765 43210</p>
-                  <p className="text-[10px] text-gray-500">Mon - Sat, 9:00 AM - 6:00 PM</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center flex-shrink-0">
                   <Mail size={18} />
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Email Address</h4>
-                  <p className="text-sm font-extrabold text-gray-850 dark:text-white mt-0.5">support@btechleet.in</p>
+                  <p className="text-sm font-extrabold text-gray-850 dark:text-white mt-0.5">contact@btechleet.com</p>
                   <p className="text-[10px] text-gray-500">Expect a response within 24 hours</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center flex-shrink-0">
-                  <MapPin size={18} />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Our Office</h4>
-                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-300 mt-0.5 leading-relaxed">
-                    BTech LEET Education,<br />
-                    Sector 14, Gurugram,<br />
-                    Haryana - 122001
-                  </p>
                 </div>
               </div>
             </div>

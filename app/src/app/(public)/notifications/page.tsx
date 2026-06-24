@@ -7,10 +7,15 @@ import { Bell, Pin, Filter } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "LEET Exam Notifications – Latest Updates & Alerts",
-  description: "Stay updated with the latest BTech Lateral Entry Exam (LEET) notifications including application dates, results, counselling schedules, and important announcements.",
-};
+import { mergeSeoMetadata } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const fallback: Metadata = {
+    title: "LEET Exam Notifications – Latest Updates & Alerts",
+    description: "Stay updated with the latest BTech Lateral Entry Exam (LEET) notifications including application dates, results, counselling schedules, and important announcements.",
+  };
+  return mergeSeoMetadata("/notifications", fallback);
+}
 
 const priorityVariant: Record<string, "urgent" | "high" | "medium" | "low"> = {
   URGENT: "urgent", HIGH: "high", MEDIUM: "medium", LOW: "low",

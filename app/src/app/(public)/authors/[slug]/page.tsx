@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { PenTool, GraduationCap, Briefcase, BookOpen, Download, User } from "lucide-react";
+import { AuthorSchema } from "@/components/seo/author-schema";
 
 export const dynamic = "force-dynamic";
 
@@ -49,6 +50,14 @@ export default async function AuthorDetailPage({ params }: AuthorDetailPageProps
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-20">
+      <AuthorSchema
+        name={author.name}
+        url={`/authors/${author.slug}`}
+        image={author.photo || undefined}
+        jobTitle={author.designation || undefined}
+        description={author.biography || undefined}
+        sameAs={author.linkedinUrl ? [author.linkedinUrl] : []}
+      />
       {/* Hero Header */}
       <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-b from-emerald-50/50 to-transparent dark:from-emerald-950/20 border-b border-gray-100 dark:border-gray-900">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

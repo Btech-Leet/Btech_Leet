@@ -894,3 +894,34 @@ model CounsellingRegistration {
   @@index([userId])
 }
 
+// ─── User Questions (FAQ) ──────────────────────────────────────
+model UserQuestion {
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  question      String   @db.Text
+  answer        String?  @db.Text
+  status        String   @default("PENDING") // PENDING, ANSWERED, REJECTED
+  displayOnSite Boolean  @default(false)
+  pageUrl       String   @default("/faq")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("user_questions")
+}
+
+// ─── Promotional Banners ───────────────────────────────────────
+model PromoBanner {
+  id        String    @id @default(cuid())
+  title     String
+  imageUrl  String
+  imageKey  String
+  linkUrl   String?
+  active    Boolean   @default(true)
+  startDate DateTime?
+  endDate   DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("promo_banners")
+}

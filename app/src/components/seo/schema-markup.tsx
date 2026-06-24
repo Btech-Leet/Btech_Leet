@@ -42,13 +42,6 @@ export const BaseSchema = () => {
       "https://www.linkedin.com/company/btechleet",
       "https://www.youtube.com/btechleet",
     ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+91-9999999999",
-      contactType: "customer service",
-      areaServed: "IN",
-      availableLanguage: "en",
-    },
   };
 
   return (

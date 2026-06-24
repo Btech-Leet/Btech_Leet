@@ -7,10 +7,15 @@ import { PenSquare, Clock, Eye, Search, ArrowRight } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "BTech LEET Blog – Tips, Strategies & Updates",
-  description: "Read expert tips, preparation strategies, and the latest updates about BTech Lateral Entry Exam (LEET).",
-};
+import { mergeSeoMetadata } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const fallback: Metadata = {
+    title: "BTech LEET Blog – Tips, Strategies & Updates",
+    description: "Read expert tips, preparation strategies, and the latest updates about BTech Lateral Entry Exam (LEET).",
+  };
+  return mergeSeoMetadata("/blog", fallback);
+}
 
 async function getPosts(params: Record<string, string>) {
   const where: Record<string, unknown> = { status: "PUBLISHED" };
