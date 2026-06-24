@@ -186,27 +186,27 @@ export default function AdminCouponsPage() {
   return (
     <div className="space-y-6 p-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="border-b border-gray-100 dark:border-gray-800 pb-5">
-        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
+      <div className="border-b border-gray-100 dark:border-slate-200 dark:border-slate-800 pb-5">
+        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-900 dark:text-white flex items-center gap-2">
           <Tag className="text-orange-500" size={24} />
           Coupon Management
         </h1>
-        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 mt-1">
           Create, edit, and monitor discount coupon codes for mock tests, courses, and premium notes.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         {/* Form Column */}
-        <div className="lg:col-span-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm space-y-4">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-55 dark:border-gray-800 pb-2">
+        <div className="lg:col-span-1 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-slate-900 dark:text-white border-b border-gray-55 dark:border-slate-200 dark:border-slate-800 pb-2">
             {editingId ? "Edit Coupon" : "Create Coupon"}
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Coupon Code */}
             <div className="space-y-1">
-              <label htmlFor="coupon-code" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="coupon-code" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Coupon Code
               </label>
               <input
@@ -217,21 +217,21 @@ export default function AdminCouponsPage() {
                 onChange={(e) => setCode(e.target.value.toUpperCase())}
                 placeholder="SAVE50"
                 disabled={isSubmitting}
-                className="w-full text-sm font-bold uppercase tracking-wider px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
+                className="w-full text-sm font-bold uppercase tracking-wider px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
               />
             </div>
 
             {/* Discount Type & Value */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label htmlFor="discount-type" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                <label htmlFor="discount-type" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Discount Type
                 </label>
                 <select
                   id="discount-type"
                   value={discountType}
                   onChange={(e) => setDiscountType(e.target.value as any)}
-                  className="w-full text-sm px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
+                  className="w-full text-sm px-3 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
                 >
                   <option value="PERCENTAGE">Percentage (%)</option>
                   <option value="FIXED">Fixed Amount (₹)</option>
@@ -239,7 +239,7 @@ export default function AdminCouponsPage() {
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="discount-value" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                <label htmlFor="discount-value" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Value ({discountType === "PERCENTAGE" ? "%" : "₹"})
                 </label>
                 <input
@@ -252,14 +252,14 @@ export default function AdminCouponsPage() {
                   onChange={(e) => setDiscountValue(parseFloat(e.target.value))}
                   placeholder={discountType === "PERCENTAGE" ? "10" : "100"}
                   disabled={isSubmitting}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
                 />
               </div>
             </div>
 
             {/* Applicable To */}
             <div className="space-y-1">
-              <label htmlFor="applicable-to" className="text-xs font-bold text-gray-400 uppercase tracking-wider block flex items-center gap-1.5">
+              <label htmlFor="applicable-to" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block flex items-center gap-1.5">
                 Applicable To
               </label>
               <input
@@ -268,16 +268,16 @@ export default function AdminCouponsPage() {
                 value={applicableToText}
                 onChange={(e) => setApplicableToText(e.target.value)}
                 placeholder="ALL, course-123, paper-abc"
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
               />
-              <span className="text-[10px] text-gray-400 block">
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
                 Enter &quot;ALL&quot; for all items or separate specific item IDs with commas.
               </span>
             </div>
 
             {/* Usage Limit */}
             <div className="space-y-1">
-              <label htmlFor="usage-limit" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="usage-limit" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Usage Limit (Optional)
               </label>
               <input
@@ -287,13 +287,13 @@ export default function AdminCouponsPage() {
                 value={usageLimit}
                 onChange={(e) => setUsageLimit(e.target.value)}
                 placeholder="100 (unlimited if blank)"
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
               />
             </div>
 
             {/* Start Date */}
             <div className="space-y-1">
-              <label htmlFor="start-date" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="start-date" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Start Date & Time
               </label>
               <input
@@ -302,13 +302,13 @@ export default function AdminCouponsPage() {
                 required
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
               />
             </div>
 
             {/* End Date */}
             <div className="space-y-1">
-              <label htmlFor="end-date" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="end-date" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 End Date & Time
               </label>
               <input
@@ -317,7 +317,7 @@ export default function AdminCouponsPage() {
                 required
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
               />
             </div>
 
@@ -330,7 +330,7 @@ export default function AdminCouponsPage() {
                 onChange={(e) => setActive(e.target.checked)}
                 className="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500"
               />
-              <label htmlFor="active-toggle" className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <label htmlFor="active-toggle" className="text-sm font-semibold text-gray-700 dark:text-slate-600 dark:text-slate-300">
                 Active & Enabled
               </label>
             </div>
@@ -358,7 +358,7 @@ export default function AdminCouponsPage() {
                 <button
                   type="button"
                   onClick={handleResetForm}
-                  className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-500 hover:bg-gray-100 dark:hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                 >
                   <X size={16} />
                 </button>
@@ -369,7 +369,7 @@ export default function AdminCouponsPage() {
 
         {/* Coupons List Column */}
         <div className="lg:col-span-2 space-y-4">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-55 dark:border-gray-800 pb-2 flex items-center gap-2">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-slate-900 dark:text-white border-b border-gray-55 dark:border-slate-200 dark:border-slate-800 pb-2 flex items-center gap-2">
             Existing Coupons ({coupons.length})
           </h2>
 
@@ -378,10 +378,10 @@ export default function AdminCouponsPage() {
               <Loader2 size={28} className="animate-spin text-orange-500" />
             </div>
           ) : coupons.length === 0 ? (
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-16 text-center text-gray-400 shadow-sm">
-              <Tag className="mx-auto text-gray-300 dark:text-gray-700 mb-4" size={48} />
-              <h3 className="font-bold text-gray-850 dark:text-gray-200">No Coupons Yet</h3>
-              <p className="text-xs text-gray-500 mt-1">Start by creating your first coupon code on the left.</p>
+            <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-16 text-center text-slate-500 dark:text-slate-400 shadow-sm">
+              <Tag className="mx-auto text-slate-600 dark:text-slate-300 dark:text-gray-700 mb-4" size={48} />
+              <h3 className="font-bold text-gray-850 dark:text-slate-700 dark:text-slate-200">No Coupons Yet</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">Start by creating your first coupon code on the left.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-4">
@@ -398,7 +398,7 @@ export default function AdminCouponsPage() {
 
                 if (!coupon.active) {
                   statusBadgeText = "Disabled";
-                  statusBadgeColor = "bg-gray-100 text-gray-800 dark:bg-gray-950/30 dark:text-gray-400 border-gray-200 dark:border-gray-900/20";
+                  statusBadgeColor = "bg-gray-100 text-gray-800 dark:bg-slate-50 dark:bg-slate-950/30 dark:text-slate-500 dark:text-slate-400 border-gray-200 dark:border-gray-900/20";
                 } else if (isExpired) {
                   statusBadgeText = "Expired";
                   statusBadgeColor = "bg-red-100 text-red-800 dark:bg-red-950/30 dark:text-red-400 border-red-200 dark:border-red-900/20";
@@ -413,7 +413,7 @@ export default function AdminCouponsPage() {
                 return (
                   <div
                     key={coupon.id}
-                    className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:shadow-md transition-shadow duration-300"
+                    className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:shadow-md transition-shadow duration-300"
                   >
                     {/* Details */}
                     <div className="space-y-2 flex-1">
@@ -426,14 +426,14 @@ export default function AdminCouponsPage() {
                         </span>
                       </div>
 
-                      <div className="text-xs space-y-1 text-gray-500 dark:text-gray-400">
+                      <div className="text-xs space-y-1 text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">
                         <p>
-                          Discount: <strong className="text-gray-850 dark:text-white">
+                          Discount: <strong className="text-gray-850 dark:text-slate-900 dark:text-white">
                             {coupon.discountType === "PERCENTAGE" ? `${coupon.discountValue}%` : `₹${coupon.discountValue}`}
                           </strong>
                         </p>
                         <p className="truncate">
-                          Applies to: <span className="font-semibold text-gray-600 dark:text-gray-300">{coupon.applicableTo.join(", ")}</span>
+                          Applies to: <span className="font-semibold text-gray-600 dark:text-slate-600 dark:text-slate-300">{coupon.applicableTo.join(", ")}</span>
                         </p>
                         <p className="flex items-center gap-1">
                           <Calendar size={12} />
@@ -442,7 +442,7 @@ export default function AdminCouponsPage() {
                           </span>
                         </p>
                         <p>
-                          Usage: <strong className="text-gray-700 dark:text-gray-300">
+                          Usage: <strong className="text-gray-700 dark:text-slate-600 dark:text-slate-300">
                             {coupon.usedCount}
                           </strong> / {coupon.usageLimit !== null ? coupon.usageLimit : "∞"}
                         </p>
@@ -450,7 +450,7 @@ export default function AdminCouponsPage() {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex sm:flex-col items-center sm:items-end justify-end gap-2 border-t sm:border-t-0 border-gray-50 dark:border-gray-850/40 pt-3 sm:pt-0">
+                    <div className="flex sm:flex-col items-center sm:items-end justify-end gap-2 border-t sm:border-t-0 border-gray-50 dark:border-slate-200 dark:border-slate-800/40 pt-3 sm:pt-0">
                       <button
                         onClick={() => handleStartEdit(coupon)}
                         className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 transition-colors"

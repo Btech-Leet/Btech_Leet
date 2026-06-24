@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -112,6 +110,25 @@
   --font-size-label-md: 14px;
   --font-size-label-sm: 12px;
   --font-size-caption: 12px;
+
+  /* Custom Animations for Premium UI */
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-blob: blob 7s infinite;
+  --animate-fade-in-up: fade-in-up 0.5s ease-out forwards;
+
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
 }
 
 @layer base {
@@ -123,6 +140,7 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   body {
@@ -132,6 +150,7 @@
     line-height: 1.6;
     transition-property: color, background-color;
     transition-duration: 300ms;
+    overflow-x: hidden;
   }
 
   .dark body {

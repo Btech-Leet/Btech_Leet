@@ -127,7 +127,7 @@ export default function AdminCounsellingPage() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+      <div className="flex flex-col items-center justify-center py-20 text-slate-500 dark:text-slate-400">
         <RefreshCw className="animate-spin text-blue-500 mb-4" size={36} />
         <p className="text-sm">Loading counselling management dashboard...</p>
       </div>
@@ -135,20 +135,20 @@ export default function AdminCounsellingPage() {
   }
 
   return (
-    <div className="space-y-6 text-white max-w-7xl mx-auto">
+    <div className="space-y-6 text-slate-900 dark:text-white max-w-7xl mx-auto">
       
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-800 pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-white flex items-center gap-2">
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
             <PhoneCall className="text-blue-500" size={28} />
             Counselling Management
           </h1>
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Manage premium counselling pricing, view registered students, and access invoices.
           </p>
         </div>
-        <Button onClick={fetchData} variant="outline" className="border-gray-800 hover:bg-gray-800 text-gray-300">
+        <Button onClick={fetchData} variant="outline" className="border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
           <RefreshCw size={14} className="mr-2" /> Refresh Data
         </Button>
       </div>
@@ -165,22 +165,22 @@ export default function AdminCounsellingPage() {
         
         {/* Price Config Card (5 Columns) */}
         <div className="lg:col-span-5">
-          <Card className="bg-gray-900 border-gray-800 h-full flex flex-col justify-between">
+          <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 h-full flex flex-col justify-between">
             <CardHeader>
-              <CardTitle className="text-white text-base flex items-center gap-2">
+              <CardTitle className="text-slate-900 dark:text-white text-base flex items-center gap-2">
                 <Edit3 className="text-blue-400" size={16} />
                 Pricing Configuration
               </CardTitle>
-              <CardDescription className="text-gray-400 text-xs">
+              <CardDescription className="text-slate-500 dark:text-slate-400 text-xs">
                 Set active fee for the premium lateral entry counselling service.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <form onSubmit={handleUpdatePrice} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-gray-400 uppercase mb-2">Counselling Service Price (INR)</label>
+                  <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2">Counselling Service Price (INR)</label>
                   <div className="relative rounded-xl shadow-sm">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500 text-sm">
+                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500 dark:text-slate-500 text-sm">
                       ₹
                     </div>
                     <input
@@ -189,14 +189,14 @@ export default function AdminCounsellingPage() {
                       value={inputPrice}
                       onChange={(e) => setInputPrice(e.target.value)}
                       placeholder="0 for free"
-                      className="w-full pl-8 pr-4 py-2.5 bg-gray-950 border border-gray-800 rounded-xl text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
+                      className="w-full pl-8 pr-4 py-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="p-3 bg-gray-950 rounded-xl border border-gray-850 flex items-start gap-2">
+                <div className="p-3 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 flex items-start gap-2">
                   <Info size={14} className="text-blue-400 mt-0.5 flex-shrink-0" />
-                  <p className="text-[10px] text-gray-500 leading-normal">
+                  <p className="text-[10px] text-slate-500 dark:text-slate-500 leading-normal">
                     {price <= 0 ? (
                       <span className="text-emerald-400 font-bold">Currently FREE: </span>
                     ) : (
@@ -227,42 +227,42 @@ export default function AdminCounsellingPage() {
         {/* Stats Grid (7 Columns) */}
         <div className="lg:col-span-7 grid grid-cols-2 gap-4">
           
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800">
             <CardHeader className="pb-2">
-              <CardDescription className="text-gray-400 text-xs font-bold uppercase">Total Registrations</CardDescription>
+              <CardDescription className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase">Total Registrations</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-2">
                 <Users className="text-blue-400" size={24} />
-                <span className="text-3xl font-black text-white">{totalRegistrations}</span>
+                <span className="text-3xl font-black text-slate-900 dark:text-white">{totalRegistrations}</span>
               </div>
-              <p className="text-[10px] text-gray-500 mt-1">Paid & pending combined</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-500 mt-1">Paid & pending combined</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800">
             <CardHeader className="pb-2">
-              <CardDescription className="text-gray-400 text-xs font-bold uppercase">Paid & Active</CardDescription>
+              <CardDescription className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase">Paid & Active</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="text-emerald-400" size={24} />
-                <span className="text-3xl font-black text-white">{successfulRegistrations.length}</span>
+                <span className="text-3xl font-black text-slate-900 dark:text-white">{successfulRegistrations.length}</span>
               </div>
-              <p className="text-[10px] text-gray-500 mt-1">{paidRegistrations.length} paid, {successfulRegistrations.length - paidRegistrations.length} free registrations</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-500 mt-1">{paidRegistrations.length} paid, {successfulRegistrations.length - paidRegistrations.length} free registrations</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-900 border-gray-800 col-span-2">
+          <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 col-span-2">
             <CardHeader className="pb-2">
-              <CardDescription className="text-gray-400 text-xs font-bold uppercase">Total Revenue Generated</CardDescription>
+              <CardDescription className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase">Total Revenue Generated</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-2">
                 <DollarSign className="text-amber-500" size={24} />
-                <span className="text-3xl font-black text-white">₹{totalRevenue.toLocaleString("en-IN")}</span>
+                <span className="text-3xl font-black text-slate-900 dark:text-white">₹{totalRevenue.toLocaleString("en-IN")}</span>
               </div>
-              <p className="text-[10px] text-gray-500 mt-1">Total earnings from counselling fees</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-500 mt-1">Total earnings from counselling fees</p>
             </CardContent>
           </Card>
 
@@ -271,26 +271,26 @@ export default function AdminCounsellingPage() {
       </div>
 
       {/* Registrations List */}
-      <Card className="bg-gray-900 border-gray-800 rounded-2xl">
-        <CardHeader className="pb-3 border-b border-gray-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl">
+        <CardHeader className="pb-3 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <CardTitle className="text-white text-base">Registered Students</CardTitle>
-            <CardDescription className="text-gray-400 text-xs">Students enrolled for lateral entry guidance program.</CardDescription>
+            <CardTitle className="text-slate-900 dark:text-white text-base">Registered Students</CardTitle>
+            <CardDescription className="text-slate-500 dark:text-slate-400 text-xs">Students enrolled for lateral entry guidance program.</CardDescription>
           </div>
           <div className="relative w-full sm:w-72">
-            <Search className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-gray-500" size={14} />
+            <Search className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-500 dark:text-slate-500" size={14} />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name, phone, exam, invoice..."
-              className="w-full pl-9 pr-4 py-1.5 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full pl-9 pr-4 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
             />
           </div>
         </CardHeader>
         <CardContent className="p-0 overflow-x-auto">
           {filteredRegs.length === 0 ? (
-            <div className="text-center py-16 text-gray-500">
+            <div className="text-center py-16 text-slate-500 dark:text-slate-500">
               <Users className="mx-auto mb-3" size={40} />
               <p className="text-sm font-bold">No Registrations Found</p>
               <p className="text-xs text-gray-600 mt-0.5">Try adjusting your search criteria.</p>
@@ -298,7 +298,7 @@ export default function AdminCounsellingPage() {
           ) : (
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-gray-800 bg-gray-950 text-gray-400">
+                <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-500 dark:text-slate-400">
                   <th className="p-4 font-semibold">Date</th>
                   <th className="p-4 font-semibold">Student Name</th>
                   <th className="p-4 font-semibold">Contact Info</th>
@@ -310,21 +310,21 @@ export default function AdminCounsellingPage() {
               </thead>
               <tbody>
                 {filteredRegs.map((reg) => (
-                  <tr key={reg.id} className="border-b border-gray-850 hover:bg-gray-850/20">
-                    <td className="p-4 text-gray-400">
+                  <tr key={reg.id} className="border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:bg-slate-800/20">
+                    <td className="p-4 text-slate-500 dark:text-slate-400">
                       {new Date(reg.createdAt).toLocaleDateString("en-IN", {
                         day: "numeric", month: "short", year: "numeric"
                       })}
                     </td>
-                    <td className="p-4 font-bold text-white">
+                    <td className="p-4 font-bold text-slate-900 dark:text-white">
                       {reg.name}
                     </td>
                     <td className="p-4">
-                      <div className="text-gray-200">{reg.email}</div>
-                      <div className="text-gray-400 mt-0.5">{reg.mobile}</div>
+                      <div className="text-slate-700 dark:text-slate-200">{reg.email}</div>
+                      <div className="text-slate-500 dark:text-slate-400 mt-0.5">{reg.mobile}</div>
                     </td>
                     <td className="p-4">
-                      <div className="text-gray-200">{reg.leetExam}</div>
+                      <div className="text-slate-700 dark:text-slate-200">{reg.leetExam}</div>
                       {reg.rank && <div className="text-blue-400 font-medium mt-0.5">Rank: {reg.rank}</div>}
                     </td>
                     <td className="p-4 text-center text-blue-400 font-bold">

@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
+import { BookOpen, Download, ShoppingCart, ChevronRight, Star } from "lucide-react";
 
 async function getBooks() {
   try {
@@ -22,114 +24,114 @@ export async function BooksSection() {
 
   if (books.length === 0) return null;
 
-  // Curated styles matching design assets
   const cardGradients = [
-    "from-orange-500/30 via-orange-600/20 to-transparent",
-    "from-blue-500/30 via-blue-600/20 to-transparent",
-    "from-teal-500/30 via-teal-600/20 to-transparent",
+    "from-orange-500/20 via-orange-500/5 to-transparent",
+    "from-blue-500/20 via-blue-500/5 to-transparent",
+    "from-teal-500/20 via-teal-500/5 to-transparent",
   ];
 
-  const categoryBadgeColors = [
-    "bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-200 border-purple-200 dark:border-purple-800",
-    "bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-800",
-    "bg-teal-100 dark:bg-teal-900/50 text-teal-800 dark:text-teal-200 border-teal-200 dark:border-teal-800",
+  const badgeColors = [
+    "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20",
+    "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
+    "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20",
   ];
-
-  const iconNames = ["book_4", "menu_book", "data_object"];
 
   return (
-    <section className="py-xxl bg-slate-100/50 dark:bg-slate-900/50 px-margin-mobile md:px-margin-desktop border-b border-slate-200 dark:border-slate-800 transition-colors duration-300" aria-labelledby="books-heading">
-      <div className="max-w-container-max mx-auto">
-        <div className="text-center mb-xl max-w-2xl mx-auto">
-          <h2 id="books-heading" className="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-slate-900 dark:text-white mb-sm transition-colors duration-300">
-            Premium Study Materials
-          </h2>
-          <p className="text-body-md font-body-md text-slate-650 dark:text-slate-400 transition-colors duration-300">
-            Curated resources, high-yield notes, and recommended books to accelerate your preparation.
-          </p>
+    <section className="py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-950/50 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">
+              Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Study Materials</span>
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              Curated resources, high-yield notes, and recommended books to accelerate your preparation.
+            </p>
+          </div>
+          <Link
+            href="/books"
+            className="group hidden md:flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white bg-white dark:bg-slate-900 px-6 py-3 rounded-full border border-slate-200 dark:border-slate-800 hover:border-orange-500/50 transition-all shadow-sm hover:shadow-md"
+          >
+            View Library
+            <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform text-orange-500" />
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {books.map((book, idx) => {
             const gradient = cardGradients[idx % cardGradients.length];
-            const badgeColor = categoryBadgeColors[idx % categoryBadgeColors.length];
-            const iconName = iconNames[idx % iconNames.length];
+            const badgeColor = badgeColors[idx % badgeColors.length];
             const isFree = !book.price || book.price === 0;
 
             return (
-              <div key={book.id} className="relative group h-full">
-                <div className={`absolute -inset-1 bg-gradient-to-br ${gradient} rounded-3xl blur-xl opacity-40 group-hover:opacity-100 transition duration-500`} />
-                <div className="relative bg-white dark:bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden flex flex-col h-full transform group-hover:-translate-y-1 transition-all duration-500">
-                  
-                  {/* Card Cover */}
-                  <div className="h-48 bg-slate-100 dark:bg-slate-800/50 relative flex items-center justify-center p-6 transition-colors duration-300">
-                    <div className={`absolute top-4 left-4 border text-[10px] uppercase font-bold px-2 py-0.5 rounded ${badgeColor}`}>
-                      {book.category || (isFree ? "Notes" : "Book")}
+              <div key={book.id} className="group relative flex flex-col bg-white dark:bg-slate-900/60 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                
+                {/* Card Cover Area */}
+                <div className="relative h-56 bg-slate-100 dark:bg-slate-950 flex items-center justify-center overflow-hidden">
+                  <div className={`absolute top-4 left-4 z-10 text-[10px] uppercase font-black px-3 py-1 rounded-full border backdrop-blur-md ${badgeColor}`}>
+                    {book.category || (isFree ? "Notes" : "Book")}
+                  </div>
+                  {book.featured && (
+                    <div className="absolute top-4 right-4 z-10 flex items-center gap-1 text-[10px] uppercase font-black px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg">
+                      <Star size={10} fill="currentColor" /> Featured
                     </div>
-                    {book.coverImage ? (
-                      <img
-                        src={book.coverImage}
-                        alt={book.name}
-                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                      />
-                    ) : (
-                      <span className="material-symbols-outlined text-6xl text-slate-400 opacity-50" style={{ fontVariationSettings: "'FILL' 1" }}>
-                        {iconName}
+                  )}
+                  {book.coverImage ? (
+                    <Image
+                      src={book.coverImage}
+                      alt={book.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out"
+                    />
+                  ) : (
+                    <BookOpen size={48} className="text-slate-300 dark:text-slate-800" />
+                  )}
+                </div>
+
+                {/* Card Content Area */}
+                <div className="relative p-6 flex flex-col flex-1 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-t border-slate-100 dark:border-slate-800/50">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 line-clamp-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                    {book.name}
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-1 line-clamp-2">
+                    {book.description || "No description provided."}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Price</span>
+                      <span className={`text-xl font-black ${isFree ? "text-green-600 dark:text-green-400" : "text-slate-900 dark:text-white"}`}>
+                        {isFree ? "FREE" : `₹${book.price}`}
                       </span>
-                    )}
-                  </div>
-
-                  {/* Card Body */}
-                  <div className="p-lg flex flex-col flex-1">
-                    <h3 className="text-headline-md font-headline-md text-slate-900 dark:text-white mb-xs group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-2">
-                      {book.name}
-                    </h3>
-                    <p className="text-body-md font-body-md text-slate-650 dark:text-slate-400 mb-md flex-1 line-clamp-3 transition-colors duration-300">
-                      {book.description || "No description provided."}
-                    </p>
-
-                    {/* Action buttons */}
-                    <div className="flex gap-3 mt-auto">
-                      {isFree ? (
-                        book.fileUrl ? (
-                          <a
-                            href={`/api/books/download/${book.id}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-1 bg-orange-50 dark:bg-orange-700/20 text-orange-750 dark:text-orange-400 border border-orange-200 dark:border-orange-500/30 hover:bg-orange-100 dark:hover:bg-orange-700/40 px-4 py-2 rounded-lg text-label-md font-label-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
-                          >
-                            <span className="material-symbols-outlined text-[18px]">download</span> Download
-                          </a>
-                        ) : (
-                          <Link
-                            href={`/books/${book.slug}`}
-                            className="flex-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 px-4 py-2 rounded-lg text-label-md font-label-md transition-colors text-center flex items-center justify-center"
-                          >
-                            View Details
-                          </Link>
-                        )
-                      ) : (
-                        <Link
-                          href={`/books/${book.slug}`}
-                          className="flex-1 bg-blue-50 dark:bg-blue-700/20 text-blue-750 dark:text-blue-400 border border-blue-200 dark:border-blue-500/30 hover:bg-blue-100 dark:hover:bg-blue-700/40 px-4 py-2 rounded-lg text-label-md font-label-md transition-colors flex items-center justify-center gap-2 text-center"
-                        >
-                          <span className="material-symbols-outlined text-[18px]">shopping_cart</span> Buy Now
-                        </Link>
-                      )}
-                      
-                      <Link
-                        href={`/books/${book.slug}`}
-                        className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 px-4 py-2 rounded-lg text-label-md font-label-md transition-colors text-center flex items-center justify-center"
-                      >
-                        Details
-                      </Link>
                     </div>
-                  </div>
 
+                    <Link
+                      href={`/books/${book.slug}`}
+                      className={`flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 shadow-sm group-hover:shadow-md ${
+                        isFree 
+                          ? "bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 hover:bg-green-500 hover:text-white dark:hover:bg-green-500 dark:hover:text-white" 
+                          : "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-orange-500 hover:text-white border border-slate-200 dark:border-slate-700"
+                      }`}
+                    >
+                      {isFree ? <Download size={20} className="group-hover:animate-bounce" /> : <ShoppingCart size={20} className="group-hover:-rotate-12 transition-transform" />}
+                    </Link>
+                  </div>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        <div className="mt-8 text-center md:hidden">
+          <Link
+            href="/books"
+            className="inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white bg-white dark:bg-slate-900 px-8 py-4 rounded-full border border-slate-200 dark:border-slate-800 active:scale-95 transition-all"
+          >
+            View Full Library
+            <ChevronRight size={16} className="text-orange-500" />
+          </Link>
         </div>
       </div>
     </section>

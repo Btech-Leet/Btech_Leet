@@ -202,9 +202,9 @@ export default function LeadDetailPage({
 
   if (!lead) {
     return (
-      <div className="text-center py-32 text-gray-400">
-        <Target className="mx-auto mb-4 text-gray-300" size={48} />
-        <h3 className="font-bold text-gray-800 dark:text-gray-200">
+      <div className="text-center py-32 text-slate-500 dark:text-slate-400">
+        <Target className="mx-auto mb-4 text-slate-600 dark:text-slate-300" size={48} />
+        <h3 className="font-bold text-gray-800 dark:text-slate-700 dark:text-slate-200">
           Lead Not Found
         </h3>
         <Link
@@ -230,13 +230,13 @@ export default function LeadDetailPage({
   }) => {
     if (!value) return null;
     return (
-      <div className="flex items-start gap-3 py-2.5 border-b border-gray-50 dark:border-gray-800/50 last:border-0">
+      <div className="flex items-start gap-3 py-2.5 border-b border-gray-50 dark:border-slate-200 dark:border-slate-800/50 last:border-0">
         <Icon
           size={14}
-          className="text-gray-400 mt-0.5 flex-shrink-0"
+          className="text-slate-500 dark:text-slate-400 mt-0.5 flex-shrink-0"
         />
         <div className="min-w-0">
-          <p className="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-0.5">
+          <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold mb-0.5">
             {label}
           </p>
           {isLink ? (
@@ -249,7 +249,7 @@ export default function LeadDetailPage({
               {value} <ExternalLink size={10} />
             </a>
           ) : (
-            <p className="text-sm text-gray-900 dark:text-white break-all">
+            <p className="text-sm text-gray-900 dark:text-slate-900 dark:text-white break-all">
               {value}
             </p>
           )}
@@ -263,23 +263,23 @@ export default function LeadDetailPage({
       {/* Back Link */}
       <Link
         href="/admin/leads"
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-400 hover:text-violet-500 transition-colors"
+        className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-violet-500 transition-colors"
       >
         <ArrowLeft size={14} /> Back to Leads
       </Link>
 
       {/* Header Card */}
-      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 shadow-sm">
+      <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-slate-900 dark:text-white text-xl font-bold flex-shrink-0">
               {(lead.name || "?")[0].toUpperCase()}
             </div>
             <div>
-              <h1 className="text-xl font-extrabold text-gray-900 dark:text-white">
+              <h1 className="text-xl font-extrabold text-gray-900 dark:text-slate-900 dark:text-white">
                 {lead.name || "Unknown Lead"}
               </h1>
-              <p className="text-xs text-gray-400 mt-0.5">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                 Created{" "}
                 {new Date(lead.createdAt).toLocaleDateString("en-IN", {
                   day: "numeric",
@@ -315,8 +315,8 @@ export default function LeadDetailPage({
         {/* Left column - Lead Info */}
         <div className="lg:col-span-2 space-y-6">
           {/* Contact & College Info */}
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm">
-            <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+          <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+            <h2 className="text-sm font-bold text-gray-900 dark:text-slate-900 dark:text-white mb-3 flex items-center gap-2">
               <User size={14} className="text-violet-500" />
               Contact Information
             </h2>
@@ -327,8 +327,8 @@ export default function LeadDetailPage({
           </div>
 
           {/* Source Tracking */}
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm">
-            <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+          <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+            <h2 className="text-sm font-bold text-gray-900 dark:text-slate-900 dark:text-white mb-3 flex items-center gap-2">
               <Globe size={14} className="text-cyan-500" />
               Source & Tracking
             </h2>
@@ -356,9 +356,9 @@ export default function LeadDetailPage({
           </div>
 
           {/* Remarks */}
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm">
+          <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <h2 className="text-sm font-bold text-gray-900 dark:text-slate-900 dark:text-white flex items-center gap-2">
                 <StickyNote size={14} className="text-amber-500" />
                 Remarks
               </h2>
@@ -383,7 +383,7 @@ export default function LeadDetailPage({
                       setEditingRemarks(false);
                       setRemarksValue(lead.remarks || "");
                     }}
-                    className="inline-flex items-center gap-1 text-[10px] font-bold text-gray-400 hover:underline"
+                    className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-500 dark:text-slate-400 hover:underline"
                   >
                     <X size={10} /> Cancel
                   </button>
@@ -395,13 +395,13 @@ export default function LeadDetailPage({
                 value={remarksValue}
                 onChange={(e) => setRemarksValue(e.target.value)}
                 rows={3}
-                className="w-full text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-violet-500 resize-none"
+                className="w-full text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-violet-500 resize-none"
                 placeholder="Add remarks about this lead..."
               />
             ) : (
-              <p className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-wrap">
+              <p className="text-sm text-gray-600 dark:text-slate-600 dark:text-slate-300 whitespace-pre-wrap">
                 {lead.remarks || (
-                  <span className="text-gray-400 italic">No remarks yet.</span>
+                  <span className="text-slate-500 dark:text-slate-400 italic">No remarks yet.</span>
                 )}
               </p>
             )}
@@ -412,21 +412,21 @@ export default function LeadDetailPage({
         <div className="space-y-6">
           {/* Linked User */}
           {lead.user && (
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm">
-              <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+            <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+              <h2 className="text-sm font-bold text-gray-900 dark:text-slate-900 dark:text-white mb-3 flex items-center gap-2">
                 <User size={14} className="text-blue-500" />
                 Linked User Account
               </h2>
               <div className="space-y-2.5">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-sm font-bold">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-slate-900 dark:text-white text-sm font-bold">
                     {lead.user.name[0].toUpperCase()}
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-gray-900 dark:text-white">
+                    <p className="text-sm font-bold text-gray-900 dark:text-slate-900 dark:text-white">
                       {lead.user.name}
                     </p>
-                    <p className="text-[10px] text-gray-400">
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400">
                       {lead.user.email}
                     </p>
                   </div>
@@ -435,14 +435,14 @@ export default function LeadDetailPage({
                 {/* Profile Completion */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                    <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       Profile Completion
                     </p>
-                    <p className="text-xs font-bold text-gray-600 dark:text-gray-300">
+                    <p className="text-xs font-bold text-gray-600 dark:text-slate-600 dark:text-slate-300">
                       {lead.user.profileComplete}%
                     </p>
                   </div>
-                  <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-1.5">
+                  <div className="w-full bg-gray-100 dark:bg-slate-100 dark:bg-slate-800 rounded-full h-1.5">
                     <div
                       className="bg-gradient-to-r from-blue-500 to-violet-500 h-1.5 rounded-full transition-all"
                       style={{
@@ -462,8 +462,8 @@ export default function LeadDetailPage({
           )}
 
           {/* Notes */}
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm">
-            <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+          <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+            <h2 className="text-sm font-bold text-gray-900 dark:text-slate-900 dark:text-white mb-3 flex items-center gap-2">
               <StickyNote size={14} className="text-violet-500" />
               Notes ({lead.notes.length})
             </h2>
@@ -475,12 +475,12 @@ export default function LeadDetailPage({
                 onChange={(e) => setNewNote(e.target.value)}
                 rows={2}
                 placeholder="Add a note about this lead..."
-                className="w-full text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-violet-500 resize-none mb-2"
+                className="w-full text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-violet-500 resize-none mb-2"
               />
               <button
                 onClick={handleAddNote}
                 disabled={isSendingNote || !newNote.trim()}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-violet-600 hover:bg-violet-700 disabled:opacity-50 transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-900 dark:text-white bg-violet-600 hover:bg-violet-700 disabled:opacity-50 transition-colors"
               >
                 {isSendingNote ? (
                   <Loader2 size={12} className="animate-spin" />
@@ -494,23 +494,23 @@ export default function LeadDetailPage({
             {/* Notes List */}
             <div className="space-y-3 max-h-[400px] overflow-y-auto">
               {lead.notes.length === 0 ? (
-                <p className="text-xs text-gray-400 italic text-center py-4">
+                <p className="text-xs text-slate-500 dark:text-slate-400 italic text-center py-4">
                   No notes yet.
                 </p>
               ) : (
                 lead.notes.map((note) => (
                   <div
                     key={note.id}
-                    className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-3 space-y-1"
+                    className="bg-gray-50 dark:bg-slate-100 dark:bg-slate-800/50 rounded-xl p-3 space-y-1"
                   >
-                    <p className="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
+                    <p className="text-sm text-gray-800 dark:text-slate-700 dark:text-slate-200 whitespace-pre-wrap">
                       {note.content}
                     </p>
                     <div className="flex items-center justify-between">
-                      <p className="text-[9px] text-gray-400 font-semibold">
+                      <p className="text-[9px] text-slate-500 dark:text-slate-400 font-semibold">
                         {note.createdBy || "Admin"}
                       </p>
-                      <p className="text-[9px] text-gray-400">
+                      <p className="text-[9px] text-slate-500 dark:text-slate-400">
                         {new Date(note.createdAt).toLocaleDateString("en-IN", {
                           day: "numeric",
                           month: "short",

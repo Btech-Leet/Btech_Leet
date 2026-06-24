@@ -218,13 +218,13 @@ export default function AdminLeadsPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 dark:border-gray-800 pb-5">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 dark:border-slate-200 dark:border-slate-800 pb-5">
         <div className="space-y-1">
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-900 dark:text-white flex items-center gap-2">
             <Target className="text-violet-500" size={24} />
             Lead Management
           </h1>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">
             Track, filter, and manage all leads from registrations and source
             tracking. {pagination.total > 0 && `${pagination.total} total leads.`}
           </p>
@@ -254,27 +254,27 @@ export default function AdminLeadsPage() {
         <form onSubmit={handleSearch} className="flex-1 relative">
           <Search
             size={16}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400"
           />
           <input
             type="text"
             placeholder="Search by name, email, mobile, college..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500/30 focus:border-violet-500"
+            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-white dark:bg-white dark:bg-slate-900 text-sm text-gray-900 dark:text-slate-900 dark:text-white placeholder:text-slate-500 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/30 focus:border-violet-500"
           />
         </form>
 
         {/* Status Filter */}
-        <div className="flex items-center gap-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-2 shadow-sm">
-          <Filter size={14} className="text-gray-400" />
+        <div className="flex items-center gap-2 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 shadow-sm">
+          <Filter size={14} className="text-slate-500 dark:text-slate-400" />
           <select
             value={statusFilter}
             onChange={(e) => {
               setStatusFilter(e.target.value);
               setPagination((prev) => ({ ...prev, page: 1 }));
             }}
-            className="text-xs font-semibold bg-transparent border-none text-gray-600 dark:text-gray-300 focus:outline-none cursor-pointer"
+            className="text-xs font-semibold bg-transparent border-none text-gray-600 dark:text-slate-600 dark:text-slate-300 focus:outline-none cursor-pointer"
           >
             {statusOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -285,7 +285,7 @@ export default function AdminLeadsPage() {
         </div>
 
         {/* Sort */}
-        <div className="flex items-center gap-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-2 shadow-sm">
+        <div className="flex items-center gap-2 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 shadow-sm">
           <select
             value={`${sortBy}:${sortOrder}`}
             onChange={(e) => {
@@ -294,7 +294,7 @@ export default function AdminLeadsPage() {
               setSortOrder(so as "asc" | "desc");
               setPagination((prev) => ({ ...prev, page: 1 }));
             }}
-            className="text-xs font-semibold bg-transparent border-none text-gray-600 dark:text-gray-300 focus:outline-none cursor-pointer"
+            className="text-xs font-semibold bg-transparent border-none text-gray-600 dark:text-slate-600 dark:text-slate-300 focus:outline-none cursor-pointer"
           >
             <option value="createdAt:desc">Newest First</option>
             <option value="createdAt:asc">Oldest First</option>
@@ -311,15 +311,15 @@ export default function AdminLeadsPage() {
           <Loader2 size={32} className="animate-spin text-violet-500" />
         </div>
       ) : leads.length === 0 ? (
-        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-16 text-center text-gray-400 shadow-sm max-w-lg mx-auto">
+        <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-16 text-center text-slate-500 dark:text-slate-400 shadow-sm max-w-lg mx-auto">
           <Target
-            className="mx-auto text-gray-300 dark:text-gray-700 mb-4"
+            className="mx-auto text-slate-600 dark:text-slate-300 dark:text-gray-700 mb-4"
             size={48}
           />
-          <h3 className="font-bold text-gray-800 dark:text-gray-200">
+          <h3 className="font-bold text-gray-800 dark:text-slate-700 dark:text-slate-200">
             No Leads Found
           </h3>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
             {searchQuery || statusFilter !== "ALL"
               ? "Try adjusting your filters or search query."
               : "Leads will appear here as users register."}
@@ -328,27 +328,27 @@ export default function AdminLeadsPage() {
       ) : (
         <>
           {/* Leads Table */}
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm overflow-hidden">
+          <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-100 dark:border-gray-800">
-                    <th className="text-left px-4 py-3 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <tr className="border-b border-gray-100 dark:border-slate-200 dark:border-slate-800">
+                    <th className="text-left px-4 py-3 text-xs font-bold text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       Lead
                     </th>
-                    <th className="text-left px-4 py-3 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    <th className="text-left px-4 py-3 text-xs font-bold text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       Contact
                     </th>
-                    <th className="text-left px-4 py-3 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    <th className="text-left px-4 py-3 text-xs font-bold text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       Source
                     </th>
-                    <th className="text-left px-4 py-3 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    <th className="text-left px-4 py-3 text-xs font-bold text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="text-left px-4 py-3 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    <th className="text-left px-4 py-3 text-xs font-bold text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       Date
                     </th>
-                    <th className="text-right px-4 py-3 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    <th className="text-right px-4 py-3 text-xs font-bold text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -357,20 +357,20 @@ export default function AdminLeadsPage() {
                   {leads.map((lead) => (
                     <tr
                       key={lead.id}
-                      className="hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors"
+                      className="hover:bg-gray-50/50 dark:hover:bg-slate-100 dark:hover:bg-slate-800/30 transition-colors"
                     >
                       {/* Lead Name & College */}
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-slate-900 dark:text-white text-xs font-bold flex-shrink-0">
                             {(lead.name || "?")[0].toUpperCase()}
                           </div>
                           <div className="min-w-0">
-                            <p className="font-semibold text-gray-900 dark:text-white truncate max-w-[180px]">
+                            <p className="font-semibold text-gray-900 dark:text-slate-900 dark:text-white truncate max-w-[180px]">
                               {lead.name || "—"}
                             </p>
                             {lead.collegeName && (
-                              <p className="text-[10px] text-gray-400 dark:text-gray-500 flex items-center gap-1 mt-0.5">
+                              <p className="text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 flex items-center gap-1 mt-0.5">
                                 <Building2 size={10} />
                                 {lead.collegeName}
                                 {lead.branch && ` · ${lead.branch}`}
@@ -390,16 +390,16 @@ export default function AdminLeadsPage() {
                       <td className="px-4 py-3">
                         <div className="space-y-1">
                           {lead.email && (
-                            <p className="text-xs text-gray-600 dark:text-gray-300 flex items-center gap-1">
-                              <Mail size={10} className="text-gray-400" />
+                            <p className="text-xs text-gray-600 dark:text-slate-600 dark:text-slate-300 flex items-center gap-1">
+                              <Mail size={10} className="text-slate-500 dark:text-slate-400" />
                               <span className="truncate max-w-[160px]">
                                 {lead.email}
                               </span>
                             </p>
                           )}
                           {lead.mobile && (
-                            <p className="text-xs text-gray-600 dark:text-gray-300 flex items-center gap-1">
-                              <Phone size={10} className="text-gray-400" />
+                            <p className="text-xs text-gray-600 dark:text-slate-600 dark:text-slate-300 flex items-center gap-1">
+                              <Phone size={10} className="text-slate-500 dark:text-slate-400" />
                               {lead.mobile}
                             </p>
                           )}
@@ -410,7 +410,7 @@ export default function AdminLeadsPage() {
                       <td className="px-4 py-3">
                         <div className="space-y-1">
                           {lead.sourcePage && (
-                            <p className="text-[10px] text-gray-500 dark:text-gray-400 flex items-center gap-1 truncate max-w-[140px]">
+                            <p className="text-[10px] text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 flex items-center gap-1 truncate max-w-[140px]">
                               <Globe size={10} className="flex-shrink-0" />
                               {lead.sourcePage}
                             </p>
@@ -454,7 +454,7 @@ export default function AdminLeadsPage() {
 
                       {/* Date */}
                       <td className="px-4 py-3">
-                        <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                        <div className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">
                           <Calendar size={10} />
                           {new Date(lead.createdAt).toLocaleDateString("en-IN", {
                             day: "numeric",
@@ -499,8 +499,8 @@ export default function AdminLeadsPage() {
 
           {/* Pagination */}
           {pagination.totalPages > 1 && (
-            <div className="flex items-center justify-between bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-4 py-3">
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+            <div className="flex items-center justify-between bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3">
+              <p className="text-xs text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">
                 Page {pagination.page} of {pagination.totalPages} ·{" "}
                 {pagination.total} leads
               </p>
@@ -508,7 +508,7 @@ export default function AdminLeadsPage() {
                 <button
                   onClick={() => goToPage(pagination.page - 1)}
                   disabled={pagination.page <= 1}
-                  className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                 >
                   <ChevronLeft size={16} />
                 </button>
@@ -531,8 +531,8 @@ export default function AdminLeadsPage() {
                         onClick={() => goToPage(pageNum)}
                         className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors ${
                           pagination.page === pageNum
-                            ? "bg-violet-600 text-white"
-                            : "text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+                            ? "bg-violet-600 text-slate-900 dark:text-white"
+                            : "text-slate-500 dark:text-slate-500 hover:bg-gray-100 dark:hover:bg-slate-100 dark:hover:bg-slate-800"
                         }`}
                       >
                         {pageNum}
@@ -543,7 +543,7 @@ export default function AdminLeadsPage() {
                 <button
                   onClick={() => goToPage(pagination.page + 1)}
                   disabled={pagination.page >= pagination.totalPages}
-                  className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                 >
                   <ChevronRight size={16} />
                 </button>

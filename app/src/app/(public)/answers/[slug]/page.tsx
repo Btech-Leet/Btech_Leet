@@ -7,14 +7,15 @@ import { Sparkles, Eye, Calendar, BookOpen, Link as LinkIcon, HelpCircle } from 
 export const dynamic = "force-dynamic";
 
 interface BestAnswerPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: BestAnswerPageProps): Promise<Metadata> {
+  const { slug } = await params;
   const page = await prisma.bestAnswerPage.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   });
 
   if (!page) {
@@ -31,8 +32,9 @@ export async function generateMetadata({ params }: BestAnswerPageProps): Promise
 }
 
 export default async function BestAnswerDetail({ params }: BestAnswerPageProps) {
+  const { slug } = await params;
   const page = await prisma.bestAnswerPage.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   });
 
   if (!page || page.status !== "PUBLISHED") {
@@ -45,7 +47,7 @@ export default async function BestAnswerDetail({ params }: BestAnswerPageProps) 
       where: { id: page.id },
       data: { views: { increment: 1 } },
     })
-    .catch((err) => console.error("Failed to increment views:", err));
+    .catch((err: any) => console.error("Failed to increment views:", err));
 
   // Parse FAQ
   const faqs = (page.faqSection as any) || [];
@@ -67,7 +69,7 @@ export default async function BestAnswerDetail({ params }: BestAnswerPageProps) 
   } : null;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-24">
+    <div className="pb-24">
       {/* FAQ Schema Markup */}
       {faqSchemaJson && (
         <script

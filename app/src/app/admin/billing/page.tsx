@@ -172,7 +172,7 @@ export default function AdminBillingPage() {
     return (
       <div className="flex items-center justify-center py-32">
         <RefreshCw className="animate-spin text-indigo-500 mr-3" size={24} />
-        <span className="text-gray-400">Loading billing analytics...</span>
+        <span className="text-slate-500 dark:text-slate-400">Loading billing analytics...</span>
       </div>
     );
   }
@@ -185,12 +185,12 @@ export default function AdminBillingPage() {
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white">Billing Command Centre</h1>
-          <p className="text-sm text-gray-400">Revenue analytics, plan management, refund approvals, and transaction logs.</p>
+          <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white">Billing Command Centre</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Revenue analytics, plan management, refund approvals, and transaction logs.</p>
         </div>
         <button
           onClick={fetchAll}
-          className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-gray-300 bg-gray-900 border border-gray-800 rounded-xl hover:bg-gray-800 transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
         >
           <RefreshCw size={14} />
           Refresh Data
@@ -205,17 +205,17 @@ export default function AdminBillingPage() {
             { label: "Monthly Revenue", value: `₹${(stats.revenueMonth || 0).toLocaleString("en-IN")}`, sub: `${stats.ordersMonth} orders`, icon: TrendingUp, color: "text-blue-400", bg: "bg-blue-950/20 border-blue-900/30" },
             { label: "Total Revenue", value: `₹${(stats.revenueTotal || 0).toLocaleString("en-IN")}`, sub: `${stats.ordersTotal} total orders`, icon: Wallet, color: "text-purple-400", bg: "bg-purple-950/20 border-purple-900/30" },
             { label: "Conversion Rate", value: `${stats.conversionRate}%`, sub: `${stats.failedCount} failed`, icon: Percent, color: "text-amber-400", bg: "bg-amber-950/20 border-amber-900/30" },
-            { label: "Pending Refunds", value: stats.pendingRefunds, sub: "Awaiting approval", icon: ShieldAlert, color: stats.pendingRefunds > 0 ? "text-red-400" : "text-gray-400", bg: stats.pendingRefunds > 0 ? "bg-red-950/20 border-red-900/30" : "bg-gray-950/20 border-gray-900/30" },
+            { label: "Pending Refunds", value: stats.pendingRefunds, sub: "Awaiting approval", icon: ShieldAlert, color: stats.pendingRefunds > 0 ? "text-red-400" : "text-slate-500 dark:text-slate-400", bg: stats.pendingRefunds > 0 ? "bg-red-950/20 border-red-900/30" : "bg-slate-50 dark:bg-slate-950/20 border-gray-900/30" },
           ].map((stat) => {
             const Icon = stat.icon;
             return (
               <div key={stat.label} className={`border rounded-2xl p-4 ${stat.bg}`}>
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-[10px] text-gray-400 font-bold uppercase">{stat.label}</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">{stat.label}</span>
                   <Icon size={14} className={stat.color} />
                 </div>
-                <div className="text-xl font-black text-white">{stat.value}</div>
-                <span className="text-[10px] text-gray-500 font-medium">{stat.sub}</span>
+                <div className="text-xl font-black text-slate-900 dark:text-white">{stat.value}</div>
+                <span className="text-[10px] text-slate-500 dark:text-slate-500 font-medium">{stat.sub}</span>
               </div>
             );
           })}
@@ -236,7 +236,7 @@ export default function AdminBillingPage() {
             className={`py-3 text-xs font-bold border-b-2 -mb-px transition-all ${
               activeTab === tab.id
                 ? "border-indigo-500 text-indigo-400"
-                : "border-transparent text-gray-400 hover:text-white"
+                : "border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white"
             }`}
           >
             {tab.label}
@@ -246,8 +246,8 @@ export default function AdminBillingPage() {
 
       {/* ─── OVERVIEW TAB ─── */}
       {activeTab === "overview" && (
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
-          <h3 className="text-sm font-bold text-white mb-4 flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
             <BarChart3 size={16} className="text-indigo-400" />
             Monthly Revenue Trend
           </h3>
@@ -273,13 +273,13 @@ export default function AdminBillingPage() {
 
       {/* ─── TRANSACTIONS TAB ─── */}
       {activeTab === "transactions" && (
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden">
-          <div className="p-4 border-b border-gray-800 flex items-center gap-3">
-            <label className="text-xs text-gray-400 font-semibold">Filter:</label>
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+          <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
+            <label className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Filter:</label>
             <select
               value={statusFilter}
               onChange={(e) => { setStatusFilter(e.target.value); }}
-              className="bg-gray-950 border border-gray-800 rounded-lg px-3 py-1.5 text-xs text-white"
+              className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-900 dark:text-white"
             >
               <option value="">All</option>
               <option value="SUCCESSFUL">Successful</option>
@@ -294,7 +294,7 @@ export default function AdminBillingPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-gray-850 bg-gray-950 text-gray-400">
+                <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-500 dark:text-slate-400">
                   <th className="p-4 font-semibold">Date</th>
                   <th className="p-4 font-semibold">User</th>
                   <th className="p-4 font-semibold">Item</th>
@@ -306,22 +306,22 @@ export default function AdminBillingPage() {
               </thead>
               <tbody>
                 {transactions.map((tx) => (
-                  <tr key={tx.id} className="border-b border-gray-850 hover:bg-gray-850/20">
-                    <td className="p-4 text-gray-400 whitespace-nowrap">
+                  <tr key={tx.id} className="border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:bg-slate-800/20">
+                    <td className="p-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">
                       {new Date(tx.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
                     </td>
                     <td className="p-4">
-                      <div className="text-white font-medium truncate max-w-[140px]">{tx.userName}</div>
-                      <div className="text-[10px] text-gray-500">{tx.userEmail}</div>
+                      <div className="text-slate-900 dark:text-white font-medium truncate max-w-[140px]">{tx.userName}</div>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-500">{tx.userEmail}</div>
                     </td>
-                    <td className="p-4 text-white">{tx.purchaseName}</td>
+                    <td className="p-4 text-slate-900 dark:text-white">{tx.purchaseName}</td>
                     <td className="p-4 text-center text-blue-400 font-bold">₹{tx.amount.toLocaleString("en-IN")}</td>
                     <td className="p-4 text-center">
                       <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
                         tx.status === "SUCCESSFUL" ? "bg-green-500/10 text-green-400 border border-green-500/20" :
                         tx.status === "FAILED" ? "bg-red-500/10 text-red-400 border border-red-500/20" :
                         tx.status === "REFUNDED" ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
-                        "bg-gray-500/10 text-gray-400 border border-gray-500/20"
+                        "bg-gray-500/10 text-slate-500 dark:text-slate-400 border border-gray-500/20"
                       }`}>
                         {tx.status}
                       </span>
@@ -336,12 +336,12 @@ export default function AdminBillingPage() {
                         {tx.refundStatus}
                       </span>
                     </td>
-                    <td className="p-4 text-gray-500 text-[10px] font-mono truncate max-w-[120px]">{tx.orderId}</td>
+                    <td className="p-4 text-slate-500 dark:text-slate-500 text-[10px] font-mono truncate max-w-[120px]">{tx.orderId}</td>
                   </tr>
                 ))}
                 {transactions.length === 0 && (
                   <tr>
-                    <td colSpan={7} className="p-12 text-center text-gray-500">No transactions found.</td>
+                    <td colSpan={7} className="p-12 text-center text-slate-500 dark:text-slate-500">No transactions found.</td>
                   </tr>
                 )}
               </tbody>
@@ -354,67 +354,67 @@ export default function AdminBillingPage() {
       {activeTab === "plans" && (
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <h3 className="text-sm font-bold text-white">Subscription Plans</h3>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Subscription Plans</h3>
             <button
               onClick={() => { resetPlanForm(); setShowPlanForm(true); }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-slate-900 dark:text-white rounded-xl transition-all"
             >
               + New Plan
             </button>
           </div>
 
           {showPlanForm && (
-            <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4">
-              <h4 className="text-sm font-bold text-white">{editPlan ? "Edit Plan" : "Create New Plan"}</h4>
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4">
+              <h4 className="text-sm font-bold text-slate-900 dark:text-white">{editPlan ? "Edit Plan" : "Create New Plan"}</h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] text-gray-400 font-bold uppercase">Plan Name</label>
-                  <input value={planName} onChange={(e) => setPlanName(e.target.value)} placeholder="e.g. 3 Months Premium" className="w-full h-10 px-3 rounded-lg border border-gray-800 bg-gray-950 text-sm text-white" />
+                  <label className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Plan Name</label>
+                  <input value={planName} onChange={(e) => setPlanName(e.target.value)} placeholder="e.g. 3 Months Premium" className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white" />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-gray-400 font-bold uppercase">Price (₹)</label>
-                  <input type="number" value={planPrice} onChange={(e) => setPlanPrice(e.target.value)} placeholder="699" className="w-full h-10 px-3 rounded-lg border border-gray-800 bg-gray-950 text-sm text-white" />
+                  <label className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Price (₹)</label>
+                  <input type="number" value={planPrice} onChange={(e) => setPlanPrice(e.target.value)} placeholder="699" className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white" />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-gray-400 font-bold uppercase">Duration (Days)</label>
-                  <input type="number" value={planDuration} onChange={(e) => setPlanDuration(e.target.value)} placeholder="90" className="w-full h-10 px-3 rounded-lg border border-gray-800 bg-gray-950 text-sm text-white" />
+                  <label className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Duration (Days)</label>
+                  <input type="number" value={planDuration} onChange={(e) => setPlanDuration(e.target.value)} placeholder="90" className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white" />
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] text-gray-400 font-bold uppercase">Features (one per line)</label>
+                <label className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Features (one per line)</label>
                 <textarea
                   value={planFeatures}
                   onChange={(e) => setPlanFeatures(e.target.value)}
                   rows={4}
                   placeholder="Unlimited Mock Tests&#10;Premium Study Material&#10;Advanced Analytics"
-                  className="w-full px-3 py-2 rounded-lg border border-gray-800 bg-gray-950 text-sm text-white resize-none"
+                  className="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white resize-none"
                 />
               </div>
               <div className="flex gap-3">
-                <button onClick={resetPlanForm} className="px-4 py-2 text-xs font-bold text-gray-400 border border-gray-800 rounded-xl hover:bg-gray-800">Cancel</button>
-                <button onClick={handleSavePlan} className="px-4 py-2 text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl">{editPlan ? "Update Plan" : "Create Plan"}</button>
+                <button onClick={resetPlanForm} className="px-4 py-2 text-xs font-bold text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+                <button onClick={handleSavePlan} className="px-4 py-2 text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-slate-900 dark:text-white rounded-xl">{editPlan ? "Update Plan" : "Create Plan"}</button>
               </div>
             </div>
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {plans.map((plan) => (
-              <div key={plan.id} className={`p-5 border rounded-2xl ${plan.active ? "bg-gray-900 border-gray-800" : "bg-gray-950 border-gray-900 opacity-50"}`}>
+              <div key={plan.id} className={`p-5 border rounded-2xl ${plan.active ? "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800" : "bg-slate-50 dark:bg-slate-950 border-gray-900 opacity-50"}`}>
                 <div className="flex justify-between items-start mb-3">
                   <div>
-                    <h4 className="text-sm font-bold text-white">{plan.name}</h4>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{plan.name}</h4>
                     <p className="text-lg font-black text-indigo-400 mt-1">₹{plan.price.toLocaleString("en-IN")}</p>
                   </div>
                   <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${plan.active ? "bg-green-500/10 text-green-400 border border-green-500/20" : "bg-red-500/10 text-red-400 border border-red-500/20"}`}>
                     {plan.active ? "ACTIVE" : "INACTIVE"}
                   </span>
                 </div>
-                <p className="text-[10px] text-gray-500 mb-3">{plan.duration} days</p>
+                <p className="text-[10px] text-slate-500 dark:text-slate-500 mb-3">{plan.duration} days</p>
                 <div className="space-y-1 mb-4">
                   {plan.features.map((f, i) => (
                     <div key={i} className="flex items-start gap-1.5">
                       <Check size={10} className="text-emerald-500 mt-0.5" />
-                      <span className="text-[11px] text-gray-400">{f}</span>
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400">{f}</span>
                     </div>
                   ))}
                 </div>
@@ -425,7 +425,7 @@ export default function AdminBillingPage() {
               </div>
             ))}
             {plans.length === 0 && (
-              <div className="col-span-4 text-center py-12 text-gray-500 text-sm">
+              <div className="col-span-4 text-center py-12 text-slate-500 dark:text-slate-500 text-sm">
                 No plans created yet. Click &quot;New Plan&quot; to get started.
               </div>
             )}
@@ -435,11 +435,11 @@ export default function AdminBillingPage() {
 
       {/* ─── REFUNDS TAB ─── */}
       {activeTab === "refunds" && (
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-gray-850 bg-gray-950 text-gray-400">
+                <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-500 dark:text-slate-400">
                   <th className="p-4 font-semibold">Date</th>
                   <th className="p-4 font-semibold">User</th>
                   <th className="p-4 font-semibold">Item</th>
@@ -450,17 +450,17 @@ export default function AdminBillingPage() {
               </thead>
               <tbody>
                 {refundRequests.map((tx) => (
-                  <tr key={tx.id} className="border-b border-gray-850">
-                    <td className="p-4 text-gray-400 whitespace-nowrap">
+                  <tr key={tx.id} className="border-b border-slate-200 dark:border-slate-800">
+                    <td className="p-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">
                       {new Date(tx.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
                     </td>
                     <td className="p-4">
-                      <div className="text-white font-medium">{tx.userName}</div>
-                      <div className="text-[10px] text-gray-500">{tx.userEmail}</div>
+                      <div className="text-slate-900 dark:text-white font-medium">{tx.userName}</div>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-500">{tx.userEmail}</div>
                     </td>
-                    <td className="p-4 text-white">{tx.purchaseName}</td>
+                    <td className="p-4 text-slate-900 dark:text-white">{tx.purchaseName}</td>
                     <td className="p-4 text-center text-blue-400 font-bold">₹{tx.amount.toLocaleString("en-IN")}</td>
-                    <td className="p-4 text-gray-400 max-w-[200px] truncate">{tx.refundReason || "—"}</td>
+                    <td className="p-4 text-slate-500 dark:text-slate-400 max-w-[200px] truncate">{tx.refundReason || "—"}</td>
                     <td className="p-4">
                       <div className="flex items-center justify-center gap-2">
                         <button
@@ -483,7 +483,7 @@ export default function AdminBillingPage() {
                 ))}
                 {refundRequests.length === 0 && (
                   <tr>
-                    <td colSpan={6} className="p-12 text-center text-gray-500">
+                    <td colSpan={6} className="p-12 text-center text-slate-500 dark:text-slate-500">
                       No pending refund requests. 🎉
                     </td>
                   </tr>

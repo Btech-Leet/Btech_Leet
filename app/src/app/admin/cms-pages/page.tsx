@@ -176,11 +176,11 @@ export default function AdminCmsPagesPage() {
     <div className="space-y-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <FileText size={24} className="text-pink-500" />
             CMS Pages
           </h1>
-          <p className="text-gray-400 text-sm mt-1">Create and manage custom content pages</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Create and manage custom content pages</p>
         </div>
         <button onClick={() => { resetForm(); setShowForm(true); }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 transition-colors">
@@ -190,8 +190,8 @@ export default function AdminCmsPagesPage() {
 
       {/* Form */}
       {showForm && (
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-sm space-y-5">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm space-y-5">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
             {editing ? <Edit2 size={18} className="text-blue-500" /> : <Plus size={18} className="text-blue-500" />}
             {editing ? "Edit CMS Page" : "Create New Page"}
           </h2>
@@ -199,16 +199,16 @@ export default function AdminCmsPagesPage() {
           <form onSubmit={handleSave} className="space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               <div className="lg:col-span-2 flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase">Page Title</label>
+                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Page Title</label>
                 <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)}
                   placeholder="About Us"
-                  className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase">Status</label>
+                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Status</label>
                 <select value={status} onChange={(e) => setStatus(e.target.value)}
-                  className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500">
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500">
                   <option value="DRAFT">Draft</option>
                   <option value="PUBLISHED">Published</option>
                   <option value="ARCHIVED">Archived</option>
@@ -217,8 +217,8 @@ export default function AdminCmsPagesPage() {
             </div>
 
             {/* Featured Image */}
-            <div className="flex items-center gap-4 p-4 bg-gray-950 border border-gray-800 rounded-xl">
-              <div className="w-24 h-16 rounded-lg bg-gray-900 border border-gray-800 overflow-hidden flex items-center justify-center flex-shrink-0">
+            <div className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl">
+              <div className="w-24 h-16 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden flex items-center justify-center flex-shrink-0">
                 {imageUploading ? (
                   <Loader2 className="animate-spin text-blue-500" size={20} />
                 ) : featuredImage ? (
@@ -229,7 +229,7 @@ export default function AdminCmsPagesPage() {
               </div>
               <div>
                 <button type="button" onClick={() => fileInputRef.current?.click()} disabled={imageUploading}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-850 text-xs font-semibold text-gray-300 hover:bg-gray-850 transition-colors">
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:bg-slate-800 transition-colors">
                   <Camera size={14} /> {featuredImage ? "Change Image" : "Upload Featured Image"}
                 </button>
                 {featuredImage && (
@@ -241,31 +241,31 @@ export default function AdminCmsPagesPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-400 uppercase">Content (HTML)</label>
+              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Content (HTML)</label>
               <textarea value={content} onChange={(e) => setContent(e.target.value)}
                 placeholder="<h2>Welcome</h2><p>Your content here...</p>"
                 rows={12}
-                className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none font-mono" />
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none font-mono" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase">SEO Title</label>
+                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">SEO Title</label>
                 <input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} maxLength={70}
-                  className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase">Keywords</label>
+                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Keywords</label>
                 <input type="text" value={keywords} onChange={(e) => setKeywords(e.target.value)}
                   placeholder="about, btech leet, lateral entry"
-                  className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
               </div>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-400 uppercase">Meta Description</label>
+              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Meta Description</label>
               <textarea value={metaDesc} onChange={(e) => setMetaDesc(e.target.value)} maxLength={160} rows={2}
-                className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none" />
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none" />
             </div>
 
             <div className="flex gap-2 pt-2">
@@ -275,7 +275,7 @@ export default function AdminCmsPagesPage() {
                 Save Page
               </button>
               <button type="button" onClick={resetForm}
-                className="px-5 py-2 text-sm font-bold rounded-lg text-gray-300 bg-gray-800 hover:bg-gray-700 transition-colors">
+                className="px-5 py-2 text-sm font-bold rounded-lg text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
                 Cancel
               </button>
             </div>
@@ -286,32 +286,32 @@ export default function AdminCmsPagesPage() {
       {/* Pages List */}
       <div className="space-y-3">
         {pages.length === 0 ? (
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 text-center text-gray-500 shadow-sm">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 text-center text-slate-500 dark:text-slate-500 shadow-sm">
             No CMS pages created yet.
           </div>
         ) : (
           pages.map((page) => (
-            <div key={page.id} className="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+            <div key={page.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
               <div className="flex items-center gap-4 min-w-0 flex-1">
                 {page.featuredImage && (
-                  <div className="w-16 h-11 rounded-lg bg-gray-950 border border-gray-800 overflow-hidden flex-shrink-0">
+                  <div className="w-16 h-11 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 overflow-hidden flex-shrink-0">
                     <img src={page.featuredImage} alt="" className="w-full h-full object-cover" />
                   </div>
                 )}
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-bold text-gray-200 text-sm truncate">{page.title}</h3>
+                    <h3 className="font-bold text-slate-700 dark:text-slate-200 text-sm truncate">{page.title}</h3>
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
                       page.status === "PUBLISHED"
                         ? "bg-green-950/30 text-green-400 border-green-900/30"
                         : page.status === "ARCHIVED"
-                        ? "bg-gray-800 text-gray-500 border-gray-700"
+                        ? "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-500 border-slate-300 dark:border-slate-700"
                         : "bg-amber-950/30 text-amber-400 border-amber-900/30"
                     }`}>
                       {page.status}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-500 mt-0.5 flex items-center gap-1">
+                  <p className="text-xs text-slate-500 dark:text-slate-500 mt-0.5 flex items-center gap-1">
                     <Globe size={11} /> /page/{page.slug}
                   </p>
                 </div>
@@ -327,7 +327,7 @@ export default function AdminCmsPagesPage() {
                   {page.status === "PUBLISHED" ? "Unpublish" : "Publish"}
                 </button>
                 <button onClick={() => handleEdit(page)}
-                  className="p-1.5 rounded-lg border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors" title="Edit">
+                  className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Edit">
                   <Edit2 size={13} />
                 </button>
                 <button onClick={() => handleDelete(page.id)}

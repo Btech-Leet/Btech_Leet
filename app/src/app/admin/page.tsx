@@ -85,11 +85,11 @@ export default async function AdminDashboard() {
   const data = await getStats();
 
   return (
-    <div className="text-white">
+    <div className="text-slate-900 dark:text-white">
       <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-          <p className="text-gray-400 mt-1 text-sm">Platform overview and quick stats</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1 text-sm">Platform overview and quick stats</p>
         </div>
         <div>
           <a
@@ -116,14 +116,14 @@ export default async function AdminDashboard() {
           { title: "Subscribers", value: data.totalSubscribers, icon: Mail },
           { title: "Mock Tests", value: data.totalTests, icon: ClipboardList },
         ].map((stat) => (
-          <div key={stat.title} className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+          <div key={stat.title} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5">
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-xs text-gray-400 font-medium">{stat.title}</p>
-                <p className="text-2xl font-bold text-white mt-1">{stat.value.toLocaleString()}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{stat.title}</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-white mt-1">{stat.value.toLocaleString()}</p>
               </div>
-              <div className={`p-2.5 rounded-lg ${stat.isPremium ? "bg-purple-950/50" : "bg-blue-950/50"}`}>
-                <stat.icon size={18} className={stat.isPremium ? "text-purple-400" : "text-blue-400"} aria-hidden="true" />
+              <div className={`p-2.5 rounded-lg ${stat.isPremium ? "bg-purple-100 dark:bg-purple-950/50" : "bg-blue-100 dark:bg-blue-950/50"}`}>
+                <stat.icon size={18} className={stat.isPremium ? "text-purple-600 dark:text-purple-400" : "text-blue-600 dark:text-blue-400"} aria-hidden="true" />
               </div>
             </div>
           </div>
@@ -132,25 +132,25 @@ export default async function AdminDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Notifications */}
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-semibold text-white flex items-center gap-2">
+            <h2 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
               <Bell size={16} className="text-blue-400" aria-hidden="true" />
               Recent Notifications
             </h2>
             <a href="/admin/notifications" className="text-xs text-blue-400 hover:underline">View all</a>
           </div>
           {data.recentNotifications.length === 0 ? (
-            <p className="text-gray-500 text-sm">No notifications yet</p>
+            <p className="text-slate-500 dark:text-slate-500 text-sm">No notifications yet</p>
           ) : (
             <div className="space-y-3">
               {data.recentNotifications.map((n: any) => (
-                <div key={n.id} className="flex items-start gap-3 py-2.5 border-b border-gray-800 last:border-0">
+                <div key={n.id} className="flex items-start gap-3 py-2.5 border-b border-slate-200 dark:border-slate-800 last:border-0">
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-200 truncate">{n.title}</p>
-                    {n.exam && <p className="text-xs text-gray-500">{n.exam.name}</p>}
+                    <p className="text-sm font-medium text-slate-700 dark:text-slate-200 truncate">{n.title}</p>
+                    {n.exam && <p className="text-xs text-slate-500 dark:text-slate-500">{n.exam.name}</p>}
                   </div>
-                  <span className="text-xs text-gray-500 flex-shrink-0">{formatDate(n.createdAt)}</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-500 flex-shrink-0">{formatDate(n.createdAt)}</span>
                 </div>
               ))}
             </div>
@@ -158,23 +158,23 @@ export default async function AdminDashboard() {
         </div>
 
         {/* Top Blog Posts */}
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-semibold text-white flex items-center gap-2">
+            <h2 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
               <PenSquare size={16} className="text-blue-400" aria-hidden="true" />
               Top Blog Posts
             </h2>
             <a href="/admin/blog" className="text-xs text-blue-400 hover:underline">View all</a>
           </div>
           {data.recentPosts.length === 0 ? (
-            <p className="text-gray-500 text-sm">No posts yet</p>
+            <p className="text-slate-500 dark:text-slate-500 text-sm">No posts yet</p>
           ) : (
             <div className="space-y-3">
               {data.recentPosts.map((post: any) => (
-                <div key={post.id} className="flex items-start gap-3 py-2.5 border-b border-gray-800 last:border-0">
+                <div key={post.id} className="flex items-start gap-3 py-2.5 border-b border-slate-200 dark:border-slate-800 last:border-0">
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-200 truncate">{post.title}</p>
-                    <p className="text-xs text-gray-500">{formatDate(post.createdAt)}</p>
+                    <p className="text-sm font-medium text-slate-700 dark:text-slate-200 truncate">{post.title}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-500">{formatDate(post.createdAt)}</p>
                   </div>
                   <span className="text-xs text-blue-400 flex-shrink-0 font-medium">{post.views} views</span>
                 </div>

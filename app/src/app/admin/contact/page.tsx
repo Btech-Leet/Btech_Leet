@@ -162,7 +162,7 @@ export default function AdminContactPage() {
 
   const statusColors = {
     NEW: "bg-blue-100 text-blue-800 dark:bg-blue-950/30 dark:text-blue-400 border-blue-200 dark:border-blue-900/20",
-    READ: "bg-gray-100 text-gray-800 dark:bg-gray-950/30 dark:text-gray-400 border-gray-200 dark:border-gray-900/20",
+    READ: "bg-gray-100 text-gray-800 dark:bg-slate-50 dark:bg-slate-950/30 dark:text-slate-500 dark:text-slate-400 border-gray-200 dark:border-gray-900/20",
     RESOLVED: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/20",
     REPLIED: "bg-purple-100 text-purple-800 dark:bg-purple-950/30 dark:text-purple-400 border-purple-200 dark:border-purple-900/20",
   };
@@ -170,13 +170,13 @@ export default function AdminContactPage() {
   return (
     <div className="space-y-6 p-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 dark:border-gray-800 pb-5">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 dark:border-slate-200 dark:border-slate-800 pb-5">
         <div className="space-y-1">
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-900 dark:text-white flex items-center gap-2">
             <MessageSquare className="text-blue-500" size={24} />
             Contact Inquiries
           </h1>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">
             View student messages, draft responses, mark resolutions, and export logs.
           </p>
         </div>
@@ -193,23 +193,23 @@ export default function AdminContactPage() {
       <div className="flex flex-col sm:flex-row gap-4 justify-between">
         {/* Search */}
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400" size={16} />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name, email, subject..."
-            className="w-full text-xs pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors shadow-sm"
+            className="w-full text-xs pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-white dark:bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors shadow-sm"
           />
         </div>
 
         {/* Status dropdown filter */}
-        <div className="flex items-center gap-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-2 shadow-sm self-start sm:self-auto">
-          <Filter size={14} className="text-gray-400" />
+        <div className="flex items-center gap-2 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 shadow-sm self-start sm:self-auto">
+          <Filter size={14} className="text-slate-500 dark:text-slate-400" />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="text-xs font-semibold bg-transparent border-none text-gray-600 dark:text-gray-300 focus:outline-none cursor-pointer"
+            className="text-xs font-semibold bg-transparent border-none text-gray-600 dark:text-slate-600 dark:text-slate-300 focus:outline-none cursor-pointer"
           >
             <option value="ALL">All Statuses</option>
             <option value="NEW">New Messages</option>
@@ -226,10 +226,10 @@ export default function AdminContactPage() {
           <Loader2 size={32} className="animate-spin text-blue-500" />
         </div>
       ) : inquiries.length === 0 ? (
-        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-16 text-center text-gray-400 shadow-sm max-w-lg mx-auto">
-          <MessageSquare className="mx-auto text-gray-300 dark:text-gray-700 mb-4" size={48} />
-          <h3 className="font-bold text-gray-800 dark:text-gray-200">No Inquiries Found</h3>
-          <p className="text-xs text-gray-500 mt-1">There are no contact messages matching your query.</p>
+        <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-16 text-center text-slate-500 dark:text-slate-400 shadow-sm max-w-lg mx-auto">
+          <MessageSquare className="mx-auto text-slate-600 dark:text-slate-300 dark:text-gray-700 mb-4" size={48} />
+          <h3 className="font-bold text-gray-800 dark:text-slate-700 dark:text-slate-200">No Inquiries Found</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">There are no contact messages matching your query.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-4">
@@ -244,17 +244,17 @@ export default function AdminContactPage() {
                     handleStatusUpdate(inq.id, "READ");
                   }
                 }}
-                className={`bg-white dark:bg-gray-900 border rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300 space-y-4 ${
-                  inq.status === "NEW" ? "border-blue-400 dark:border-blue-500/50" : "border-gray-200 dark:border-gray-800"
+                className={`bg-white dark:bg-white dark:bg-slate-900 border rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300 space-y-4 ${
+                  inq.status === "NEW" ? "border-blue-400 dark:border-blue-500/50" : "border-gray-200 dark:border-slate-200 dark:border-slate-800"
                 }`}
               >
                 {/* Meta details */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
-                    <h3 className="font-extrabold text-gray-900 dark:text-white text-base">
+                    <h3 className="font-extrabold text-gray-900 dark:text-slate-900 dark:text-white text-base">
                       {inq.name}
                     </h3>
-                    <div className="flex items-center gap-3 text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                    <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 mt-0.5">
                       <span className="flex items-center gap-1">
                         <Mail size={12} /> {inq.email}
                       </span>
@@ -270,7 +270,7 @@ export default function AdminContactPage() {
                     <span className={`px-2 py-0.5 text-[10px] font-bold rounded-full border ${statusColors[inq.status]}`}>
                       {inq.status}
                     </span>
-                    <span className="text-[10px] sm:text-xs text-gray-400 dark:text-gray-500 font-medium">
+                    <span className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 font-medium">
                       {new Date(inq.createdAt).toLocaleDateString("en-IN", {
                         day: "numeric",
                         month: "short",
@@ -283,11 +283,11 @@ export default function AdminContactPage() {
                 </div>
 
                 {/* Message Box */}
-                <div className="space-y-1 bg-gray-50/50 dark:bg-gray-950/20 p-4 rounded-xl border border-gray-100 dark:border-gray-850/50">
+                <div className="space-y-1 bg-gray-50/50 dark:bg-slate-50 dark:bg-slate-950/20 p-4 rounded-xl border border-gray-100 dark:border-slate-200 dark:border-slate-800/50">
                   <h4 className="text-xs font-bold text-gray-450 uppercase tracking-wider">
                     Subject: {inq.subject}
                   </h4>
-                  <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap mt-2">
+                  <p className="text-xs sm:text-sm text-gray-700 dark:text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-wrap mt-2">
                     {inq.message}
                   </p>
                 </div>
@@ -300,12 +300,12 @@ export default function AdminContactPage() {
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-purple-600 dark:text-purple-400">Response Recorded</span>
                         {inq.repliedAt && (
-                          <span className="text-[10px] text-gray-400 font-medium">
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
                             on {new Date(inq.repliedAt).toLocaleDateString("en-IN")}
                           </span>
                         )}
                       </div>
-                      <p className="text-gray-600 dark:text-gray-300 whitespace-pre-wrap italic">
+                      <p className="text-gray-600 dark:text-slate-600 dark:text-slate-300 whitespace-pre-wrap italic">
                         &quot;{inq.reply}&quot;
                       </p>
                     </div>
@@ -324,7 +324,7 @@ export default function AdminContactPage() {
                       rows={3}
                       placeholder="Write response notes or actions taken..."
                       disabled={isSubmittingReply}
-                      className="w-full text-xs sm:text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 resize-none"
+                      className="w-full text-xs sm:text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 resize-none"
                     />
                     <div className="flex gap-2">
                       <button
@@ -345,7 +345,7 @@ export default function AdminContactPage() {
                           setReplyText("");
                         }}
                         disabled={isSubmittingReply}
-                        className="px-3 py-1.5 rounded-lg text-xs font-bold border border-gray-200 dark:border-gray-800 text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-850 transition-colors"
+                        className="px-3 py-1.5 rounded-lg text-xs font-bold border border-gray-200 dark:border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-500 hover:bg-gray-50 dark:hover:bg-slate-50 dark:bg-slate-800 transition-colors"
                       >
                         Cancel
                       </button>
@@ -354,7 +354,7 @@ export default function AdminContactPage() {
                 )}
 
                 {/* Actions row */}
-                <div className="flex justify-end items-center gap-2 pt-2 border-t border-gray-50 dark:border-gray-850/40">
+                <div className="flex justify-end items-center gap-2 pt-2 border-t border-gray-50 dark:border-slate-200 dark:border-slate-800/40">
                   {!inq.reply && !isReplying && (
                     <button
                       onClick={() => {

@@ -250,26 +250,26 @@ export default function AdminBooksPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <BookOpen size={24} className="text-orange-500" />
           Manage Books & Notes
         </h1>
-        <p className="text-gray-400 text-sm mt-1">Upload and manage study materials, books, and notes for students</p>
+        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Upload and manage study materials, books, and notes for students</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* Form */}
-        <div className="lg:col-span-1 bg-gray-900 border border-gray-800 rounded-xl p-6 h-fit shadow-sm space-y-5">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+        <div className="lg:col-span-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 h-fit shadow-sm space-y-5">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
             {editingBook ? <Edit2 size={18} className="text-blue-500" /> : <Plus size={18} className="text-blue-500" />}
             {editingBook ? "Edit Book" : "Add Book / Notes"}
           </h2>
 
           <form onSubmit={handleSave} className="space-y-4">
             {/* Cover Image */}
-            <div className="flex flex-col items-center p-4 bg-gray-950 border border-gray-800 rounded-xl gap-3">
-              <div className="relative w-20 h-28 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center overflow-hidden shadow-inner">
+            <div className="flex flex-col items-center p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl gap-3">
+              <div className="relative w-20 h-28 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center overflow-hidden shadow-inner">
                 {coverUploading ? (
                   <Loader2 className="animate-spin text-blue-500" size={24} />
                 ) : coverImage ? (
@@ -279,31 +279,31 @@ export default function AdminBooksPage() {
                 )}
               </div>
               <button type="button" onClick={() => coverInputRef.current?.click()} disabled={coverUploading}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-850 text-xs font-semibold text-gray-300 hover:bg-gray-850 transition-colors">
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:bg-slate-800 transition-colors">
                 <Camera size={14} /> Upload Cover
               </button>
               <input type="file" ref={coverInputRef} onChange={handleCoverUpload} accept="image/*" className="hidden" />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-400 uppercase">Book / Notes Title</label>
+              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Book / Notes Title</label>
               <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Engineering Mathematics for LEET"
-                className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase">Category</label>
+                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Category</label>
                 <select value={category} onChange={(e) => setCategory(e.target.value)}
-                  className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500">
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500">
                   <option value="">Select</option>
                   {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase">Resource Type</label>
-                <div className="flex bg-gray-950 border border-gray-800 rounded-lg p-0.5">
+                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Resource Type</label>
+                <div className="flex bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg p-0.5">
                   <button
                     type="button"
                     onClick={() => {
@@ -313,7 +313,7 @@ export default function AdminBooksPage() {
                     className={`flex-1 py-1.5 text-xs font-bold rounded-md transition-colors ${
                       paymentType === "free"
                         ? "bg-blue-600 text-white"
-                        : "text-gray-400 hover:text-white"
+                        : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white"
                     }`}
                   >
                     Free
@@ -329,7 +329,7 @@ export default function AdminBooksPage() {
                     className={`flex-1 py-1.5 text-xs font-bold rounded-md transition-colors ${
                       paymentType === "paid"
                         ? "bg-blue-600 text-white"
-                        : "text-gray-400 hover:text-white"
+                        : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white"
                     }`}
                   >
                     Paid
@@ -340,7 +340,7 @@ export default function AdminBooksPage() {
 
             {paymentType === "paid" && (
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase">Amount (₹)</label>
+                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Amount (₹)</label>
                 <input
                   type="number"
                   required
@@ -348,41 +348,41 @@ export default function AdminBooksPage() {
                   value={price}
                   onChange={(e) => setPrice(e.target.value ? Number(e.target.value) : "")}
                   placeholder="Enter amount"
-                  className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-700"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700"
                 />
               </div>
             )}
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-400 uppercase">Author</label>
+              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Author</label>
               <select value={authorId} onChange={(e) => setAuthorId(e.target.value)}
-                className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500">
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500">
                 <option value="">No author</option>
                 {authors.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
               </select>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-400 uppercase">Description</label>
+              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Description</label>
               <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Brief description of this book or notes..." rows={3}
-                className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none" />
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none" />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-400 uppercase">PDF / Book File</label>
-              <div className="flex items-center gap-3 p-3 bg-gray-950 border border-gray-800 rounded-lg">
+              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PDF / Book File</label>
+              <div className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg">
                 <div className="flex-1 min-w-0">
                   {fileUploading ? (
-                    <div className="flex items-center gap-2 text-xs text-gray-400">
+                    <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                       <Loader2 className="animate-spin text-blue-500" size={14} />
                       Uploading file...
                     </div>
                   ) : fileUrl ? (
-                    <div className="text-xs text-gray-300 truncate">
+                    <div className="text-xs text-slate-600 dark:text-slate-300 truncate">
                       <span className="font-semibold text-green-400">✓ Uploaded:</span>{" "}
                       {fileKey ? fileKey.split("/").pop() : "document.pdf"}
                       {fileSize && (
-                        <span className="text-[10px] text-gray-500 ml-1">
+                        <span className="text-[10px] text-slate-500 dark:text-slate-500 ml-1">
                           ({formatFileSize(fileSize)})
                         </span>
                       )}
@@ -392,7 +392,7 @@ export default function AdminBooksPage() {
                   )}
                 </div>
                 <button type="button" onClick={() => fileInputRef.current?.click()} disabled={fileUploading}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-850 text-xs font-semibold text-gray-300 hover:bg-gray-850 transition-colors">
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:bg-slate-800 transition-colors">
                   <Upload size={14} /> Upload File
                 </button>
                 <input type="file" ref={fileInputRef} onChange={handleFileUpload} accept=".pdf,.doc,.docx,.epub" className="hidden" />
@@ -402,7 +402,7 @@ export default function AdminBooksPage() {
             <div className="flex items-center gap-3">
               <button type="button" onClick={() => setActive(!active)}
                 className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all border ${
-                  active ? "bg-green-950/40 text-green-400 border-green-800/40" : "bg-gray-850 text-gray-500 border-gray-800"
+                  active ? "bg-green-950/40 text-green-400 border-green-800/40" : "bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-500 border-slate-200 dark:border-slate-800"
                 }`}>
                 {active ? <Check size={12} /> : <X size={12} />}
                 {active ? "Active" : "Inactive"}
@@ -410,7 +410,7 @@ export default function AdminBooksPage() {
 
               <button type="button" onClick={() => setFeatured(!featured)}
                 className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all border ${
-                  featured ? "bg-amber-950/40 text-amber-400 border-amber-800/40" : "bg-gray-850 text-gray-500 border-gray-800"
+                  featured ? "bg-amber-950/40 text-amber-400 border-amber-800/40" : "bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-500 border-slate-200 dark:border-slate-800"
                 }`}>
                 <Star size={12} />
                 {featured ? "Featured" : "Normal"}
@@ -425,7 +425,7 @@ export default function AdminBooksPage() {
               </button>
               {editingBook && (
                 <button type="button" onClick={resetForm}
-                  className="px-4 py-2 text-sm font-bold rounded-lg text-gray-300 bg-gray-800 hover:bg-gray-700 transition-colors">
+                  className="px-4 py-2 text-sm font-bold rounded-lg text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
                   Cancel
                 </button>
               )}
@@ -436,15 +436,15 @@ export default function AdminBooksPage() {
         {/* Books list */}
         <div className="lg:col-span-2 space-y-4">
           {books.length === 0 ? (
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 text-center text-gray-500 shadow-sm">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 text-center text-slate-500 dark:text-slate-500 shadow-sm">
               No books or notes added yet.
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {books.map((book) => (
-                <div key={book.id} className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden flex flex-col justify-between shadow-sm">
+                <div key={book.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between shadow-sm">
                   <div className="p-5 flex gap-4 items-start">
-                    <div className="w-14 h-20 rounded-lg bg-gray-950 border border-gray-800 overflow-hidden flex-shrink-0 flex items-center justify-center">
+                    <div className="w-14 h-20 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 overflow-hidden flex-shrink-0 flex items-center justify-center">
                       {book.coverImage ? (
                         <img src={book.coverImage} alt={book.name} className="w-full h-full object-cover" />
                       ) : (
@@ -453,7 +453,7 @@ export default function AdminBooksPage() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-start gap-1.5">
-                        <h3 className="font-bold text-gray-200 text-sm truncate flex-1">{book.name}</h3>
+                        <h3 className="font-bold text-slate-700 dark:text-slate-200 text-sm truncate flex-1">{book.name}</h3>
                         {book.featured && (
                           <Star size={12} className="text-amber-500 flex-shrink-0 mt-0.5" fill="currentColor" />
                         )}
@@ -463,7 +463,7 @@ export default function AdminBooksPage() {
                       )}
                       <div className="flex items-center gap-2 mt-1.5 flex-wrap">
                         {book.category && (
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700">
                             {book.category}
                           </span>
                         )}
@@ -487,18 +487,18 @@ export default function AdminBooksPage() {
                     </div>
                   </div>
 
-                  <div className="px-5 py-3.5 bg-gray-950/40 border-t border-gray-850 flex items-center justify-between">
+                  <div className="px-5 py-3.5 bg-slate-50 dark:bg-slate-950/40 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
                     <button onClick={() => toggleActive(book)}
                       className={`text-xs font-bold transition-all px-2.5 py-1 rounded-full border ${
                         book.active
                           ? "bg-green-950/30 text-green-400 border-green-900/30 hover:bg-green-900/40"
-                          : "bg-gray-850 text-gray-500 border-gray-800 hover:text-gray-300"
+                          : "bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-500 border-slate-200 dark:border-slate-800 hover:text-slate-700 dark:hover:text-slate-300"
                       }`}>
                       {book.active ? "Active" : "Inactive"}
                     </button>
                     <div className="flex gap-2">
                       <button onClick={() => handleEdit(book)}
-                        className="p-1.5 rounded-lg border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors" title="Edit Book">
+                        className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Edit Book">
                         <Edit2 size={13} />
                       </button>
                       <button onClick={() => handleDelete(book.id)}

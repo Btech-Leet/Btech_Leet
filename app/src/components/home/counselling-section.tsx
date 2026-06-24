@@ -1,49 +1,83 @@
 import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 
 export function CounsellingSection() {
   return (
-    <section className="py-xxl bg-slate-50 dark:bg-slate-900 px-margin-mobile md:px-margin-desktop border-b border-slate-200 dark:border-slate-800 transition-colors duration-300" aria-labelledby="counselling-heading">
-      <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
-        <div className="flex flex-col gap-sm">
-          <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-500/30 text-orange-700 dark:text-orange-400 px-3 py-1 rounded-full w-max mb-2 transition-colors duration-300">
-            <span className="material-symbols-outlined text-[16px]">support_agent</span>
-            <span className="text-caption font-caption uppercase tracking-wider font-semibold">Expert Guidance</span>
+    <section className="py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-950/50 transition-colors duration-300">
+      {/* Ambient glow */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-500/10 dark:bg-orange-500/5 rounded-full blur-[120px] -z-10" />
+
+      <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        {/* Left - Content */}
+        <div className="flex flex-col gap-6">
+          <div className="inline-flex items-center gap-2 bg-orange-500/10 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 px-4 py-1.5 rounded-full w-max border border-orange-500/20 dark:border-orange-500/30">
+            <Sparkles size={14} />
+            <span className="text-[11px] uppercase tracking-wider font-black text-orange-700 dark:text-orange-400">Expert Guidance</span>
           </div>
-          <h2 id="counselling-heading" className="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-slate-900 dark:text-white mb-sm transition-colors duration-300">
-            Navigate Admissions with Confidence
+
+          <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+            Navigate Admissions with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Confidence</span>
           </h2>
-          <p className="text-body-lg font-body-lg text-slate-650 dark:text-slate-400 mb-md transition-colors duration-300">
-            The seat allocation process can be overwhelming. Our seasoned counsellors provide personalized strategies to maximize your chances of securing admission in top-tier institutions based on your rank.
+
+          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+            The seat allocation process can be overwhelming. Our seasoned counsellors provide personalized strategies to maximize your chances of securing admission in top-tier institutions.
           </p>
-          <ul className="flex flex-col gap-3 mb-lg text-slate-700 dark:text-slate-300 transition-colors duration-300">
+
+          <ul className="flex flex-col gap-4 mt-2">
             {[
               "Personalized college preference lists",
               "Document verification assistance",
               "Spot round and sliding phase strategies",
             ].map((text, idx) => (
-              <li key={idx} className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-green-600 dark:text-green-400">
-                  check_circle
-                </span>
-                <span>{text}</span>
+              <li key={idx} className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                <div className="flex items-center justify-center w-6 h-6 rounded-full bg-green-500/10 dark:bg-green-500/20 border border-green-500/20 dark:border-green-500/30 shrink-0">
+                  <CheckCircle2 size={14} className="text-green-600 dark:text-green-400" />
+                </div>
+                <span className="font-medium">{text}</span>
               </li>
             ))}
           </ul>
+
           <Link
             href="/counselling"
-            className="bg-orange-700 text-white px-8 py-4 rounded-full text-label-md font-label-md shadow-lg hover:bg-orange-600 transition-colors duration-200 w-max inline-flex items-center gap-2"
+            className="group relative mt-4 inline-flex items-center justify-center gap-2 w-max px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-full overflow-hidden shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 active:scale-95"
           >
-            Get Expert Guidance
-            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+            <div className="absolute inset-0 bg-white/20 dark:bg-black/10 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] skew-x-12" />
+            <span className="relative z-10">Get Expert Guidance</span>
+            <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
+
+        {/* Right - Image */}
         <div className="relative">
-          <div className="absolute inset-0 bg-orange-500/10 blur-3xl rounded-full" aria-hidden="true" />
-          <img
-            alt="Students getting counselling"
-            className="relative z-10 w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-700 shadow-2xl object-cover aspect-video"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1aOJF_D_AUWclk6la2FKyzR8GHk6hB39qwpEpxd--ZkPEmjlKkzAWaNu0fyTxhttcBnZXY57idoRzaODPzwaSBEq7RTPAkm1mHZnlaZ8k3ZIOsyREubcIkVvrF3GbxN7x1ej38-1esTyHP2wogspx55_HB05H3ODInJBMORljzXc_pNtvzzRrbDL5GcUEAblhDNoLGroYMaoQDITKl2nfMc0v23tBF8ykIGtmClQNPMufRAPtrug-kYt3Ua5K35hM5lCpCgA5iHUB"
-          />
+          <div className="absolute -inset-4 bg-gradient-to-br from-orange-500/20 via-amber-500/10 to-transparent rounded-[32px] blur-2xl -z-10" />
+          <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl aspect-video">
+            <Image
+              alt="Students getting counselling"
+              className="object-cover"
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            {/* Floating stats card */}
+            <div className="absolute bottom-4 left-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-4 border border-slate-200 dark:border-slate-800 shadow-lg">
+              <div className="grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="text-2xl font-black text-orange-500">98%</div>
+                  <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Success Rate</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-orange-500">500+</div>
+                  <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Students Placed</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-orange-500">50+</div>
+                  <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Partner Colleges</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

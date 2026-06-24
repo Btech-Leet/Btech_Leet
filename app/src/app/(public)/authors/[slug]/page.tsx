@@ -8,14 +8,15 @@ import { AuthorSchema } from "@/components/seo/author-schema";
 export const dynamic = "force-dynamic";
 
 interface AuthorDetailPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: AuthorDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
   const author = await prisma.author.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   });
 
   if (!author) {
@@ -31,8 +32,9 @@ export async function generateMetadata({ params }: AuthorDetailPageProps): Promi
 }
 
 export default async function AuthorDetailPage({ params }: AuthorDetailPageProps) {
+  const { slug } = await params;
   const author = await prisma.author.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
     include: {
       books: {
         where: { active: true },
@@ -49,7 +51,7 @@ export default async function AuthorDetailPage({ params }: AuthorDetailPageProps
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-20">
+    <div className="pb-20">
       <AuthorSchema
         name={author.name}
         url={`/authors/${author.slug}`}
@@ -147,8 +149,8 @@ export default async function AuthorDetailPage({ params }: AuthorDetailPageProps
               </p>
             ) : (
               <div className="space-y-4 divide-y divide-gray-100 dark:divide-gray-800">
-                {author.books.map((book, idx) => (
-                  <div key={book.id} className={`pt-4 first:pt-0 flex gap-3 group`}>
+                {author.books.map((book: any, idx: number) => (
+                  <div key={book.id} className={`pt-4 flex gap-3 group`}>
                     <div className="w-12 h-16 rounded bg-gray-100 dark:bg-gray-800 overflow-hidden flex-shrink-0 flex items-center justify-center border border-gray-200 dark:border-gray-700 relative">
                       {book.coverImage ? (
                         <img src={book.coverImage} alt={book.name} className="w-full h-full object-cover" />

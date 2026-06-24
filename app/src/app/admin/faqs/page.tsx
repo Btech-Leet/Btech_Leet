@@ -191,72 +191,72 @@ export default function AdminFAQsPage() {
     <div className="space-y-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <HelpCircle size={24} className="text-blue-500" />
             Manage FAQs
           </h1>
-          <p className="text-gray-400 text-sm mt-1">Add, edit and organize FAQs across site pages</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Add, edit and organize FAQs across site pages</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* FAQ Form */}
-        <div className="lg:col-span-1 bg-gray-900 border border-gray-800 rounded-xl p-6 h-fit shadow-sm">
-          <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+        <div className="lg:col-span-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 h-fit shadow-sm">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
             {editingFaq ? <Edit2 size={18} className="text-blue-500" /> : <Plus size={18} className="text-blue-500" />}
             {editingFaq ? "Edit FAQ" : "Add New FAQ"}
           </h2>
 
           <form onSubmit={handleSave} className="space-y-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-400 uppercase">Page URL</label>
+              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Page URL</label>
               <input
                 type="text"
                 required
                 value={pageUrl}
                 onChange={(e) => setPageUrl(e.target.value)}
                 placeholder="/exams/haryana-leet"
-                className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-600"
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-600"
               />
-              <span className="text-[10px] text-gray-500">
+              <span className="text-[10px] text-slate-500 dark:text-slate-500">
                 E.g. `/`, `/exams`, `/papers` or any custom dynamic URL slug.
               </span>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-400 uppercase">Question</label>
+              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Question</label>
               <input
                 type="text"
                 required
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
                 placeholder="What is Haryana LEET eligibility?"
-                className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-600"
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-600"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-gray-400 uppercase">Answer</label>
+              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Answer</label>
               <textarea
                 required
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 placeholder="Candidates must have passed Diploma in Engineering..."
                 rows={4}
-                className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-600 resize-none"
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-600 resize-none"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase">Sort Order</label>
+                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Sort Order</label>
                 <input
                   type="number"
                   value={order}
                   onChange={(e) => setOrder(Number(e.target.value))}
                   placeholder="0"
-                  className="w-full bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -264,7 +264,7 @@ export default function AdminFAQsPage() {
                 <button
                   type="button"
                   onClick={() => setActive(!active)}
-                  className="flex items-center gap-2 text-sm text-gray-300 font-semibold py-2"
+                  className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 font-semibold py-2"
                 >
                   {active ? (
                     <ToggleRight className="text-green-500 w-8 h-8" />
@@ -294,7 +294,7 @@ export default function AdminFAQsPage() {
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="px-4 py-2 text-sm font-bold rounded-lg text-gray-300 bg-gray-800 hover:bg-gray-700 transition-colors"
+                  className="px-4 py-2 text-sm font-bold rounded-lg text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                 >
                   Cancel
                 </button>
@@ -306,17 +306,17 @@ export default function AdminFAQsPage() {
         {/* FAQs List grouped by Page URL */}
         <div className="lg:col-span-2 space-y-6">
           {Object.keys(groupedFaqs).length === 0 ? (
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 text-center text-gray-500 shadow-sm">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 text-center text-slate-500 dark:text-slate-500 shadow-sm">
               No FAQs created yet. Use the form on the left to add one!
             </div>
           ) : (
             Object.entries(groupedFaqs).map(([url, urlFaqs]) => (
-              <div key={url} className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-sm">
+              <div key={url} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
                 
                 {/* Group Header */}
-                <div className="bg-gray-950/60 px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+                <div className="bg-slate-50 dark:bg-slate-950/60 px-5 py-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                   <span className="font-bold text-sm text-blue-400 font-mono">{url}</span>
-                  <span className="text-xs text-gray-500 font-semibold bg-gray-900 px-2 py-0.5 rounded border border-gray-850">
+                  <span className="text-xs text-slate-500 dark:text-slate-500 font-semibold bg-white dark:bg-slate-900 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-800">
                     {urlFaqs.length} FAQs
                   </span>
                 </div>
@@ -324,15 +324,15 @@ export default function AdminFAQsPage() {
                 {/* FAQ List */}
                 <div className="divide-y divide-gray-850">
                   {urlFaqs.map((faq) => (
-                    <div key={faq.id} className="p-5 flex items-start justify-between gap-4 hover:bg-gray-850/20 transition-colors">
+                    <div key={faq.id} className="p-5 flex items-start justify-between gap-4 hover:bg-slate-50 dark:bg-slate-800/20 transition-colors">
                       <div className="space-y-1">
-                        <h3 className="font-bold text-gray-200 text-sm flex items-center gap-2">
-                          <span className="text-[10px] bg-gray-800 px-1.5 py-0.5 rounded text-gray-400 font-bold font-mono">
+                        <h3 className="font-bold text-slate-700 dark:text-slate-200 text-sm flex items-center gap-2">
+                          <span className="text-[10px] bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-slate-500 dark:text-slate-400 font-bold font-mono">
                             Order {faq.order}
                           </span>
                           {faq.question}
                         </h3>
-                        <p className="text-xs text-gray-400 leading-relaxed pl-14 md:pl-0">{faq.answer}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed pl-14 md:pl-0">{faq.answer}</p>
                       </div>
 
                       {/* Actions */}
@@ -342,7 +342,7 @@ export default function AdminFAQsPage() {
                           className={`p-1.5 rounded-lg border transition-colors ${
                             faq.active
                               ? "text-green-400 border-green-950 hover:bg-green-950/20"
-                              : "text-gray-600 border-gray-850 hover:bg-gray-800"
+                              : "text-gray-600 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800"
                           }`}
                           title={faq.active ? "Click to Hide" : "Click to Show"}
                         >
@@ -351,7 +351,7 @@ export default function AdminFAQsPage() {
                         
                         <button
                           onClick={() => handleEdit(faq)}
-                          className="p-1.5 rounded-lg border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+                          className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                           title="Edit"
                         >
                           <Edit2 size={14} />

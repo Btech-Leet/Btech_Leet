@@ -4,6 +4,7 @@ import { BreadcrumbSchema } from "@/components/seo/breadcrumb-schema";
 import { FaqList } from "./faq-list";
 import { FaqForm } from "./faq-form";
 import { prisma } from "@/lib/prisma";
+import { HelpCircle, MessageCircleQuestion } from "lucide-react";
 
 export async function generateMetadata(): Promise<Metadata> {
   const fallback: Metadata = {
@@ -38,6 +39,14 @@ export const mainFaqs = [
 ];
 
 export default async function FaqPage() {
+  // Fetch active general FAQs
+  const generalFaqs = await prisma.fAQ.findMany({
+    where: { active: true },
+    orderBy: { order: "asc" },
+  });
+
+  const combinedFaqs = [...mainFaqs, ...generalFaqs];
+
   // Fetch approved user questions
   const userQuestions = await prisma.userQuestion.findMany({
     where: { displayOnSite: true, status: "ANSWERED" },
@@ -46,33 +55,67 @@ export default async function FaqPage() {
   });
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300 pb-20">
       <BreadcrumbSchema items={[{ name: "Home", item: "/" }, { name: "FAQ", item: "/faq" }]} />
       
-      <div className="text-center mb-12">
-        <h1 className="text-3xl font-extrabold sm:text-4xl text-gray-900 dark:text-white">Frequently Asked Questions</h1>
-        <p className="mt-4 text-lg text-gray-500">Everything you need to know about LEET, answered.</p>
+      {/* Premium Header */}
+      <div className="relative py-16 sm:py-24 overflow-hidden bg-slate-900 dark:bg-slate-950">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-sky-500/10 rounded-full blur-[120px] -z-10"></div>
+        <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] -z-10"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6">
+            <HelpCircle size={14} className="text-sky-400" />
+            <span className="text-sm font-bold text-white tracking-wide uppercase">Help Center</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">Questions</span>
+          </h1>
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Everything you need to know about LEET, eligibility, counselling, and colleges, answered by our experts.
+          </p>
+        </div>
       </div>
 
-      <div className="space-y-12">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b pb-2">Top 20 LEET Exam FAQs</h2>
-          <FaqList faqs={mainFaqs} />
-        </div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20 space-y-12">
+        {combinedFaqs.length > 0 && (
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)]">
+            <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+              <span className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center">
+                <HelpCircle size={20} className="text-blue-500" />
+              </span>
+              Top LEET Exam FAQs
+            </h2>
+            <FaqList faqs={combinedFaqs} />
+          </div>
+        )}
 
         {userQuestions.length > 0 && (
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b pb-2">Community Questions</h2>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)]">
+            <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+              <span className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 flex items-center justify-center">
+                <MessageCircleQuestion size={20} className="text-indigo-500" />
+              </span>
+              Community Questions
+            </h2>
             <FaqList faqs={userQuestions.map(q => ({ question: q.question, answer: q.answer! }))} />
           </div>
         )}
 
-        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-sm">
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Ask a Question</h2>
-            <p className="text-sm text-gray-500 mt-1">Can't find what you're looking for? Submit your question below and our experts will answer it.</p>
+        <div className="bg-slate-900 dark:bg-slate-900 border border-slate-800 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+          {/* Decorative background elements */}
+          <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-blue-500/20 rounded-full blur-[50px] -z-10" />
+          <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-indigo-500/20 rounded-full blur-[50px] -z-10" />
+          
+          <div className="mb-8 relative z-10 text-center max-w-xl mx-auto">
+            <h2 className="text-3xl font-black text-white mb-3">Still have questions?</h2>
+            <p className="text-slate-400">Can't find what you're looking for? Submit your question below and our experts will answer it directly.</p>
           </div>
-          <FaqForm />
+          
+          <div className="relative z-10 bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 md:p-8">
+            <FaqForm />
+          </div>
         </div>
       </div>
     </div>

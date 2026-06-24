@@ -16,42 +16,42 @@ export default async function AdminFaqPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">User Questions (FAQ)</h1>
-          <p className="text-sm text-gray-500">Manage and answer questions submitted by users.</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-900 dark:text-white">User Questions (FAQ)</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-500">Manage and answer questions submitted by users.</p>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm">
+      <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-800">
-                <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">User</th>
-                <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Question</th>
-                <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Visibility</th>
+              <tr className="bg-gray-50 dark:bg-slate-100 dark:bg-slate-800/50 border-b border-gray-200 dark:border-slate-200 dark:border-slate-800">
+                <th className="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wider">Date</th>
+                <th className="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wider">User</th>
+                <th className="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wider">Question</th>
+                <th className="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wider">Visibility</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
               {questions.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-6 py-8 text-center text-gray-500 text-sm">
+                  <td colSpan={5} className="px-6 py-8 text-center text-slate-500 dark:text-slate-500 text-sm">
                     No questions found.
                   </td>
                 </tr>
               ) : (
-                questions.map((q) => (
-                  <tr key={q.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                questions.map((q: any) => (
+                  <tr key={q.id} className="hover:bg-gray-50 dark:hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-500">
                       {new Date(q.createdAt).toLocaleDateString()}
                     </td>
                     <td className="px-6 py-4">
-                      <div className="text-sm font-semibold text-gray-900 dark:text-white">{q.name}</div>
-                      <div className="text-xs text-gray-500">{q.email}</div>
+                      <div className="text-sm font-semibold text-gray-900 dark:text-slate-900 dark:text-white">{q.name}</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-500">{q.email}</div>
                     </td>
                     <td className="px-6 py-4">
-                      <p className="text-sm text-gray-800 dark:text-gray-200 line-clamp-2 max-w-xs">{q.question}</p>
+                      <p className="text-sm text-gray-800 dark:text-slate-700 dark:text-slate-200 line-clamp-2 max-w-xs">{q.question}</p>
                       {q.answer && <p className="text-xs text-green-600 mt-1 line-clamp-1">Ans: {q.answer}</p>}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">

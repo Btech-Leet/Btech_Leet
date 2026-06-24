@@ -224,7 +224,7 @@ export default function CounsellingPage() {
   };
 
   return (
-    <main className="py-12 md:py-20 bg-slate-50 dark:bg-slate-950 text-slate-950 dark:text-slate-50 min-h-screen">
+    <main className="py-12 md:py-20 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Hero Section */}
@@ -274,7 +274,7 @@ export default function CounsellingPage() {
             <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6">
               <Users size={24} />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Choice Filling Strategy</h3>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Choice Filling Strategy</h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm">
               We analyze your rank and preferences to create a perfectly optimized choice filling list that maximizes your chances of getting a top college.
             </p>
@@ -284,7 +284,7 @@ export default function CounsellingPage() {
             <div className="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-6">
               <ShieldCheck size={24} />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Document Verification</h3>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Document Verification</h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm">
               Never get rejected due to wrong documents. Our experts verify all your certificates, migration, and domicile documents before submission.
             </p>
@@ -294,7 +294,7 @@ export default function CounsellingPage() {
             <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-6">
               <Clock size={24} />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">24/7 Priority Support</h3>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">24/7 Priority Support</h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm">
               Counselling rounds happen fast. Get instant WhatsApp and call support during crucial choice locking and seat allotment windows.
             </p>
@@ -314,7 +314,7 @@ export default function CounsellingPage() {
                 <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center text-emerald-500 mb-6">
                   <CheckCircle2 size={36} />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Registration Successful!</h3>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Registration Successful!</h2>
                 <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 max-w-md">
                   Thank you for registering. You are now enrolled in the Premium LEET Counselling program.
                 </p>
@@ -325,7 +325,7 @@ export default function CounsellingPage() {
                     <Sparkles size={16} className="text-blue-500" />
                     <span className="text-xs font-extrabold uppercase tracking-wide text-blue-600 dark:text-blue-400">Your Counselling Lead</span>
                   </div>
-                  <h4 className="text-base font-bold text-slate-900 dark:text-white">Nishant</h4>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">Nishant</h3>
                   <p className="text-xs text-slate-500 mt-0.5">Lateral Entry Counselling Expert</p>
                   
                   <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-850/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -376,7 +376,7 @@ export default function CounsellingPage() {
                       </span>
                     )}
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Register for Expert Counselling</h3>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Register for Expert Counselling</h2>
                   <p className="text-slate-500 dark:text-slate-400 text-xs mb-6">
                     Book your premium package instantly. Access state-wise choice filling, verification checks, and 24/7 helpline access with Nishant.
                   </p>
@@ -391,8 +391,9 @@ export default function CounsellingPage() {
 
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Full Name</label>
+                        <label htmlFor="premiumName" className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Full Name</label>
                         <input
+                          id="premiumName"
                           type="text"
                           required
                           value={premiumName}
@@ -402,8 +403,9 @@ export default function CounsellingPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Phone / WhatsApp Number</label>
+                        <label htmlFor="premiumMobile" className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Phone / WhatsApp Number</label>
                         <input
+                          id="premiumMobile"
                           type="tel"
                           required
                           value={premiumMobile}
@@ -416,8 +418,9 @@ export default function CounsellingPage() {
 
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Target LEET Exam</label>
+                        <label htmlFor="premiumExam" className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Target LEET Exam</label>
                         <input
+                          id="premiumExam"
                           type="text"
                           required
                           value={premiumExam}
@@ -427,8 +430,9 @@ export default function CounsellingPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">LEET Rank (Optional)</label>
+                        <label htmlFor="premiumRank" className="block text-xs font-bold text-slate-500 uppercase mb-1.5">LEET Rank (Optional)</label>
                         <input
+                          id="premiumRank"
                           type="text"
                           value={premiumRank}
                           onChange={(e) => setPremiumRank(e.target.value)}
@@ -477,7 +481,7 @@ export default function CounsellingPage() {
               <span className="inline-block px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-450 text-xs font-bold rounded-full border border-slate-200 dark:border-slate-800 mb-4">
                 Option 2: Request Call back
               </span>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Speak to a Counsellor</h3>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Speak to a Counsellor</h2>
               <p className="text-slate-500 dark:text-slate-400 text-xs mb-6">
                 Not ready to pay? Drop your details and we will call you back within 24 hours to discuss your basic queries.
               </p>
@@ -485,7 +489,7 @@ export default function CounsellingPage() {
               {callbackSuccess ? (
                 <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-2xl p-6 text-center py-10 my-4">
                   <CheckCircle2 size={32} className="text-emerald-500 mx-auto mb-3" />
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">Callback Requested!</h4>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">Callback Requested!</h3>
                   <p className="text-xs text-slate-500">Our support coordinators will contact you soon.</p>
                   <button
                     onClick={() => setCallbackSuccess(false)}
@@ -504,8 +508,9 @@ export default function CounsellingPage() {
                   )}
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Full Name</label>
+                    <label htmlFor="callbackName" className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Full Name</label>
                     <input
+                      id="callbackName"
                       type="text"
                       required
                       value={callbackName}
@@ -516,8 +521,9 @@ export default function CounsellingPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Phone Number</label>
+                    <label htmlFor="callbackMobile" className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Phone Number</label>
                     <input
+                      id="callbackMobile"
                       type="tel"
                       required
                       value={callbackMobile}
@@ -528,8 +534,9 @@ export default function CounsellingPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Which Exam are you targeting?</label>
+                    <label htmlFor="callbackExam" className="block text-xs font-bold text-slate-500 uppercase mb-1.5">Which Exam are you targeting?</label>
                     <input
+                      id="callbackExam"
                       type="text"
                       required
                       value={callbackExam}

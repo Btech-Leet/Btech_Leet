@@ -14,11 +14,11 @@ export default async function AdminBranchesPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <GitBranch size={24} className="text-blue-500" />
             Engineering Branches
           </h1>
-          <p className="text-gray-400 text-sm mt-1">Manage B.Tech specializations and streams</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage B.Tech specializations and streams</p>
         </div>
         <Link
           href="/admin/branches/new"
@@ -29,10 +29,10 @@ export default async function AdminBranchesPage() {
         </Link>
       </div>
 
-      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-gray-950/50 text-gray-400">
+            <thead className="bg-slate-50 dark:bg-slate-950/50 text-slate-500 dark:text-slate-400">
               <tr>
                 <th className="px-5 py-3 font-medium">Branch Name</th>
                 <th className="px-5 py-3 font-medium">Code</th>
@@ -43,15 +43,15 @@ export default async function AdminBranchesPage() {
             <tbody className="divide-y divide-gray-800">
               {branches.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="px-5 py-12 text-center text-gray-500">
+                  <td colSpan={4} className="px-5 py-12 text-center text-slate-500 dark:text-slate-500">
                     No branches added yet.
                   </td>
                 </tr>
               ) : (
                 branches.map((branch: any) => (
-                  <tr key={branch.id} className="hover:bg-gray-800/30 transition-colors">
+                  <tr key={branch.id} className="hover:bg-slate-100 dark:hover:bg-slate-800/30 transition-colors">
                     <td className="px-5 py-4">
-                      <p className="font-medium text-gray-200">{branch.name}</p>
+                      <p className="font-medium text-slate-700 dark:text-slate-200">{branch.name}</p>
                     </td>
                     <td className="px-5 py-4">
                       <span className="text-blue-400 font-mono text-xs bg-blue-950/50 px-2 py-1 rounded">
@@ -59,13 +59,13 @@ export default async function AdminBranchesPage() {
                       </span>
                     </td>
                     <td className="px-5 py-4">
-                      <span className={`inline-flex px-2 py-1 rounded text-xs font-medium ${branch.active ? 'bg-green-900/30 text-green-400' : 'bg-gray-800 text-gray-400'}`}>
+                      <span className={`inline-flex px-2 py-1 rounded text-xs font-medium ${branch.active ? 'bg-green-900/30 text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'}`}>
                         {branch.active ? 'Active' : 'Draft'}
                       </span>
                     </td>
                     <td className="px-5 py-4 text-right">
                       <div className="flex items-center justify-end gap-3">
-                        <Link href={`/admin/branches/${branch.id}/edit`} className="text-gray-400 hover:text-white transition-colors">
+                        <Link href={`/admin/branches/${branch.id}/edit`} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white transition-colors">
                           <Edit size={16} />
                         </Link>
                         <DeleteButton endpoint={`/api/branches/${branch.id}`} label={branch.name} />

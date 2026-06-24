@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { AuthProvider } from "@/components/providers/auth-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { BaseSchema } from "@/components/seo/schema-markup";
 import { LeetLoadingProvider } from "@/components/ui/leet-loading";
+import { FontLoader } from "@/components/ui/font-loader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,11 +14,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-  display: "swap",
-});
+
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://btechleet.com"),
@@ -83,7 +80,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+        {/* Preconnect hints for critical 3rd-party origins */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Non-render-blocking Material Symbols load via Client Component */}
+        <FontLoader />
+        <noscript>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+        </noscript>
+        
         {/* Google Analytics 4 */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-32VZ3RYP7L" />
         <script dangerouslySetInnerHTML={{ __html: `
@@ -103,7 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}} />
         <BaseSchema />
       </head>
-      <body className={`${inter.variable} ${jakarta.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} font-sans antialiased bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-orange-500/30 selection:text-white transition-colors duration-300 overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <LeetLoadingProvider>
             <AuthProvider>

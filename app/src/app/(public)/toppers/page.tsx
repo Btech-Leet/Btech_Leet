@@ -24,7 +24,7 @@ export default async function ToppersPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gray-50 dark:bg-gray-950 pt-20">
+      <main className="pt-20 pb-24">
         
         {/* Hero Section */}
         <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-b from-blue-50/50 to-transparent dark:from-blue-950/20">
@@ -51,7 +51,7 @@ export default async function ToppersPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {toppers.map((topper) => (
+              {toppers.map((topper: any) => (
                 <div
                   key={topper.id}
                   className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 group"

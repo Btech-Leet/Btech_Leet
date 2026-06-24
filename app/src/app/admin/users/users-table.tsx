@@ -107,16 +107,16 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
   return (
     <div className="space-y-6">
       {/* Search & Filters */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 gap-4 flex flex-col md:flex-row md:items-center">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 gap-4 flex flex-col md:flex-row md:items-center">
         {/* Search */}
         <div className="relative flex-1">
-          <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+          <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 dark:text-slate-500" />
           <input
             type="text"
             placeholder="Search by name, email, mobile or college..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500 placeholder-gray-500"
+            className="pl-9 w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-500"
           />
         </div>
 
@@ -124,7 +124,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
         <select
           value={selectedState}
           onChange={(e) => setSelectedState(e.target.value)}
-          className="bg-gray-950 border border-gray-800 rounded-xl px-4 py-2 text-sm text-gray-300 focus:outline-none focus:border-blue-500"
+          className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 text-sm text-slate-600 dark:text-slate-300 focus:outline-none focus:border-blue-500"
         >
           <option value="">All States</option>
           {states.map(s => (
@@ -136,7 +136,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
         <select
           value={selectedPremium}
           onChange={(e) => setSelectedPremium(e.target.value)}
-          className="bg-gray-950 border border-gray-800 rounded-xl px-4 py-2 text-sm text-gray-300 focus:outline-none focus:border-blue-500"
+          className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 text-sm text-slate-600 dark:text-slate-300 focus:outline-none focus:border-blue-500"
         >
           <option value="">All Statuses</option>
           <option value="premium">Premium Users</option>
@@ -147,7 +147,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
         <select
           value={selectedTarget}
           onChange={(e) => setSelectedTarget(e.target.value)}
-          className="bg-gray-950 border border-gray-800 rounded-xl px-4 py-2 text-sm text-gray-300 focus:outline-none focus:border-blue-500"
+          className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 text-sm text-slate-600 dark:text-slate-300 focus:outline-none focus:border-blue-500"
         >
           <option value="">All Exam Targets</option>
           <option value="HARYANA_LEET">Haryana LEET</option>
@@ -160,10 +160,10 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
       </div>
 
       {/* Users Table */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-sm">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-gray-950/50 text-gray-400 border-b border-gray-800">
+            <thead className="bg-slate-50 dark:bg-slate-950/50 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th className="px-5 py-3.5 font-semibold">User Details</th>
                 <th className="px-5 py-3.5 font-semibold">Contact & State</th>
@@ -176,13 +176,13 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
             <tbody className="divide-y divide-gray-800">
               {filteredUsers.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-5 py-12 text-center text-gray-500">
+                  <td colSpan={6} className="px-5 py-12 text-center text-slate-500 dark:text-slate-500">
                     No users match the search filters.
                   </td>
                 </tr>
               ) : (
                 filteredUsers.map((user) => (
-                  <tr key={user.id} className="hover:bg-gray-800/30 transition-colors">
+                  <tr key={user.id} className="hover:bg-slate-100 dark:hover:bg-slate-800/30 transition-colors">
                     
                     {/* User Details */}
                     <td className="px-5 py-4">
@@ -195,7 +195,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
                           )}
                         </div>
                         <div>
-                          <p className="font-bold text-gray-200 flex items-center gap-1.5">
+                          <p className="font-bold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
                             {user.name}
                             {user.role === 'ADMIN' && (
                               <span className="px-1.5 py-0.5 rounded bg-purple-950 text-purple-400 text-[10px] font-bold border border-purple-800/30">
@@ -203,7 +203,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
                               </span>
                             )}
                           </p>
-                          <p className="text-xs text-gray-500 flex items-center gap-1 mt-0.5">
+                          <p className="text-xs text-slate-500 dark:text-slate-500 flex items-center gap-1 mt-0.5">
                             <Mail size={12} /> {user.email}
                           </p>
                         </div>
@@ -212,20 +212,20 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
 
                     {/* Contact & State */}
                     <td className="px-5 py-4">
-                      <p className="text-gray-300 font-medium text-xs flex items-center gap-1">
-                        <Phone size={12} className="text-gray-500" /> {user.mobile || "N/A"}
+                      <p className="text-slate-600 dark:text-slate-300 font-medium text-xs flex items-center gap-1">
+                        <Phone size={12} className="text-slate-500 dark:text-slate-500" /> {user.mobile || "N/A"}
                       </p>
-                      <p className="text-xs text-gray-500 flex items-center gap-1 mt-1">
+                      <p className="text-xs text-slate-500 dark:text-slate-500 flex items-center gap-1 mt-1">
                         <MapPin size={12} className="text-gray-600" /> {user.state || "N/A"}
                       </p>
                     </td>
 
                     {/* College & Branch */}
                     <td className="px-5 py-4 max-w-[200px]">
-                      <p className="text-gray-300 font-medium text-xs truncate flex items-center gap-1" title={user.collegeName || ""}>
-                        <Building size={12} className="text-gray-500" /> {user.collegeName || "N/A"}
+                      <p className="text-slate-600 dark:text-slate-300 font-medium text-xs truncate flex items-center gap-1" title={user.collegeName || ""}>
+                        <Building size={12} className="text-slate-500 dark:text-slate-500" /> {user.collegeName || "N/A"}
                       </p>
-                      <p className="text-xs text-gray-500 truncate flex items-center gap-1 mt-1" title={user.branch || ""}>
+                      <p className="text-xs text-slate-500 dark:text-slate-500 truncate flex items-center gap-1 mt-1" title={user.branch || ""}>
                         <GitBranch size={12} className="text-gray-600" /> {user.branch || "N/A"}
                       </p>
                     </td>
@@ -253,7 +253,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
                         className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold transition-all border ${
                           user.premiumStatus
                             ? "bg-amber-950/40 text-amber-400 border-amber-800/40 hover:bg-amber-900/40"
-                            : "bg-gray-850 text-gray-500 border-gray-800 hover:text-gray-300"
+                            : "bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-500 border-slate-200 dark:border-slate-800 hover:text-slate-700 dark:hover:text-slate-300"
                         }`}
                       >
                         <Star size={12} className={user.premiumStatus ? "fill-amber-400" : ""} />
@@ -265,7 +265,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
                     <td className="px-5 py-4 text-right">
                       <button
                         onClick={() => setSelectedUser(user)}
-                        className="p-1.5 rounded-lg bg-gray-850 hover:bg-gray-800 border border-gray-800 text-gray-400 hover:text-white transition-colors"
+                        className="p-1.5 rounded-lg bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white transition-colors"
                         title="View User Details"
                       >
                         <Eye size={15} />
@@ -283,15 +283,15 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
       {/* User Details Modal */}
       {selectedUser && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-          <div className="bg-gray-900 border border-gray-800 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl animate-fade-in">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl animate-fade-in">
             {/* Modal Header */}
-            <div className="p-6 border-b border-gray-800 flex items-center justify-between">
-              <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <Shield size={20} className="text-blue-500" /> User Profile Information
               </h2>
               <button
                 onClick={() => setSelectedUser(null)}
-                className="text-gray-400 hover:text-white p-1 rounded-lg hover:bg-gray-800 transition-colors"
+                className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
                 <X size={20} />
               </button>
@@ -299,7 +299,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
 
             {/* Modal Content */}
             <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
-              <div className="flex items-center gap-4 flex-wrap sm:flex-nowrap border-b border-gray-800 pb-5">
+              <div className="flex items-center gap-4 flex-wrap sm:flex-nowrap border-b border-slate-200 dark:border-slate-800 pb-5">
                 <div className="w-16 h-16 rounded-2xl bg-blue-900/30 border border-blue-800/40 flex items-center justify-center text-blue-400 text-2xl font-bold overflow-hidden flex-shrink-0">
                   {selectedUser.avatar ? (
                     <img src={selectedUser.avatar} alt="Profile" className="w-full h-full object-cover" />
@@ -308,7 +308,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
                   )}
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
                     {selectedUser.name}
                     {selectedUser.premiumStatus && (
                       <span className="px-2 py-0.5 text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded">
@@ -316,8 +316,8 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
                       </span>
                     )}
                   </h3>
-                  <p className="text-sm text-gray-400">{selectedUser.email}</p>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">{selectedUser.email}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
                     Joined on {new Date(selectedUser.createdAt).toLocaleDateString()}
                   </p>
                 </div>
@@ -327,55 +327,55 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 
                 {/* Mobile */}
-                <div className="bg-gray-950 p-3 rounded-xl border border-gray-800/60">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">Mobile</span>
-                  <p className="text-sm text-gray-200 font-semibold flex items-center gap-1.5">
+                <div className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800/60">
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wide block mb-1">Mobile</span>
+                  <p className="text-sm text-slate-700 dark:text-slate-200 font-semibold flex items-center gap-1.5">
                     <Phone size={14} className="text-blue-500" />
                     {selectedUser.mobile || <span className="text-gray-600 font-normal italic">Not Filled</span>}
                   </p>
                 </div>
 
                 {/* State */}
-                <div className="bg-gray-950 p-3 rounded-xl border border-gray-800/60">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">State</span>
-                  <p className="text-sm text-gray-200 font-semibold flex items-center gap-1.5">
+                <div className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800/60">
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wide block mb-1">State</span>
+                  <p className="text-sm text-slate-700 dark:text-slate-200 font-semibold flex items-center gap-1.5">
                     <MapPin size={14} className="text-blue-500" />
                     {selectedUser.state || <span className="text-gray-600 font-normal italic">Not Filled</span>}
                   </p>
                 </div>
 
                 {/* College */}
-                <div className="bg-gray-950 p-3 rounded-xl border border-gray-800/60">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">College</span>
-                  <p className="text-sm text-gray-200 font-semibold flex items-center gap-1.5">
+                <div className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800/60">
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wide block mb-1">College</span>
+                  <p className="text-sm text-slate-700 dark:text-slate-200 font-semibold flex items-center gap-1.5">
                     <Building size={14} className="text-blue-500" />
                     {selectedUser.collegeName || <span className="text-gray-600 font-normal italic">Not Filled</span>}
                   </p>
                 </div>
 
                 {/* Branch */}
-                <div className="bg-gray-950 p-3 rounded-xl border border-gray-800/60">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">Branch</span>
-                  <p className="text-sm text-gray-200 font-semibold flex items-center gap-1.5">
+                <div className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800/60">
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wide block mb-1">Branch</span>
+                  <p className="text-sm text-slate-700 dark:text-slate-200 font-semibold flex items-center gap-1.5">
                     <GitBranch size={14} className="text-blue-500" />
                     {selectedUser.branch || <span className="text-gray-600 font-normal italic">Not Filled</span>}
                   </p>
                 </div>
 
                 {/* Passing Year */}
-                <div className="bg-gray-950 p-3 rounded-xl border border-gray-800/60">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">Passing Year</span>
-                  <p className="text-sm text-gray-200 font-semibold flex items-center gap-1.5">
+                <div className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800/60">
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wide block mb-1">Passing Year</span>
+                  <p className="text-sm text-slate-700 dark:text-slate-200 font-semibold flex items-center gap-1.5">
                     <Calendar size={14} className="text-blue-500" />
                     {selectedUser.passingYear || <span className="text-gray-600 font-normal italic">Not Filled</span>}
                   </p>
                 </div>
 
                 {/* Profile Completion */}
-                <div className="bg-gray-950 p-3 rounded-xl border border-gray-800/60">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">Profile Completion</span>
+                <div className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800/60">
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wide block mb-1">Profile Completion</span>
                   <div className="flex items-center gap-2 mt-1">
-                    <div className="flex-1 bg-gray-800 h-2 rounded-full overflow-hidden">
+                    <div className="flex-1 bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
                       <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${selectedUser.profileComplete}%` }} />
                     </div>
                     <span className="text-xs font-bold text-blue-400">{selectedUser.profileComplete}%</span>
@@ -385,8 +385,8 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
               </div>
 
               {/* Exam Targets */}
-              <div className="bg-gray-950 p-4 rounded-xl border border-gray-800/60 space-y-2">
-                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block">Target Exams</span>
+              <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800/60 space-y-2">
+                <span className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wide block">Target Exams</span>
                 <div className="flex flex-wrap gap-2">
                   {selectedUser.examTargets && selectedUser.examTargets.length > 0 ? (
                     selectedUser.examTargets.map((target) => (
@@ -396,7 +396,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
                       </span>
                     ))
                   ) : (
-                    <span className="text-gray-500 text-xs italic">No exam targets set yet</span>
+                    <span className="text-slate-500 dark:text-slate-500 text-xs italic">No exam targets set yet</span>
                   )}
                 </div>
               </div>
@@ -404,7 +404,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
             </div>
 
             {/* Modal Footer */}
-            <div className="p-6 border-t border-gray-800 bg-gray-950/50 flex justify-end gap-3">
+            <div className="p-6 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/50 flex justify-end gap-3">
               <button
                 onClick={() => togglePremium(selectedUser.id, selectedUser.premiumStatus)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border flex items-center gap-1.5 ${
@@ -418,7 +418,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
               </button>
               <button
                 onClick={() => setSelectedUser(null)}
-                className="px-4 py-2 bg-gray-800 hover:bg-gray-750 text-gray-200 rounded-xl text-xs font-bold border border-gray-700 transition-colors"
+                className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl text-xs font-bold border border-slate-300 dark:border-slate-700 transition-colors"
               >
                 Close
               </button>

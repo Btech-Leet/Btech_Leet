@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/components/providers/auth-provider";
 import { useTheme } from "next-themes";
@@ -68,14 +69,14 @@ export function Navbar() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-300"
+      className="sticky top-0 z-50 w-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 transition-colors duration-300"
     >
-      <div className="max-w-container-max mx-auto px-gutter">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="text-headline-md font-headline-md font-bold text-slate-900 dark:text-white flex items-center gap-2" aria-label="BTech LEET Home">
-            <img src="/logo.jpeg" alt="BTech LEET Logo" className="w-8 h-8 rounded-lg object-cover" />
-            BTech LEET
+          <Link href="/" className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2.5 tracking-tight" aria-label="BTech LEET Home">
+            <Image src="/logo.png" alt="BTech LEET Logo" width={32} height={32} className="rounded-xl object-cover shadow-sm" priority />
+            <span>BTech <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">LEET</span></span>
           </Link>
 
           {/* Desktop Nav */}
@@ -85,10 +86,10 @@ export function Navbar() {
                 <Link
                   href={link.href}
                   className={cn(
-                    "pb-1 transition-colors duration-200 text-label-md font-label-md",
+                    "text-sm font-medium transition-colors duration-200 relative py-1",
                     pathname.startsWith(link.href)
                       ? "text-slate-900 dark:text-white"
-                      : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                      : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                   )}
                   aria-current={pathname.startsWith(link.href) ? "page" : undefined}
                 >
@@ -103,24 +104,24 @@ export function Navbar() {
             {/* Theme Toggle */}
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 p-2"
+              className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800"
               title="Toggle Theme"
               suppressHydrationWarning
             >
               {mounted && theme === "dark" ? (
-                <span className="material-symbols-outlined">light_mode</span>
+                <Sun size={18} />
               ) : (
-                <span className="material-symbols-outlined">dark_mode</span>
+                <Moon size={18} />
               )}
             </button>
 
             {/* Search icon */}
             <Link
               href="/exams"
-              className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 p-2"
+              className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800"
               aria-label="Search exams"
             >
-              <span className="material-symbols-outlined">search</span>
+              <Search size={18} />
             </Link>
 
             {/* Auth */}
@@ -134,9 +135,13 @@ export function Navbar() {
                       aria-expanded={userMenuOpen}
                       aria-haspopup="true"
                     >
-                      <div className="w-7 h-7 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-semibold">
-                        {user.name[0].toUpperCase()}
-                      </div>
+                      {user.avatar ? (
+                        <img src={user.avatar} alt={user.name} className="w-7 h-7 rounded-full object-cover border border-slate-200 dark:border-slate-700" />
+                      ) : (
+                        <div className="w-7 h-7 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-semibold">
+                          {user.name[0]?.toUpperCase()}
+                        </div>
+                      )}
                       <span className="text-sm font-medium text-slate-700 dark:text-slate-300 max-w-[120px] truncate">
                         {user.name}
                       </span>
@@ -185,7 +190,7 @@ export function Navbar() {
                     </Link>
                     <Link
                       href="/auth/register"
-                      className="text-label-md font-label-md bg-orange-700 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors duration-200 shadow-sm"
+                      className="text-sm font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 py-2 rounded-full hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-200 shadow-sm hover:shadow-md"
                     >
                       Get Started
                     </Link>
@@ -200,28 +205,29 @@ export function Navbar() {
             {/* Mobile Theme Toggle */}
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 p-2"
+              className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 p-2 rounded-xl"
               title="Toggle Theme"
               suppressHydrationWarning
             >
               {mounted && theme === "dark" ? (
-                <span className="material-symbols-outlined text-[22px]">light_mode</span>
+                <Sun size={20} />
               ) : (
-                <span className="material-symbols-outlined text-[22px]">dark_mode</span>
+                <Moon size={20} />
               )}
             </button>
 
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="text-slate-900 dark:text-white p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              className="text-slate-900 dark:text-white p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
               aria-label="Toggle mobile menu"
               aria-expanded={mobileOpen}
+              suppressHydrationWarning
             >
               {mobileOpen ? (
-                <span className="material-symbols-outlined text-[22px]">close</span>
+                <X size={20} />
               ) : (
-                <span className="material-symbols-outlined text-[22px]">menu</span>
+                <Menu size={20} />
               )}
             </button>
           </div>
@@ -250,13 +256,14 @@ export function Navbar() {
             className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2" 
             onClick={() => setMobileOpen(false)}
           >
-            <img src="/logo.jpeg" alt="BTech LEET Logo" className="w-7 h-7 rounded-md object-cover" />
+            <Image src="/logo.png" alt="BTech LEET Logo" width={28} height={28} className="rounded-md object-cover" />
             BTech LEET
           </Link>
           <button
             onClick={() => setMobileOpen(false)}
             className="text-slate-500 dark:text-slate-400 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
             aria-label="Close menu"
+            suppressHydrationWarning
           >
             <X size={18} />
           </button>
@@ -267,9 +274,13 @@ export function Navbar() {
           {/* User Profile Info */}
           {user && (
             <div className="px-3 py-3.5 bg-slate-50 dark:bg-slate-800/40 rounded-2xl flex items-center gap-3 border border-slate-100 dark:border-slate-800">
-              <div className="w-10 h-10 rounded-full bg-orange-650 flex items-center justify-center text-white font-bold shadow-sm">
-                {user.name[0].toUpperCase()}
-              </div>
+              {user.avatar ? (
+                <img src={user.avatar} alt={user.name} className="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-slate-700 shadow-sm" />
+              ) : (
+                <div className="w-10 h-10 rounded-full bg-orange-650 flex items-center justify-center text-white font-bold shadow-sm">
+                  {user.name[0]?.toUpperCase()}
+                </div>
+              )}
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold text-slate-950 dark:text-white truncate">{user.name}</p>
                 <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user.email}</p>

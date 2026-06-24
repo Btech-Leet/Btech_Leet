@@ -18,11 +18,11 @@ export default async function AdminMockTestsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <ClipboardList size={24} className="text-blue-500" />
             Mock Tests
           </h1>
-          <p className="text-gray-400 text-sm mt-1">Manage online practice tests and exams</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage online practice tests and exams</p>
         </div>
         <Link
           href="/admin/mock-tests/new"
@@ -33,10 +33,10 @@ export default async function AdminMockTestsPage() {
         </Link>
       </div>
 
-      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-gray-950/50 text-gray-400">
+            <thead className="bg-slate-50 dark:bg-slate-950/50 text-slate-500 dark:text-slate-400">
               <tr>
                 <th className="px-5 py-3 font-medium">Test Name</th>
                 <th className="px-5 py-3 font-medium">Exam</th>
@@ -48,32 +48,32 @@ export default async function AdminMockTestsPage() {
             <tbody className="divide-y divide-gray-800">
               {tests.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-5 py-12 text-center text-gray-500">
+                  <td colSpan={5} className="px-5 py-12 text-center text-slate-500 dark:text-slate-500">
                     No mock tests created yet.
                   </td>
                 </tr>
               ) : (
                 tests.map((test: any) => (
-                  <tr key={test.id} className="hover:bg-gray-800/30 transition-colors">
+                  <tr key={test.id} className="hover:bg-slate-100 dark:hover:bg-slate-800/30 transition-colors">
                     <td className="px-5 py-4">
-                      <p className="font-medium text-gray-200">{test.title}</p>
-                      <p className="text-xs text-gray-500 mt-1">{test._count.attempts} attempts</p>
+                      <p className="font-medium text-slate-700 dark:text-slate-200">{test.title}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">{test._count.attempts} attempts</p>
                     </td>
-                    <td className="px-5 py-4 text-gray-300">
+                    <td className="px-5 py-4 text-slate-600 dark:text-slate-300">
                       {test.exam?.name || "General"}
                     </td>
                     <td className="px-5 py-4">
-                      <p className="text-gray-300">{test.duration} mins • {test.totalMarks} marks</p>
-                      <p className="text-xs text-gray-500 mt-1">{test._count.questions} questions</p>
+                      <p className="text-slate-600 dark:text-slate-300">{test.duration} mins • {test.totalMarks} marks</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">{test._count.questions} questions</p>
                     </td>
                     <td className="px-5 py-4">
-                      <span className={`inline-flex px-2 py-1 rounded text-xs font-medium ${test.status === 'PUBLISHED' ? 'bg-green-900/30 text-green-400' : 'bg-gray-800 text-gray-400'}`}>
+                      <span className={`inline-flex px-2 py-1 rounded text-xs font-medium ${test.status === 'PUBLISHED' ? 'bg-green-900/30 text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'}`}>
                         {test.status}
                       </span>
                     </td>
                     <td className="px-5 py-4 text-right">
                       <div className="flex items-center justify-end gap-3">
-                        <Link href={`/admin/mock-tests/${test.slug}/edit`} className="text-gray-400 hover:text-white transition-colors">
+                        <Link href={`/admin/mock-tests/${test.slug}/edit`} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white transition-colors">
                           <Edit size={16} />
                         </Link>
                         <DeleteButton endpoint={`/api/mock-tests/${test.slug}`} label={test.title} />

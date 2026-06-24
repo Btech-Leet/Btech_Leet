@@ -19,8 +19,8 @@ export default async function AdminExamsPage() {
     <div>
       <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white">Exams</h1>
-          <p className="text-gray-400 text-sm mt-1">{exams.length} total exams</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Exams</h1>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">{exams.length} total exams</p>
         </div>
         <Link
           href="/admin/exams/new"
@@ -31,30 +31,30 @@ export default async function AdminExamsPage() {
         </Link>
       </div>
 
-      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full" role="table" aria-label="Exams list">
             <thead>
-              <tr className="border-b border-gray-800">
-                <th scope="col" className="px-5 py-3.5 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">Exam</th>
-                <th scope="col" className="px-5 py-3.5 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">Type</th>
-                <th scope="col" className="px-5 py-3.5 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide hidden md:table-cell">State</th>
-                <th scope="col" className="px-5 py-3.5 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide hidden sm:table-cell">Status</th>
-                <th scope="col" className="px-5 py-3.5 text-right text-xs font-semibold text-gray-400 uppercase tracking-wide">Actions</th>
+              <tr className="border-b border-slate-200 dark:border-slate-800">
+                <th scope="col" className="px-5 py-3.5 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Exam</th>
+                <th scope="col" className="px-5 py-3.5 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Type</th>
+                <th scope="col" className="px-5 py-3.5 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide hidden md:table-cell">State</th>
+                <th scope="col" className="px-5 py-3.5 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide hidden sm:table-cell">Status</th>
+                <th scope="col" className="px-5 py-3.5 text-right text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Actions</th>
               </tr>
             </thead>
             <tbody>
               {exams.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-5 py-12 text-center text-gray-500">No exams yet. Add your first exam.</td>
+                  <td colSpan={5} className="px-5 py-12 text-center text-slate-500 dark:text-slate-500">No exams yet. Add your first exam.</td>
                 </tr>
               ) : (
                 exams.map((exam: any) => (
-                  <tr key={exam.id} className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors">
+                  <tr key={exam.id} className="border-b border-slate-200 dark:border-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800/30 transition-colors">
                     <td className="px-5 py-4">
                       <div>
-                        <p className="font-semibold text-white text-sm">{exam.name}</p>
-                        <p className="text-xs text-gray-400 mt-0.5 line-clamp-1">{exam.fullName}</p>
+                        <p className="font-semibold text-slate-900 dark:text-white text-sm">{exam.name}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">{exam.fullName}</p>
                       </div>
                     </td>
                     <td className="px-5 py-4">
@@ -63,7 +63,7 @@ export default async function AdminExamsPage() {
                       </Badge>
                     </td>
                     <td className="px-5 py-4 hidden md:table-cell">
-                      <span className="text-sm text-gray-300">{exam.state?.name || "–"}</span>
+                      <span className="text-sm text-slate-600 dark:text-slate-300">{exam.state?.name || "–"}</span>
                     </td>
                     <td className="px-5 py-4 hidden sm:table-cell">
                       <Badge variant={exam.active ? "success" : "secondary"}>
@@ -74,7 +74,7 @@ export default async function AdminExamsPage() {
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           href={`/admin/exams/${exam.id}/edit`}
-                          className="p-1.5 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors"
+                          className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors"
                           aria-label={`Edit ${exam.name}`}
                         >
                           <Edit size={15} aria-hidden="true" />

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = {
   Preparation: [
@@ -6,43 +7,53 @@ const footerLinks = {
     { href: "/papers", label: "Papers" },
     { href: "/mock-tests", label: "Mock Tests" },
     { href: "/books", label: "Books" },
+    { href: "/leet-rank-predictor", label: "Rank Predictor" },
   ],
   Information: [
     { href: "/notifications", label: "Notifications" },
     { href: "/counselling", label: "Counselling" },
     { href: "/colleges", label: "Colleges" },
     { href: "/resources", label: "Resources" },
+    { href: "/leet-counselling-guide", label: "Counselling Guide" },
   ],
   Connect: [
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact Us" },
     { href: "/toppers", label: "Toppers" },
     { href: "/experts", label: "Experts" },
+    { href: "/authors", label: "Authors" },
+  ],
+  "Quick Links": [
+    { href: "/faq", label: "FAQ" },
+    { href: "/what-is-leet", label: "What is LEET?" },
+    { href: "/diploma-to-btech", label: "Diploma to BTech" },
   ],
 };
 
 export function Footer() {
   return (
     <footer
-      className="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300"
+      className="relative overflow-hidden bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300"
       aria-label="Site footer"
     >
-      <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-16">
+      {/* Ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[200px] bg-orange-500/5 dark:bg-orange-500/3 rounded-full blur-[120px] -z-10" />
+
+      <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-16">
         <div className="flex flex-col lg:flex-row lg:justify-between gap-16">
           {/* Brand */}
-          <div className="w-full lg:max-w-[420px]">
+          <div className="w-full lg:max-w-[380px]">
             <Link
               href="/"
-              className="inline-flex items-center gap-3 text-slate-900 dark:text-white"
+              className="inline-flex items-center gap-2.5 text-slate-900 dark:text-white"
             >
-              <img src="/logo.jpeg" alt="BTech LEET Logo" className="w-9 h-9 rounded-lg object-cover" />
-
-              <span className="text-3xl font-bold">
-                BTech LEET
+              <Image src="/logo.png" alt="BTech LEET Logo" width={36} height={36} className="rounded-xl object-cover shadow-sm" />
+              <span className="text-2xl font-black tracking-tight">
+                BTech <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">LEET</span>
               </span>
             </Link>
 
-            <p className="mt-8 text-slate-600 dark:text-slate-400 text-lg leading-8">
+            <p className="mt-6 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
               Empowering Diploma Engineers to achieve academic excellence and
               seamlessly transition into premier BTech institutions.
             </p>
@@ -50,26 +61,19 @@ export function Footer() {
 
           {/* Links */}
           <div className="flex-1">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
               {Object.entries(footerLinks).map(([section, links]) => (
                 <div key={section}>
-                  <h4 className="text-slate-900 dark:text-white text-sm font-bold uppercase tracking-[0.25em] mb-6">
+                  <span className="block text-slate-900 dark:text-white text-[11px] font-black uppercase tracking-[0.2em] mb-5">
                     {section}
-                  </h4>
+                  </span>
 
-                  <ul className="space-y-4">
+                  <ul className="space-y-3">
                     {links.map((link) => (
                       <li key={link.label}>
                         <Link
                           href={link.href}
-                          className="
-                            text-slate-650
-                            dark:text-slate-400
-                            hover:text-orange-600
-                            dark:hover:text-orange-400
-                            transition-colors
-                            duration-200
-                          "
+                          className="text-sm text-slate-500 dark:text-slate-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200"
                         >
                           {link.label}
                         </Link>
@@ -84,45 +88,26 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-slate-500">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             © {new Date().getFullYear()} BTech LEET. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 justify-center md:justify-end">
-            <Link
-              href="/legal/privacy-policy"
-              className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
-            >
-              Privacy Policy
-            </Link>
-
-            <Link
-              href="/legal/terms-and-conditions"
-              className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
-            >
-              Terms & Conditions
-            </Link>
-
-            <Link
-              href="/legal/disclaimer"
-              className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
-            >
-              Disclaimer
-            </Link>
-
-            <Link
-              href="/legal/editorial-policy"
-              className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
-            >
-              Editorial Policy
-            </Link>
-
-            <Link
-              href="/legal/refund-policy"
-              className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
-            >
-              Refund Policy
-            </Link>
+            {[
+              { href: "/legal/privacy-policy", label: "Privacy Policy" },
+              { href: "/legal/terms-and-conditions", label: "Terms" },
+              { href: "/legal/disclaimer", label: "Disclaimer" },
+              { href: "/legal/editorial-policy", label: "Editorial" },
+              { href: "/legal/refund-policy", label: "Refund" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

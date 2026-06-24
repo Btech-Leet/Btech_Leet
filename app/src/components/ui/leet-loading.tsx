@@ -12,6 +12,7 @@ import {
   useState,
 } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 type LoadingContextValue = {
@@ -74,7 +75,7 @@ function LeetLoadingBar({ active, completing }: { active: boolean; completing: b
     >
       <div
         className={cn(
-          "h-full rounded-r-full bg-gradient-to-r from-blue-500 via-violet-500 to-emerald-400 shadow-[0_0_20px_rgba(59,130,246,0.7)]",
+          "h-full rounded-r-full bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-400 shadow-[0_0_20px_rgba(249,115,22,0.7)]",
           completing ? "leet-progress-complete" : "leet-progress-active"
         )}
       />
@@ -214,19 +215,39 @@ export function LeetLoadingProvider({ children }: { children: React.ReactNode })
 
 export function LeetLoadingFallback({ label = "Loading" }: { label?: string }) {
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-950/80 backdrop-blur-sm">
-      <div className="relative flex flex-col items-center gap-6">
-        <div className="relative h-24 w-24">
-          <div className="absolute inset-0 rounded-full border-4 border-blue-500/20" />
-          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-500 border-r-violet-500 border-b-emerald-400 animate-spin" />
-          <div className="absolute inset-4 flex items-center justify-center rounded-2xl bg-blue-600 shadow-[0_0_30px_rgba(37,99,235,0.5)]">
-            <span className="text-xl font-black text-white">LEET</span>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-white/90 dark:bg-gray-950/95 backdrop-blur-xl">
+      <div className="relative flex flex-col items-center gap-8">
+        {/* Glow behind the logo */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-orange-500/20 dark:bg-orange-600/20 blur-[50px] rounded-full animate-pulse" />
+        
+        <div className="relative w-36 h-36 flex items-center justify-center">
+          {/* Animated rings */}
+          <div className="absolute inset-0 rounded-full border-[3px] border-gray-200/50 dark:border-gray-800/50" />
+          <div className="absolute inset-0 rounded-full border-[3px] border-transparent border-t-orange-500 dark:border-t-orange-400 animate-spin [animation-duration:1.5s] ease-in-out" />
+          <div className="absolute inset-2 rounded-full border-[3px] border-transparent border-b-amber-500 dark:border-b-amber-400 animate-spin [animation-duration:2.5s] [animation-direction:reverse] ease-in-out" />
+          <div className="absolute inset-4 rounded-full border-[3px] border-transparent border-l-yellow-400 dark:border-l-yellow-300 animate-spin [animation-duration:3.5s] ease-linear" />
+          
+          {/* Logo container */}
+          <div className="absolute inset-6 rounded-full overflow-hidden shadow-[0_0_50px_rgba(249,115,22,0.4)] dark:shadow-[0_0_60px_rgba(249,115,22,0.2)] bg-white ring-4 ring-white dark:ring-gray-900 transition-all duration-300">
+            <Image 
+              src="/logo.png" 
+              alt="BTech LEET Logo" 
+              width={96}
+              height={96}
+              className="w-full h-full object-cover p-1.5" 
+            />
           </div>
         </div>
-        <div className="w-48 overflow-hidden rounded-full bg-white/10">
-          <div className="h-1.5 rounded-full bg-gradient-to-r from-blue-500 via-violet-500 to-emerald-400 leet-progress-active" />
+
+        {/* Loading text and bar */}
+        <div className="flex flex-col items-center gap-4 relative z-10">
+          <p className="text-sm font-black tracking-[0.25em] uppercase text-orange-600 dark:text-orange-400 animate-pulse">
+            {label}
+          </p>
+          <div className="w-48 h-1 overflow-hidden rounded-full bg-gray-200/50 dark:bg-gray-800/50 shadow-inner">
+            <div className="h-full w-full rounded-full bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-400 leet-progress-active" />
+          </div>
         </div>
-        <p className="text-sm font-semibold text-white/80">{label}</p>
       </div>
     </div>
   );

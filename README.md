@@ -120,7 +120,7 @@ Btech_Leet/
 Built by:
 
 - **[Yash Rathore](https://github.com/Yashrathore05)** — Full-Stack Developer & Architect
-- **Nishant** — Full-Stack Developer & Core Contributor
+- **[Nishant](https://github.com/itsnishant089)** — Full-Stack Developer & Core Contributor
 
 ## Copyright
 

@@ -15,11 +15,11 @@ export default async function AdminResourcesPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Library size={24} className="text-blue-500" />
             Study Resources
           </h1>
-          <p className="text-gray-400 text-sm mt-1">Manage syllabus, notes, and e-books</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage syllabus, notes, and e-books</p>
         </div>
         <Link
           href="/admin/resources/new"
@@ -30,10 +30,10 @@ export default async function AdminResourcesPage() {
         </Link>
       </div>
 
-      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-gray-950/50 text-gray-400">
+            <thead className="bg-slate-50 dark:bg-slate-950/50 text-slate-500 dark:text-slate-400">
               <tr>
                 <th className="px-5 py-3 font-medium">Title & Type</th>
                 <th className="px-5 py-3 font-medium">Branch</th>
@@ -46,21 +46,21 @@ export default async function AdminResourcesPage() {
             <tbody className="divide-y divide-gray-800">
               {resources.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-5 py-12 text-center text-gray-500">
+                  <td colSpan={6} className="px-5 py-12 text-center text-slate-500 dark:text-slate-500">
                     No resources uploaded yet.
                   </td>
                 </tr>
               ) : (
                 resources.map((res: any) => (
-                  <tr key={res.id} className="hover:bg-gray-800/30 transition-colors">
+                  <tr key={res.id} className="hover:bg-slate-100 dark:hover:bg-slate-800/30 transition-colors">
                     <td className="px-5 py-4">
-                      <p className="font-medium text-gray-200">{res.title}</p>
-                      <p className="text-xs text-gray-500 mt-1">{res.type}</p>
+                      <p className="font-medium text-slate-700 dark:text-slate-200">{res.title}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">{res.type}</p>
                     </td>
                     <td className="px-5 py-4">
-                      <span className="text-gray-300">{res.branch?.code || 'General'}</span>
+                      <span className="text-slate-600 dark:text-slate-300">{res.branch?.code || 'General'}</span>
                     </td>
-                    <td className="px-5 py-4 text-gray-300">
+                    <td className="px-5 py-4 text-slate-600 dark:text-slate-300">
                       {res.semester ? `Sem ${res.semester}` : 'All'}
                     </td>
                     <td className="px-5 py-4">
@@ -72,7 +72,7 @@ export default async function AdminResourcesPage() {
                         {res.price && res.price > 0 ? `₹${res.price}` : "Free"}
                       </span>
                     </td>
-                    <td className="px-5 py-4 text-gray-400">
+                    <td className="px-5 py-4 text-slate-500 dark:text-slate-400">
                       {res.downloads}
                     </td>
                     <td className="px-5 py-4 text-right">
@@ -81,7 +81,7 @@ export default async function AdminResourcesPage() {
                           href={res.fileUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-gray-400 hover:text-blue-400 transition-colors"
+                          className="text-slate-500 dark:text-slate-400 hover:text-blue-400 transition-colors"
                           title="Download"
                         >
                           <Download size={16} />

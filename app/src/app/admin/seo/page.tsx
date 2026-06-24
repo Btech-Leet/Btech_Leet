@@ -173,27 +173,27 @@ export default function AdminSeoPage() {
   return (
     <div className="space-y-6 p-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="border-b border-gray-100 dark:border-gray-800 pb-5">
-        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
+      <div className="border-b border-gray-100 dark:border-slate-200 dark:border-slate-800 pb-5">
+        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-900 dark:text-white flex items-center gap-2">
           <Globe className="text-blue-500" size={24} />
           SEO Meta Tags Manager
         </h1>
-        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 mt-1">
           Configure title tags, description overrides, and robots indexability filters on a per-page URL mapping basis.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         {/* Form Column */}
-        <div className="lg:col-span-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm space-y-4">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-55 dark:border-gray-800 pb-2">
+        <div className="lg:col-span-1 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-slate-900 dark:text-white border-b border-gray-55 dark:border-slate-200 dark:border-slate-800 pb-2">
             {editingId ? "Edit SEO Mapping" : "New SEO Mapping"}
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Page URL */}
             <div className="space-y-1">
-              <label htmlFor="seo-page-url" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="seo-page-url" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Page URL Path
               </label>
               <input
@@ -203,18 +203,18 @@ export default function AdminSeoPage() {
                 value={pageUrl}
                 onChange={(e) => setPageUrl(e.target.value)}
                 placeholder="/exams/haryana-leet"
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
               />
-              <span className="text-[10px] text-gray-400 block">Relative path starting with a forward slash.</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Relative path starting with a forward slash.</span>
             </div>
 
             {/* SEO Title */}
             <div className="space-y-1">
               <div className="flex justify-between items-center">
-                <label htmlFor="seo-title" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                <label htmlFor="seo-title" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   SEO Title
                 </label>
-                <span className={`text-[10px] font-bold ${seoTitle.length > 70 ? "text-red-500" : "text-gray-400"}`}>
+                <span className={`text-[10px] font-bold ${seoTitle.length > 70 ? "text-red-500" : "text-slate-500 dark:text-slate-400"}`}>
                   {seoTitle.length} / 70
                 </span>
               </div>
@@ -224,17 +224,17 @@ export default function AdminSeoPage() {
                 value={seoTitle}
                 onChange={(e) => setSeoTitle(e.target.value)}
                 placeholder="Haryana LEET Prep Guide | BTech LEET"
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
               />
             </div>
 
             {/* Meta Description */}
             <div className="space-y-1">
               <div className="flex justify-between items-center">
-                <label htmlFor="seo-desc" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                <label htmlFor="seo-desc" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Meta Description
                 </label>
-                <span className={`text-[10px] font-bold ${metaDescription.length > 160 ? "text-red-500" : "text-gray-400"}`}>
+                <span className={`text-[10px] font-bold ${metaDescription.length > 160 ? "text-red-500" : "text-slate-500 dark:text-slate-400"}`}>
                   {metaDescription.length} / 160
                 </span>
               </div>
@@ -244,13 +244,13 @@ export default function AdminSeoPage() {
                 value={metaDescription}
                 onChange={(e) => setMetaDescription(e.target.value)}
                 placeholder="Get latest mock tests, syllabus, and study resources for Haryana Lateral Entry exams."
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors resize-none"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors resize-none"
               />
             </div>
 
             {/* Keywords */}
             <div className="space-y-1">
-              <label htmlFor="seo-keywords" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="seo-keywords" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Keywords
               </label>
               <input
@@ -259,14 +259,14 @@ export default function AdminSeoPage() {
                 value={keywordsText}
                 onChange={(e) => setKeywordsText(e.target.value)}
                 placeholder="leet exam, haryana leet prep"
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
               />
-              <span className="text-[10px] text-gray-400 block">Separate keywords with commas.</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Separate keywords with commas.</span>
             </div>
 
             {/* Canonical URL */}
             <div className="space-y-1">
-              <label htmlFor="seo-canonical" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="seo-canonical" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Canonical URL (Optional)
               </label>
               <input
@@ -275,53 +275,53 @@ export default function AdminSeoPage() {
                 value={canonicalUrl}
                 onChange={(e) => setCanonicalUrl(e.target.value)}
                 placeholder="https://btechleet.in/exams/haryana-leet"
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
               />
             </div>
 
             {/* OG Metadata */}
-            <div className="space-y-3 pt-2 border-t border-gray-100 dark:border-gray-800">
+            <div className="space-y-3 pt-2 border-t border-gray-100 dark:border-slate-200 dark:border-slate-800">
               <h3 className="text-xs font-bold text-gray-450 uppercase tracking-wider">Social / OG Meta (Optional)</h3>
               
               <div className="space-y-1">
-                <label htmlFor="seo-og-title" className="text-[10px] font-bold text-gray-400 uppercase block">OG Title</label>
+                <label htmlFor="seo-og-title" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase block">OG Title</label>
                 <input
                   id="seo-og-title"
                   type="text"
                   value={ogTitle}
                   onChange={(e) => setOgTitle(e.target.value)}
                   placeholder="Haryana LEET Guide"
-                  className="w-full text-xs px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none"
+                  className="w-full text-xs px-3 py-2 rounded-lg border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none"
                 />
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="seo-og-desc" className="text-[10px] font-bold text-gray-400 uppercase block">OG Description</label>
+                <label htmlFor="seo-og-desc" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase block">OG Description</label>
                 <textarea
                   id="seo-og-desc"
                   rows={2}
                   value={ogDescription}
                   onChange={(e) => setOgDescription(e.target.value)}
                   placeholder="Open Graph description..."
-                  className="w-full text-xs px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none resize-none"
+                  className="w-full text-xs px-3 py-2 rounded-lg border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none resize-none"
                 />
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="seo-og-image" className="text-[10px] font-bold text-gray-400 uppercase block">OG Image URL</label>
+                <label htmlFor="seo-og-image" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase block">OG Image URL</label>
                 <input
                   id="seo-og-image"
                   type="text"
                   value={ogImage}
                   onChange={(e) => setOgImage(e.target.value)}
                   placeholder="https://example.com/banner.webp"
-                  className="w-full text-xs px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none"
+                  className="w-full text-xs px-3 py-2 rounded-lg border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none"
                 />
               </div>
             </div>
 
             {/* Indexable & Robots */}
-            <div className="space-y-3 pt-2 border-t border-gray-100 dark:border-gray-800">
+            <div className="space-y-3 pt-2 border-t border-gray-100 dark:border-slate-200 dark:border-slate-800">
               <div className="flex items-center gap-3">
                 <input
                   id="seo-indexable"
@@ -330,13 +330,13 @@ export default function AdminSeoPage() {
                   onChange={(e) => setIndexable(e.target.checked)}
                   className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
-                <label htmlFor="seo-indexable" className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                <label htmlFor="seo-indexable" className="text-sm font-semibold text-gray-700 dark:text-slate-600 dark:text-slate-300">
                   Allow Search Engines to Index (Indexable)
                 </label>
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="seo-robots" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                <label htmlFor="seo-robots" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Robots Tags
                 </label>
                 <input
@@ -345,7 +345,7 @@ export default function AdminSeoPage() {
                   value={robotsTags}
                   onChange={(e) => setRobotsTags(e.target.value)}
                   placeholder="index, follow"
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none"
                 />
               </div>
             </div>
@@ -373,7 +373,7 @@ export default function AdminSeoPage() {
                 <button
                   type="button"
                   onClick={handleResetForm}
-                  className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-500 hover:bg-gray-100 dark:hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                 >
                   <X size={16} />
                 </button>
@@ -384,7 +384,7 @@ export default function AdminSeoPage() {
 
         {/* SEO Mappings list Column */}
         <div className="lg:col-span-2 space-y-4">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-55 dark:border-gray-800 pb-2">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-slate-900 dark:text-white border-b border-gray-55 dark:border-slate-200 dark:border-slate-800 pb-2">
             SEO Overrides ({seoMetas.length})
           </h2>
 
@@ -393,17 +393,17 @@ export default function AdminSeoPage() {
               <Loader2 size={28} className="animate-spin text-blue-500" />
             </div>
           ) : seoMetas.length === 0 ? (
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-16 text-center text-gray-400 shadow-sm max-w-lg mx-auto">
-              <Globe className="mx-auto text-gray-300 dark:text-gray-700 mb-4" size={48} />
-              <h3 className="font-bold text-gray-800 dark:text-gray-200">No SEO Configurations</h3>
-              <p className="text-xs text-gray-500 mt-1">Start by adding your first URL override mapping on the left.</p>
+            <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-16 text-center text-slate-500 dark:text-slate-400 shadow-sm max-w-lg mx-auto">
+              <Globe className="mx-auto text-slate-600 dark:text-slate-300 dark:text-gray-700 mb-4" size={48} />
+              <h3 className="font-bold text-gray-800 dark:text-slate-700 dark:text-slate-200">No SEO Configurations</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">Start by adding your first URL override mapping on the left.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-4">
               {seoMetas.map((seo) => (
                 <div
                   key={seo.id}
-                  className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm space-y-3 hover:shadow-md transition-shadow duration-300"
+                  className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3 hover:shadow-md transition-shadow duration-300"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -427,18 +427,18 @@ export default function AdminSeoPage() {
                       </span>
                     </div>
 
-                    <span className="text-[10px] text-gray-400">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400">
                       Modified: {new Date(seo.createdAt).toLocaleDateString("en-IN")}
                     </span>
                   </div>
 
-                  <div className="text-xs space-y-1.5 text-gray-500 dark:text-gray-400 bg-gray-50/55 dark:bg-gray-950/30 p-3 rounded-xl border border-gray-100 dark:border-gray-850/50">
+                  <div className="text-xs space-y-1.5 text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 bg-gray-50/55 dark:bg-slate-50 dark:bg-slate-950/30 p-3 rounded-xl border border-gray-100 dark:border-slate-200 dark:border-slate-800/50">
                     <p>
-                      Title: <strong className="text-gray-800 dark:text-white">{seo.seoTitle || "(Inherited)"}</strong>
+                      Title: <strong className="text-gray-800 dark:text-slate-900 dark:text-white">{seo.seoTitle || "(Inherited)"}</strong>
                     </p>
                     {seo.metaDescription && (
                       <p className="line-clamp-2">
-                        Description: <span className="text-gray-600 dark:text-gray-300">{seo.metaDescription}</span>
+                        Description: <span className="text-gray-600 dark:text-slate-600 dark:text-slate-300">{seo.metaDescription}</span>
                       </p>
                     )}
                     {seo.keywords.length > 0 && (
@@ -447,7 +447,7 @@ export default function AdminSeoPage() {
                         {seo.keywords.map((k, idx) => (
                           <span
                             key={idx}
-                            className="bg-gray-150 dark:bg-gray-800 text-gray-650 dark:text-gray-400 px-1.5 py-0.5 rounded text-[10px] font-semibold"
+                            className="bg-gray-150 dark:bg-slate-100 dark:bg-slate-800 text-gray-650 dark:text-slate-500 dark:text-slate-400 px-1.5 py-0.5 rounded text-[10px] font-semibold"
                           >
                             {k}
                           </span>

@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
-import { formatDate } from "@/lib/utils";
+import { ChevronRight, Calendar } from "lucide-react";
 
 async function getBlogPosts() {
   try {
@@ -22,95 +23,105 @@ export async function BlogSection() {
   if (posts.length === 0) return null;
 
   const cardGradients = [
-    "from-orange-500/30 via-orange-600/20 to-transparent",
-    "from-blue-500/30 via-blue-600/20 to-transparent",
-    "from-teal-500/30 via-teal-600/20 to-transparent",
-  ];
-
-  const hoverColors = [
-    "group-hover:text-orange-600 dark:group-hover:text-orange-400",
-    "group-hover:text-blue-600 dark:group-hover:text-blue-400",
-    "group-hover:text-teal-600 dark:group-hover:text-teal-400",
+    "from-orange-500/20 via-orange-500/5 to-transparent",
+    "from-blue-500/20 via-blue-500/5 to-transparent",
+    "from-teal-500/20 via-teal-500/5 to-transparent",
   ];
 
   const defaultImages = [
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCFm9pEUuwi5QIh11Sc6efT21rx_WdBmaZpnOOBf3af0poxAf3iMf5rbAAJ8bjNCb6A71cuj9-MlK_Zp8NP6su8pA8D4W4EgTuOu31fWRP55KYMCvyn5k-kBtlW1Vf-An9cKL7byEqG9c93gj_b0uvxOt85XSWQNgjNXttdGULzstzbc5gn_bfRomcBNjvhnCrFLj1hka440W_yC-nfG8DdBp65wQWMPdRgrER1rJ3G5V2SvjUfeke6xPKLKKw3xMErOAzCcuGvevOt",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCxYPjn7rCZy7NzMYPX1p7dVEd1VYsQcZXrLEdAPT7lj9h-zMvh7NTwdlV47Tcz7wA_9jeLi0r_xDqov0iJ0rZkEsaquUpSQDLH3wu8JAgGomG6GBy4AOHalKOpkAcobHUCqVqIFgt9Z3Xb_EgSX-mDVFfmAEluyO2ycOQI8nF83ixzC6JoZiglwAR6DBz8bjbTN3UBr3c3qfO3UCTvqZcyLxQN_jeSYDgNuTYAV-IgO-0jiOwMMNUEpJvH4VR7Elh6Q7SQvx_drboz",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCi4JsMrwOsP2xIFfoXJ3-wiULADksvaMt5RzZvYxc12FLdh4QtW5rtVqbIKsfLA4-GYunD6MlqZpU65CDxht9o10xWIP1ZLwfwiF4K73d4lBuKNa8l7_4ly-8axwRDkpIy42y2JjdRbx3cy_YTh7mrl7T6CzVjFYFxSfU7UPdO_2OF92Vf1TQK3mK7Z3WvHja-0a4b0r51Jxbcfp82mGxMyOTnl7uzCAs2PQDaR6rbyJzZeDOan2aToGvINC0uiS5v4eWovnGNkNrI"
+    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800"
   ];
 
   return (
-    <section className="py-xxl bg-slate-50 dark:bg-slate-900 px-margin-mobile md:px-margin-desktop border-b border-slate-200 dark:border-slate-800 transition-colors duration-300" aria-labelledby="blog-heading">
-      <div className="max-w-container-max mx-auto">
+    <section className="py-24 relative overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-xl gap-4">
-          <div>
-            <h2 id="blog-heading" className="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-slate-900 dark:text-white mb-xs transition-colors duration-300">
-              Latest Insights
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">
+              Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Insights</span>
             </h2>
-            <p className="text-body-md font-body-md text-slate-650 dark:text-slate-400 transition-colors duration-300">
+            <p className="text-lg text-slate-600 dark:text-slate-400">
               Strategies, updates, and advice from academic experts.
             </p>
           </div>
           <Link
             href="/blog"
-            className="text-label-md font-label-md text-orange-600 dark:text-orange-500 hover:text-orange-700 dark:hover:text-orange-400 inline-flex items-center gap-1"
-            aria-label="View all blog posts"
+            className="group hidden md:flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-900 px-6 py-3 rounded-full border border-slate-200 dark:border-slate-800 hover:border-orange-500/50 transition-all shadow-sm hover:shadow-md"
           >
-            View All Articles{" "}
-            <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+            View All Articles
+            <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform text-orange-500" />
           </Link>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {posts.map((post: any, idx: number) => {
             const gradient = cardGradients[idx % cardGradients.length];
-            const hoverColor = hoverColors[idx % hoverColors.length];
             const coverImage = post.coverImage || defaultImages[idx % defaultImages.length];
 
             return (
-              <div key={post.id} className="relative group h-full">
-                <div className={`absolute -inset-1 bg-gradient-to-br ${gradient} rounded-3xl blur-xl opacity-40 group-hover:opacity-100 transition duration-500`} />
-                <div className="relative bg-white dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden flex flex-col h-full transform group-hover:-translate-y-1 transition-all duration-500">
+              <div key={post.id} className="group relative flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+                <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                
+                {/* Aspect Cover Image */}
+                <Link href={`/blog/${post.slug}`} className="relative overflow-hidden aspect-[16/10] bg-slate-100 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 block">
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
+                  <Image
+                    alt={post.title}
+                    className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                    src={coverImage}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  {post.category && (
+                    <div className="absolute top-4 left-4 z-20 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 text-[10px] uppercase font-bold px-3 py-1 rounded-full">
+                      {post.category.name}
+                    </div>
+                  )}
+                </Link>
+
+                {/* Blog Card Body */}
+                <div className="p-6 flex flex-col flex-1 relative z-10">
+                  <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3 font-medium">
+                    <Calendar size={14} />
+                    {new Date(post.publishedAt || post.createdAt).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" })}
+                  </div>
                   
-                  {/* Aspect Cover Image */}
-                  <div className="relative overflow-hidden aspect-[16/10] bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
-                    <img
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      src={coverImage}
-                    />
-                    {post.category && (
-                      <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-white/20 text-[10px] uppercase font-bold px-3 py-1 rounded-full transition-colors duration-300">
-                        {post.category.name}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Blog Card Body */}
-                  <div className="p-lg flex flex-col flex-1">
-                    <h3 className={`text-headline-md font-headline-md text-slate-900 dark:text-white mb-xs ${hoverColor} transition-colors line-clamp-2`}>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-2">
+                    <Link href={`/blog/${post.slug}`}>
                       {post.title}
-                    </h3>
-                    <p className="text-body-md font-body-md text-slate-650 dark:text-slate-400 line-clamp-2 mb-sm flex-1 transition-colors duration-300">
-                      {post.excerpt || "Read full article details on BTech Lateral Entry preparation."}
-                    </p>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className={`text-label-md font-label-md text-slate-600 dark:text-slate-300 ${hoverColor} inline-flex items-center gap-1 mt-auto`}
-                      aria-label={`Read ${post.title}`}
-                    >
-                      Read Article{" "}
-                      <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
                     </Link>
-                  </div>
-
+                  </h3>
+                  
+                  <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-6 flex-1">
+                    {post.excerpt || "Read full article details on BTech Lateral Entry preparation."}
+                  </p>
+                  
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors"
+                  >
+                    Read Article
+                    <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        <div className="mt-8 text-center md:hidden">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-900 px-8 py-4 rounded-full border border-slate-200 dark:border-slate-800 active:scale-95 transition-all"
+          >
+            View All Articles
+            <ChevronRight size={16} className="text-orange-500" />
+          </Link>
         </div>
 
       </div>

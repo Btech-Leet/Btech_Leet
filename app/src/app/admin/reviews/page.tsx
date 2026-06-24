@@ -159,24 +159,24 @@ export default function AdminReviewsPage() {
   return (
     <div className="space-y-6 p-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 dark:border-gray-800 pb-5">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 dark:border-slate-200 dark:border-slate-800 pb-5">
         <div className="space-y-1">
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-900 dark:text-white flex items-center gap-2">
             <MessageSquare className="text-emerald-500" size={24} />
             Reviews Moderation
           </h1>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">
             Moderate, edit, and delete student ratings and comments across the site.
           </p>
         </div>
 
         {/* Filter controls */}
-        <div className="flex items-center gap-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-1.5 shadow-sm">
-          <Filter size={14} className="text-gray-400" />
+        <div className="flex items-center gap-2 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 shadow-sm">
+          <Filter size={14} className="text-slate-500 dark:text-slate-400" />
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="text-xs font-semibold bg-transparent border-none text-gray-600 dark:text-gray-300 focus:outline-none cursor-pointer"
+            className="text-xs font-semibold bg-transparent border-none text-gray-600 dark:text-slate-600 dark:text-slate-300 focus:outline-none cursor-pointer"
           >
             <option value="ALL">All Statuses</option>
             <option value="PENDING">Pending Approval</option>
@@ -192,10 +192,10 @@ export default function AdminReviewsPage() {
           <Loader2 size={32} className="animate-spin text-emerald-500" />
         </div>
       ) : reviews.length === 0 ? (
-        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-16 text-center text-gray-400 shadow-sm max-w-lg mx-auto">
-          <MessageSquare className="mx-auto text-gray-300 dark:text-gray-700 mb-4" size={48} />
-          <h3 className="font-bold text-gray-800 dark:text-gray-200">No Reviews Found</h3>
-          <p className="text-xs text-gray-500 mt-1">There are no reviews matching the selected filter.</p>
+        <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-16 text-center text-slate-500 dark:text-slate-400 shadow-sm max-w-lg mx-auto">
+          <MessageSquare className="mx-auto text-slate-600 dark:text-slate-300 dark:text-gray-700 mb-4" size={48} />
+          <h3 className="font-bold text-gray-800 dark:text-slate-700 dark:text-slate-200">No Reviews Found</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">There are no reviews matching the selected filter.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-4">
@@ -205,7 +205,7 @@ export default function AdminReviewsPage() {
             return (
               <div
                 key={review.id}
-                className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300 space-y-4"
+                className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300 space-y-4"
               >
                 {/* Meta details row */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -216,13 +216,13 @@ export default function AdminReviewsPage() {
                           type="text"
                           value={editName}
                           onChange={(e) => setEditName(e.target.value)}
-                          className="text-sm font-bold px-2 py-1 border border-gray-200 dark:border-gray-800 bg-transparent rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                          className="text-sm font-bold px-2 py-1 border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent rounded-lg text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
                         />
                       ) : (
-                        <h4 className="font-bold text-gray-900 dark:text-white text-base">
+                        <h4 className="font-bold text-gray-900 dark:text-slate-900 dark:text-white text-base">
                           {review.name}{" "}
                           {review.email && (
-                            <span className="text-xs font-normal text-gray-400 dark:text-gray-500 ml-1">
+                            <span className="text-xs font-normal text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 ml-1">
                               ({review.email})
                             </span>
                           )}
@@ -230,7 +230,7 @@ export default function AdminReviewsPage() {
                       )}
 
                       {/* Display Page Url */}
-                      <p className="text-[10px] sm:text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                      <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 mt-0.5">
                         Page URL: <span className="font-semibold">{review.pageUrl || "Global"}</span>
                       </p>
                     </div>
@@ -241,7 +241,7 @@ export default function AdminReviewsPage() {
                     <span className={`px-2 py-0.5 text-[10px] font-bold rounded-full border ${statusColors[review.status]}`}>
                       {review.status}
                     </span>
-                    <span className="text-[10px] sm:text-xs text-gray-400 dark:text-gray-500 font-medium">
+                    <span className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 font-medium">
                       {new Date(review.createdAt).toLocaleDateString("en-IN", {
                         day: "numeric",
                         month: "short",
@@ -267,7 +267,7 @@ export default function AdminReviewsPage() {
                               className={
                                 star <= editRating
                                   ? "fill-amber-400 text-amber-400"
-                                  : "text-gray-200 dark:text-gray-800"
+                                  : "text-slate-700 dark:text-slate-200 dark:text-gray-800"
                               }
                             />
                           </button>
@@ -282,7 +282,7 @@ export default function AdminReviewsPage() {
                             className={
                               star <= review.rating
                                 ? "fill-amber-400 text-amber-400"
-                                : "text-gray-200 dark:text-gray-850"
+                                : "text-slate-700 dark:text-slate-200 dark:text-gray-850"
                             }
                           />
                         ))}
@@ -295,17 +295,17 @@ export default function AdminReviewsPage() {
                       value={editText}
                       onChange={(e) => setEditText(e.target.value)}
                       rows={3}
-                      className="w-full text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 resize-none"
+                      className="w-full text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 resize-none"
                     />
                   ) : (
-                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap bg-gray-50/55 dark:bg-gray-950/30 p-3 rounded-xl border border-gray-100 dark:border-gray-850/50">
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-wrap bg-gray-50/55 dark:bg-slate-50 dark:bg-slate-950/30 p-3 rounded-xl border border-gray-100 dark:border-slate-200 dark:border-slate-800/50">
                       {review.text}
                     </p>
                   )}
                 </div>
 
                 {/* Actions row */}
-                <div className="flex justify-end items-center gap-2 pt-2 border-t border-gray-50 dark:border-gray-850/40">
+                <div className="flex justify-end items-center gap-2 pt-2 border-t border-gray-50 dark:border-slate-200 dark:border-slate-800/40">
                   {isEditing ? (
                     <>
                       <button
@@ -318,7 +318,7 @@ export default function AdminReviewsPage() {
                       <button
                         onClick={handleCancelEdit}
                         disabled={isSaving}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-500 dark:text-slate-500 hover:text-gray-700 dark:text-slate-500 dark:text-slate-400 dark:hover:text-slate-700 dark:text-slate-200 bg-gray-100 dark:bg-slate-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                       >
                         Cancel
                       </button>

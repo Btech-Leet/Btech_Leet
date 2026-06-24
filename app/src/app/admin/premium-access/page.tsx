@@ -238,27 +238,27 @@ export default function AdminPremiumAccessPage() {
   return (
     <div className="space-y-6 p-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="border-b border-gray-100 dark:border-gray-800 pb-5">
-        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
+      <div className="border-b border-gray-100 dark:border-slate-200 dark:border-slate-800 pb-5">
+        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-900 dark:text-white flex items-center gap-2">
           <Crown className="text-amber-500" size={24} />
           Premium User Access
         </h1>
-        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 mt-1">
           Manually grant or revoke full premium status and mock test access to students.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         {/* Form Column */}
-        <div className="lg:col-span-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm space-y-4">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-55 dark:border-gray-800 pb-2">
+        <div className="lg:col-span-1 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-slate-900 dark:text-white border-b border-gray-55 dark:border-slate-200 dark:border-slate-800 pb-2">
             {editingId ? "Edit Access Grant" : "Grant Premium Access"}
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* User Search & Display */}
             <div className="space-y-1 relative">
-              <label className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Select User
               </label>
               
@@ -267,15 +267,15 @@ export default function AdminPremiumAccessPage() {
                   <div className="flex items-center gap-2">
                     <UserCheck className="text-emerald-500 flex-shrink-0" size={16} />
                     <div className="min-w-0">
-                      <p className="font-bold text-gray-950 dark:text-white truncate">{selectedUser.name}</p>
-                      <p className="text-[10px] text-gray-450 dark:text-gray-500 truncate">{selectedUser.email}</p>
+                      <p className="font-bold text-gray-950 dark:text-slate-900 dark:text-white truncate">{selectedUser.name}</p>
+                      <p className="text-[10px] text-gray-450 dark:text-slate-500 dark:text-slate-500 truncate">{selectedUser.email}</p>
                     </div>
                   </div>
                   {!editingId && (
                     <button
                       type="button"
                       onClick={() => setSelectedUser(null)}
-                      className="text-gray-400 hover:text-red-500 font-bold"
+                      className="text-slate-500 dark:text-slate-400 hover:text-red-500 font-bold"
                     >
                       <X size={16} />
                     </button>
@@ -285,26 +285,26 @@ export default function AdminPremiumAccessPage() {
                 <>
                   <div className="flex gap-2">
                     <div className="relative flex-1">
-                      <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                      <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400" size={16} />
                       <input
                         type="text"
                         value={searchQuery}
                         onChange={(e) => handleSearchChange(e.target.value)}
                         placeholder="Search by name or email..."
-                        className="w-full text-sm pl-10 pr-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                        className="w-full text-sm pl-10 pr-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
                       />
                     </div>
                   </div>
 
                   {/* Search Results Dropdown */}
                   {searchQuery && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-lg z-20 max-h-56 overflow-y-auto divide-y divide-gray-50 dark:divide-gray-850">
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-xl shadow-lg z-20 max-h-56 overflow-y-auto divide-y divide-gray-50 dark:divide-gray-850">
                       {isSearching ? (
                         <div className="flex justify-center items-center py-4 text-xs text-gray-450">
                           <Loader2 size={14} className="animate-spin text-amber-500 mr-2" /> Searching...
                         </div>
                       ) : searchResults.length === 0 ? (
-                        <div className="p-4 text-center text-xs text-gray-400">
+                        <div className="p-4 text-center text-xs text-slate-500 dark:text-slate-400">
                           No users found.
                         </div>
                       ) : (
@@ -313,11 +313,11 @@ export default function AdminPremiumAccessPage() {
                             key={user.id}
                             type="button"
                             onClick={() => handleSelectUser(user)}
-                            className="w-full text-left p-3 hover:bg-gray-50 dark:hover:bg-gray-850 flex items-center justify-between transition-colors text-xs font-semibold"
+                            className="w-full text-left p-3 hover:bg-gray-50 dark:hover:bg-slate-50 dark:bg-slate-800 flex items-center justify-between transition-colors text-xs font-semibold"
                           >
                             <div className="min-w-0 pr-4">
-                              <p className="text-gray-900 dark:text-white truncate">{user.name}</p>
-                              <p className="text-[10px] text-gray-400 dark:text-gray-500 truncate">{user.email}</p>
+                              <p className="text-gray-900 dark:text-slate-900 dark:text-white truncate">{user.name}</p>
+                              <p className="text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-500 truncate">{user.email}</p>
                             </div>
                             <span className="text-[10px] text-blue-500 font-bold uppercase">Select</span>
                           </button>
@@ -331,7 +331,7 @@ export default function AdminPremiumAccessPage() {
 
             {/* Plan Name */}
             <div className="space-y-1">
-              <label htmlFor="plan-name" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="plan-name" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Plan Name
               </label>
               <input
@@ -341,20 +341,20 @@ export default function AdminPremiumAccessPage() {
                 value={planName}
                 onChange={(e) => setPlanName(e.target.value)}
                 placeholder="Full Access Premium Pass"
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
               />
             </div>
 
             {/* Status (For Editing) */}
             <div className="space-y-1">
-              <label htmlFor="grant-status" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="grant-status" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Status
               </label>
               <select
                 id="grant-status"
                 value={status}
                 onChange={(e) => setStatus(e.target.value as any)}
-                className="w-full text-sm px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                className="w-full text-sm px-3 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
               >
                 <option value="ACTIVE">ACTIVE</option>
                 <option value="EXPIRED">EXPIRED</option>
@@ -364,7 +364,7 @@ export default function AdminPremiumAccessPage() {
 
             {/* Start Date */}
             <div className="space-y-1">
-              <label htmlFor="start-date" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="start-date" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Start Date
               </label>
               <input
@@ -373,13 +373,13 @@ export default function AdminPremiumAccessPage() {
                 required
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
               />
             </div>
 
             {/* End Date */}
             <div className="space-y-1">
-              <label htmlFor="end-date" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="end-date" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 End Date
               </label>
               <input
@@ -388,13 +388,13 @@ export default function AdminPremiumAccessPage() {
                 required
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
               />
             </div>
 
             {/* Notes */}
             <div className="space-y-1">
-              <label htmlFor="grant-notes" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+              <label htmlFor="grant-notes" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Notes / Remarks
               </label>
               <textarea
@@ -403,7 +403,7 @@ export default function AdminPremiumAccessPage() {
                 onChange={(e) => setNotes(e.target.value)}
                 rows={3}
                 placeholder="Granted for student coupon feedback / manual cash payment."
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors resize-none"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors resize-none"
               />
             </div>
 
@@ -430,7 +430,7 @@ export default function AdminPremiumAccessPage() {
                 <button
                   type="button"
                   onClick={handleResetForm}
-                  className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-500 hover:bg-gray-100 dark:hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                 >
                   <X size={16} />
                 </button>
@@ -441,7 +441,7 @@ export default function AdminPremiumAccessPage() {
 
         {/* Grants List Column */}
         <div className="lg:col-span-2 space-y-4">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-55 dark:border-gray-800 pb-2 flex items-center gap-2">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-slate-900 dark:text-white border-b border-gray-55 dark:border-slate-200 dark:border-slate-800 pb-2 flex items-center gap-2">
             Premium Access Grants ({grants.length})
           </h2>
 
@@ -450,10 +450,10 @@ export default function AdminPremiumAccessPage() {
               <Loader2 size={28} className="animate-spin text-amber-500" />
             </div>
           ) : grants.length === 0 ? (
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-16 text-center text-gray-400 shadow-sm">
-              <Crown className="mx-auto text-gray-300 dark:text-gray-700 mb-4" size={48} />
-              <h3 className="font-bold text-gray-800 dark:text-gray-200">No Premium Grants</h3>
-              <p className="text-xs text-gray-500 mt-1">No manual premium access grants have been created yet.</p>
+            <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-16 text-center text-slate-500 dark:text-slate-400 shadow-sm">
+              <Crown className="mx-auto text-slate-600 dark:text-slate-300 dark:text-gray-700 mb-4" size={48} />
+              <h3 className="font-bold text-gray-800 dark:text-slate-700 dark:text-slate-200">No Premium Grants</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">No manual premium access grants have been created yet.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-4">
@@ -464,12 +464,12 @@ export default function AdminPremiumAccessPage() {
                 return (
                   <div
                     key={grant.id}
-                    className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:shadow-md transition-shadow duration-300"
+                    className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:shadow-md transition-shadow duration-300"
                   >
                     {/* Details */}
                     <div className="space-y-2 flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-sm font-extrabold text-gray-900 dark:text-white">
+                        <span className="text-sm font-extrabold text-gray-900 dark:text-slate-900 dark:text-white">
                           {grant.userName}
                         </span>
                         <span className={`text-[10px] font-bold px-2 py-0.5 border rounded-full ${statusColors[grant.status]}`}>
@@ -477,9 +477,9 @@ export default function AdminPremiumAccessPage() {
                         </span>
                       </div>
 
-                      <div className="text-xs space-y-1 text-gray-500 dark:text-gray-400">
+                      <div className="text-xs space-y-1 text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">
                         <p>
-                          Email: <strong className="text-gray-700 dark:text-gray-300">{grant.email}</strong>
+                          Email: <strong className="text-gray-700 dark:text-slate-600 dark:text-slate-300">{grant.email}</strong>
                           {grant.mobile && ` | Mobile: ${grant.mobile}`}
                         </p>
                         <p>
@@ -497,7 +497,7 @@ export default function AdminPremiumAccessPage() {
                           </p>
                         )}
                         {grant.notes && (
-                          <p className="italic text-gray-400 bg-gray-50 dark:bg-gray-950 p-2 rounded border border-gray-100 dark:border-gray-850/50 mt-1">
+                          <p className="italic text-slate-500 dark:text-slate-400 bg-gray-50 dark:bg-slate-50 dark:bg-slate-950 p-2 rounded border border-gray-100 dark:border-slate-200 dark:border-slate-800/50 mt-1">
                             Note: {grant.notes}
                           </p>
                         )}
@@ -505,7 +505,7 @@ export default function AdminPremiumAccessPage() {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex sm:flex-col items-center sm:items-end justify-end gap-2 border-t sm:border-t-0 border-gray-50 dark:border-gray-850/40 pt-3 sm:pt-0">
+                    <div className="flex sm:flex-col items-center sm:items-end justify-end gap-2 border-t sm:border-t-0 border-gray-50 dark:border-slate-200 dark:border-slate-800/40 pt-3 sm:pt-0">
                       <button
                         onClick={() => handleStartEdit(grant)}
                         className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 transition-colors"

@@ -159,8 +159,7 @@ export default function PerformanceDashboard() {
             {[
               { label: "Overall Accuracy", value: `${overview.overallAccuracy}%`, desc: "Correct answers", icon: Target, color: "text-blue-500 dark:text-blue-400", bg: "bg-blue-50/30 dark:bg-blue-950/20 border-blue-100 dark:border-blue-900/30 text-slate-900 dark:text-white" },
               { label: "Tests Attempted", value: overview.totalTests, desc: "Mock tests taken", icon: BookOpen, color: "text-purple-500 dark:text-purple-400", bg: "bg-purple-50/30 dark:bg-purple-950/20 border-purple-100 dark:border-purple-900/30 text-slate-900 dark:text-white" },
-              { label: "Consecutive Study Streak", value: `${streaks.currentStreak} Days`, desc: "Study streak", icon: Flame, color: "text-amber-500", bg: "bg-amber-50/30 dark:bg-amber-950/20 border-amber-100 dark:border-amber-900/30 text-slate-900 dark:text-white" },
-              { label: "Global Ranking", value: `#${overview.currentRank}`, desc: "Overall leaderboard rank", icon: Trophy, color: "text-emerald-500 dark:text-emerald-400", bg: "bg-emerald-50/30 dark:bg-emerald-950/20 border-emerald-100 dark:border-emerald-900/30 text-slate-900 dark:text-white" }
+              { label: "Consecutive Study Streak", value: `${streaks.currentStreak} Days`, desc: "Study streak", icon: Flame, color: "text-amber-500", bg: "bg-amber-50/30 dark:bg-amber-950/20 border-amber-100 dark:border-amber-900/30 text-slate-900 dark:text-white" }
             ].map((stat) => {
               const Icon = stat.icon;
               return (
@@ -309,18 +308,64 @@ export default function PerformanceDashboard() {
                         
                         <div className="grid grid-cols-2 gap-3">
                           <div className="p-3 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-gray-850 rounded-xl flex flex-col justify-between">
-                            <span className="text-[10px] text-slate-550 dark:text-gray-400 font-semibold uppercase">Consecutive Logins</span>
-                            <span className="text-lg font-extrabold text-slate-900 dark:text-white mt-1">{streaks.consecutiveLogins} Days</span>
+                            <span className="text-[10px] text-slate-550 dark:text-gray-400 font-semibold uppercase">Tests Attempted</span>
+                            <span className="text-lg font-extrabold text-slate-900 dark:text-white mt-1">{overview.totalTests}</span>
                           </div>
                           <div className="p-3 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-gray-850 rounded-xl flex flex-col justify-between">
-                            <span className="text-[10px] text-slate-550 dark:text-gray-400 font-semibold uppercase">Consecutive Tests</span>
-                            <span className="text-lg font-extrabold text-slate-900 dark:text-white mt-1">{streaks.consecutiveTests} Days</span>
+                            <span className="text-[10px] text-slate-550 dark:text-gray-400 font-semibold uppercase">Total Study Time</span>
+                            <span className="text-lg font-extrabold text-slate-900 dark:text-white mt-1">{Math.round(overview.totalStudyTime / 60)} Hrs</span>
                           </div>
                         </div>
                       </CardContent>
                     </Card>
                   </div>
- 
+
+                  {/* Earned Badges */}
+                  <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-4 opacity-5">
+                      <Award size={120} />
+                    </div>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-slate-900 dark:text-white text-base">Earned Badges</CardTitle>
+                      <CardDescription className="text-slate-550 dark:text-gray-400 text-xs">Achievements unlocked through consistent studying</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div className="flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-950 border border-amber-200 dark:border-amber-900/30 rounded-xl text-center">
+                          <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/50 text-amber-500 rounded-full flex items-center justify-center mb-2">
+                            <Flame size={24} />
+                          </div>
+                          <span className="text-xs font-bold text-slate-900 dark:text-white">7 Day Streak</span>
+                          <span className="text-[9px] text-slate-500 dark:text-gray-500 mt-1">Consistency is key</span>
+                        </div>
+                        
+                        <div className="flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-950 border border-blue-200 dark:border-blue-900/30 rounded-xl text-center">
+                          <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 text-blue-500 rounded-full flex items-center justify-center mb-2">
+                            <BookOpen size={24} />
+                          </div>
+                          <span className="text-xs font-bold text-slate-900 dark:text-white">First Test</span>
+                          <span className="text-[9px] text-slate-500 dark:text-gray-500 mt-1">Journey begins</span>
+                        </div>
+                        
+                        <div className="flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-950 border border-purple-200 dark:border-purple-900/30 rounded-xl text-center">
+                          <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 text-purple-500 rounded-full flex items-center justify-center mb-2">
+                            <Target size={24} />
+                          </div>
+                          <span className="text-xs font-bold text-slate-900 dark:text-white">High Scorer</span>
+                          <span className="text-[9px] text-slate-500 dark:text-gray-500 mt-1">Above 80% accuracy</span>
+                        </div>
+                        
+                        <div className="flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-950 border border-emerald-200 dark:border-emerald-900/30 rounded-xl text-center">
+                          <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-500 rounded-full flex items-center justify-center mb-2">
+                            <CheckCircle2 size={24} />
+                          </div>
+                          <span className="text-xs font-bold text-slate-900 dark:text-white">Goal Crusher</span>
+                          <span className="text-[9px] text-slate-500 dark:text-gray-500 mt-1">Met daily goal 5x</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
                   {/* Row 2: Study Habits Trend Graph */}
                   <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl">
                     <CardHeader>

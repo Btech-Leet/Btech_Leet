@@ -1,82 +1,92 @@
 import Link from "next/link";
+import { BookOpen, FileText, BellRing, Users } from "lucide-react";
 
 const features = [
   {
-    icon: "menu_book",
-    iconColor: "text-blue-600 dark:text-blue-400",
+    icon: <BookOpen className="w-6 h-6 text-blue-500" />,
+    bg: "bg-blue-500/10 dark:bg-blue-500/20",
+    border: "border-blue-500/20 dark:border-blue-500/30",
     title: "Exam Directory",
-    desc: "Detailed breakdown of state-wise and university-specific LEET exams.",
+    desc: "Detailed breakdown of state-wise and university-specific LEET exams, syllabus, and eligibility criteria.",
     href: "/exams",
-    cta: "Explore Exams",
+    colSpan: "md:col-span-2",
   },
   {
-    icon: "description",
-    iconColor: "text-orange-600 dark:text-orange-400",
-    title: "Papers",
-    desc: "Curated archive of previous year question papers with solution keys.",
+    icon: <FileText className="w-6 h-6 text-orange-500" />,
+    bg: "bg-orange-500/10 dark:bg-orange-500/20",
+    border: "border-orange-500/20 dark:border-orange-500/30",
+    title: "Previous Papers",
+    desc: "Curated archive of previous year question papers.",
     href: "/papers",
-    cta: "Download Papers",
+    colSpan: "md:col-span-1",
   },
   {
-    icon: "notifications_active",
-    iconColor: "text-teal-600 dark:text-teal-400",
-    title: "Notifications",
-    desc: "Real-time alerts for application deadlines, admit cards, and results.",
+    icon: <BellRing className="w-6 h-6 text-teal-500" />,
+    bg: "bg-teal-500/10 dark:bg-teal-500/20",
+    border: "border-teal-500/20 dark:border-teal-500/30",
+    title: "Live Alerts",
+    desc: "Real-time alerts for application deadlines and results.",
     href: "/notifications",
-    cta: "View Updates",
+    colSpan: "md:col-span-1",
   },
   {
-    icon: "groups",
-    iconColor: "text-purple-600 dark:text-purple-400",
-    title: "Counselling",
-    desc: "Expert guidance through the complex seat allocation and admission process.",
+    icon: <Users className="w-6 h-6 text-purple-500" />,
+    bg: "bg-purple-500/10 dark:bg-purple-500/20",
+    border: "border-purple-500/20 dark:border-purple-500/30",
+    title: "Counselling Guidance",
+    desc: "Expert guidance through the complex seat allocation and admission process to secure your dream college.",
     href: "/counselling",
-    cta: "Get Guidance",
+    colSpan: "md:col-span-2",
   },
 ];
 
 export function FeaturesSection() {
   return (
-    <section className="py-xxl bg-slate-100/50 dark:bg-slate-900/50 px-margin-mobile md:px-margin-desktop border-y border-slate-200 dark:border-slate-800 transition-colors duration-300" aria-labelledby="features-heading">
-      <div className="max-w-container-max mx-auto">
-        <div className="text-center mb-xl max-w-2xl mx-auto">
-          <h2 id="features-heading" className="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-slate-900 dark:text-white mb-sm transition-colors duration-300">
-            Comprehensive Academic Toolkit
+    <section className="py-24 relative overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300">
+      {/* Background ambient light */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-slate-100/50 dark:bg-slate-900/30 rounded-full blur-3xl -z-10"></div>
+      
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">
+            Comprehensive <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Academic Toolkit</span>
           </h2>
-          <p className="text-body-md font-body-md text-slate-650 dark:text-slate-400 transition-colors duration-300">
+          <p className="text-lg text-slate-600 dark:text-slate-400">
             Everything you need to systematically prepare, execute, and succeed in your BTech lateral entry exams.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((feature) => (
-            <div
+            <Link
+              href={feature.href}
               key={feature.title}
-              className="group bg-white dark:bg-slate-800 rounded-2xl p-lg border border-slate-200 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 hover:shadow-md dark:hover:shadow-lg transition-all duration-300"
+              className={`group relative overflow-hidden rounded-3xl p-8 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 shadow-sm hover:shadow-xl ${feature.colSpan}`}
             >
-              <div className="w-12 h-12 bg-slate-100 dark:bg-slate-700 rounded-xl flex items-center justify-center mb-md group-hover:scale-110 transition-transform duration-300 transition-colors duration-300">
-                <span
-                  className={`material-symbols-outlined ${feature.iconColor}`}
-                  style={{ fontVariationSettings: "'FILL' 1" }}
-                >
-                  {feature.icon}
-                </span>
+              {/* Hover gradient backdrop */}
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 ${feature.bg} blur-xl`} />
+              
+              <div className="flex flex-col h-full justify-between z-10 relative">
+                <div>
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border ${feature.bg} ${feature.border} group-hover:scale-110 transition-transform duration-300 shadow-inner`}>
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:translate-x-1 transition-transform">
+                    {feature.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed group-hover:translate-x-1 transition-transform delay-75">
+                    {feature.desc}
+                  </p>
+                </div>
+                
+                <div className="mt-8 flex items-center text-sm font-bold text-slate-900 dark:text-white group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors">
+                  Explore Module
+                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
               </div>
-              <h3 className="text-headline-md font-headline-md text-slate-900 dark:text-white mb-xs transition-colors duration-300">
-                {feature.title}
-              </h3>
-              <p className="text-body-md font-body-md text-slate-600 dark:text-slate-400 mb-md transition-colors duration-300">
-                {feature.desc}
-              </p>
-              <Link
-                href={feature.href}
-                className="text-label-md font-label-md text-orange-600 dark:text-orange-500 hover:text-orange-700 dark:hover:text-orange-400 inline-flex items-center gap-1"
-                aria-label={feature.cta}
-              >
-                {feature.cta}
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </Link>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

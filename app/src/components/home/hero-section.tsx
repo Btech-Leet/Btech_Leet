@@ -1,67 +1,82 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center pt-32 pb-24 overflow-hidden px-margin-mobile md:px-margin-desktop">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          alt="Background"
-          className="w-full h-full object-cover"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWnV4GIl35WTVJUuNIeDkemK2H73o1Fguj5PRw0nzfYYG0wXGQfk31sq2s-oJj8cS8zvy7JHXgju7Aeat8rRj4bzWs2cAnvGL9IO_uLTyI6o0mY6H16vIA8vsfH_lwQKdSUNqsQ4uzyL76YPoDRehCRoLM8oYKssHkD_85vcePPTVk-mXYcHvJIATgz-0BP-Hays5u2dk6vxZy6YMNe3ZHC2DB4JCnGIB3JvzsEHLKP-MdwFWoGP8gOMYMLkRLESLqxPTd_ywZHy3o"
-        />
-        <div className="absolute inset-0 bg-white/70 dark:bg-slate-900/80 backdrop-blur-[2px] transition-colors duration-300"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-50 dark:from-slate-950 via-transparent to-transparent transition-colors duration-300"></div>
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-32 overflow-hidden px-4 md:px-8">
+      {/* Dynamic Background with Gradients */}
+      <div className="absolute inset-0 z-0 bg-slate-50 dark:bg-slate-950 overflow-hidden">
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        
+        {/* Ambient glowing orbs */}
+        <div className="absolute top-0 -left-1/4 w-[120%] sm:w-3/4 h-3/4 bg-orange-500/20 dark:bg-orange-600/15 rounded-full blur-[100px] sm:blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-blob"></div>
+        <div className="absolute top-1/4 -right-1/4 w-[120%] sm:w-2/3 h-2/3 bg-amber-400/20 dark:bg-amber-600/10 rounded-full blur-[100px] sm:blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-blob delay-[2000ms]"></div>
+        <div className="absolute -bottom-1/4 left-1/4 w-[120%] sm:w-3/4 h-3/4 bg-rose-500/15 dark:bg-rose-800/15 rounded-full blur-[100px] sm:blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-blob delay-[4000ms]"></div>
+        
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-50 dark:from-slate-950 via-transparent to-transparent"></div>
       </div>
-      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center gap-lg">
-        <div className="inline-flex items-center gap-2 bg-slate-100/85 dark:bg-slate-800/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-200 dark:border-slate-600 shadow-sm mb-4 transition-colors duration-300">
-          <span className="bg-orange-500 w-2 h-2 rounded-full animate-pulse"></span>
-          <span className="text-label-md font-label-md text-slate-700 dark:text-slate-200">New 2026 Exam Patterns Available</span>
+
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center gap-8">
+        {/* Modern Badge */}
+        <div className="inline-flex items-center gap-2 bg-white/60 dark:bg-slate-900/50 backdrop-blur-md px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-800 shadow-sm animate-fade-in-up">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+          </span>
+          <span className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">New 2026 Exam Patterns Available</span>
         </div>
-        <h1 className="text-[48px] leading-[1.1] md:text-[72px] md:leading-[1.1] font-bold text-slate-900 dark:text-white tracking-tight transition-colors duration-300">
-          Cracking <span className="text-orange-600 dark:text-orange-500">BTech LEET</span> Made Simple.
+
+        {/* Hero Title */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] leading-[1.1] font-black text-slate-900 dark:text-white tracking-tight animate-fade-in-up delay-100 opacity-0">
+          Cracking <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-500">BTech LEET</span> <br className="hidden sm:block" /> Made Simple.
         </h1>
-        <p className="text-body-lg font-body-lg md:text-[20px] md:leading-relaxed text-slate-600 dark:text-slate-300 max-w-2xl transition-colors duration-300">
-          Your definitive, academically rigorous platform for mastering the Lateral Entry Entrance Test. Access curated papers, authoritative college directories, and precision mock tests designed for high-achieving diploma engineers.
+
+        {/* Hero Subtitle */}
+        <p className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed animate-fade-in-up delay-200 opacity-0">
+          Your definitive, academically rigorous platform for mastering the Lateral Entry Entrance Test. Access curated papers, authoritative college directories, and precision mock tests.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-md pt-sm">
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in-up delay-300 opacity-0 w-full sm:w-auto">
           <Link
             href="/exams"
-            className="bg-orange-700 text-white px-8 py-4 rounded-full text-label-md font-label-md shadow-[0_4px_14px_0_rgba(154,52,18,0.39)] hover:shadow-[0_6px_20px_rgba(154,52,18,0.23)] hover:bg-orange-600 transition-all duration-200 flex items-center gap-2"
+            className="group relative flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-full overflow-hidden shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 active:scale-95"
           >
-            Start Preparation
-            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+            <div className="absolute inset-0 bg-white/20 dark:bg-black/10 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] skew-x-12" />
+            <span className="relative z-10 text-base">Start Preparation</span>
+            <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
           </Link>
+          
           <Link
             href="/colleges"
-            className="bg-slate-200 dark:bg-white text-slate-900 hover:bg-slate-300 dark:hover:bg-slate-100 px-8 py-4 rounded-full text-label-md font-label-md transition-all duration-200 shadow-sm flex items-center gap-2"
+            className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 font-bold rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             View Colleges
           </Link>
         </div>
-        <div className="flex items-center justify-center gap-4 mt-8 pt-8">
-          <div className="flex -space-x-3">
-            <img
-              alt="Student avatar"
-              className="w-10 h-10 rounded-full border-2 border-slate-200 dark:border-slate-900 object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVCwFMkYTqyTHGZtLTCsOqkY5YQJlkthPCudDJaZhQVCqNBKmpx7fXIkzMxnWW-2jAzx77Sv4y1HTz9Ocayx8hlUGKuxM8ac38AXhj0T6S5RixP8qeRWldbifEkJI1wZ5fYLD2Gwk1YC8v6BSMdi4MaqAyY9X-zCk9163PXw0G2Lc65PWRicMHHyNvA1VSSPAvEh1E22SnzgPsI1k5pGRWU4C2fDS8IV2ktnMk4yZdIyoOJOs9rgAwkoIHTgSsc8ThG5TyR5UFrNzV"
-            />
-            <img
-              alt="Student avatar"
-              className="w-10 h-10 rounded-full border-2 border-slate-200 dark:border-slate-900 object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvvF60C8mapzF2o0LYEaDtscC9hoHoawS2RgWOPQrLlqrA2Os9dpYaPh60OvsKuCgcJzTAGkP4X9fBNbuDXoFwAP5y3WIPDsvk6LdwAclVIM1c6MHJCcoclkeV0iQ2kay6xUVPKsKIGm_LW_LFCchQIs6zcRqQb9lrOgKXfmg_WA8D7S_L7x8XrBqdCuR6_ePqF7WxCBZ4ibY1u8m0eVQP-hzOYo-KOaN_CpxqKGbq8iUQVqRl7CmAIQRhtr3pdQN_sY1BNpDQC4Bh"
-            />
-            <img
-              alt="Student avatar"
-              className="w-10 h-10 rounded-full border-2 border-slate-200 dark:border-slate-900 object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdEj_keIjWAdoOIcgoseYxUTJEx_GWMPGSejH8l8M0Uizx8uuzKzFfMpFLJQ4rBrxtvPZrrvVg6nOiSqPS197qJGz8kFhzPKJgpRuzHPrX-VaVqiiAeizgMFiij7JYH8QCa2zcu7aSXSIc3ZluqCyLn3kFyTyNRFXhvdUV4Xb_dmYUyoAyszzThT-S0nsT1h1dAjn9JzpE1qpyxiBHQyueQzouTVr2YfqxabAlyasdc3HxWP9A4YRSGB8uE4K6EZxxvbgP8hQb_lZW"
-            />
+
+        {/* Social Proof */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 pt-8 border-t border-slate-200/50 dark:border-slate-800/50 animate-fade-in-up delay-[400ms] opacity-0">
+          <div className="flex -space-x-4">
+            <Image src="https://i.pravatar.cc/100?img=1" alt="Student" width={48} height={48} className="rounded-full border-2 border-white dark:border-slate-950 object-cover shadow-sm" />
+            <Image src="https://i.pravatar.cc/100?img=2" alt="Student" width={48} height={48} className="rounded-full border-2 border-white dark:border-slate-950 object-cover shadow-sm" />
+            <Image src="https://i.pravatar.cc/100?img=3" alt="Student" width={48} height={48} className="rounded-full border-2 border-white dark:border-slate-950 object-cover shadow-sm" />
+            <Image src="https://i.pravatar.cc/100?img=4" alt="Student" width={48} height={48} className="rounded-full border-2 border-white dark:border-slate-950 object-cover shadow-sm" />
           </div>
-          <p className="text-body-md font-body-md text-slate-650 dark:text-slate-300 transition-colors duration-300">
-            Trusted by <span className="font-bold text-slate-900 dark:text-white">10,000+</span> diploma engineers.
-          </p>
+          <div className="text-left flex flex-col items-center sm:items-start">
+            <div className="flex items-center gap-1 text-amber-500 mb-0.5">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+              ))}
+            </div>
+            <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+              Trusted by <span className="font-bold text-slate-900 dark:text-white">10,000+</span> diploma engineers.
+            </p>
+          </div>
         </div>
       </div>
     </section>

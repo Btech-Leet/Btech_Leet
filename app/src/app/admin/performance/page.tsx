@@ -91,22 +91,22 @@ export default function AdminPerformanceDashboard() {
   });
 
   return (
-    <div className="text-white space-y-6 animate-fadeIn">
+    <div className="text-slate-900 dark:text-white space-y-6 animate-fadeIn">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-900 pb-5">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <BarChart3 className="text-blue-500" size={24} />
             Student Performance Registry
           </h1>
-          <p className="text-gray-400 text-xs mt-1">Review mock test records, accuracy, study metrics, and academic statistics of all enrolled students.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">Review mock test records, accuracy, study metrics, and academic statistics of all enrolled students.</p>
         </div>
         <div className="flex items-center gap-3">
           <Button 
             variant="outline" 
             size="sm" 
             onClick={fetchPerformanceData}
-            className="border-gray-800 text-gray-300 hover:text-white"
+            className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:text-white"
           >
             <RefreshCw size={14} className="mr-1.5" />
             Reload Data
@@ -115,12 +115,12 @@ export default function AdminPerformanceDashboard() {
       </div>
 
       {/* Filter Controls Row */}
-      <Card className="bg-gray-900 border-gray-800">
+      <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800">
         <CardContent className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
           {/* Search field */}
           <div className="space-y-1.5">
-            <label htmlFor="search" className="text-[10px] font-bold text-gray-400 uppercase flex items-center gap-1">
+            <label htmlFor="search" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase flex items-center gap-1">
               <Search size={10} /> Search Students
             </label>
             <input
@@ -129,20 +129,20 @@ export default function AdminPerformanceDashboard() {
               placeholder="Search by name or email..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-10 px-3 rounded-lg border border-gray-800 bg-gray-950 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
+              className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
             />
           </div>
 
           {/* College Filter */}
           <div className="space-y-1.5">
-            <label htmlFor="college" className="text-[10px] font-bold text-gray-400 uppercase flex items-center gap-1">
+            <label htmlFor="college" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase flex items-center gap-1">
               <Building2 size={10} /> Filter by College
             </label>
             <select
               id="college"
               value={selectedCollege}
               onChange={(e) => setSelectedCollege(e.target.value)}
-              className="w-full h-10 px-3 rounded-lg border border-gray-800 bg-gray-950 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
+              className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
             >
               <option value="ALL">All Colleges</option>
               {filterOpts.colleges.map((c: string) => (
@@ -153,14 +153,14 @@ export default function AdminPerformanceDashboard() {
 
           {/* Branch Filter */}
           <div className="space-y-1.5">
-            <label htmlFor="branch" className="text-[10px] font-bold text-gray-400 uppercase flex items-center gap-1">
+            <label htmlFor="branch" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase flex items-center gap-1">
               <GraduationCap size={10} /> Filter by Branch
             </label>
             <select
               id="branch"
               value={selectedBranch}
               onChange={(e) => setSelectedBranch(e.target.value)}
-              className="w-full h-10 px-3 rounded-lg border border-gray-800 bg-gray-950 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
+              className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
             >
               <option value="ALL">All Branches</option>
               {filterOpts.branches.map((b: string) => (
@@ -171,14 +171,14 @@ export default function AdminPerformanceDashboard() {
 
           {/* State Filter */}
           <div className="space-y-1.5">
-            <label htmlFor="state" className="text-[10px] font-bold text-gray-400 uppercase flex items-center gap-1">
+            <label htmlFor="state" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase flex items-center gap-1">
               <MapPin size={10} /> Filter by State
             </label>
             <select
               id="state"
               value={selectedState}
               onChange={(e) => setSelectedState(e.target.value)}
-              className="w-full h-10 px-3 rounded-lg border border-gray-800 bg-gray-950 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
+              className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
             >
               <option value="ALL">All States</option>
               {filterOpts.states.map((s: string) => (
@@ -194,59 +194,59 @@ export default function AdminPerformanceDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Left Side: Students Table Registry */}
-        <Card className="bg-gray-900 border-gray-800 lg:col-span-2 overflow-hidden">
-          <CardHeader className="pb-3 border-b border-gray-800">
-            <CardTitle className="text-white text-base">Enrolled Students Evaluation</CardTitle>
-            <CardDescription className="text-gray-400 text-xs">Students list and mock exam performance metrics</CardDescription>
+        <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 lg:col-span-2 overflow-hidden">
+          <CardHeader className="pb-3 border-b border-slate-200 dark:border-slate-800">
+            <CardTitle className="text-slate-900 dark:text-white text-base">Enrolled Students Evaluation</CardTitle>
+            <CardDescription className="text-slate-500 dark:text-slate-400 text-xs">Students list and mock exam performance metrics</CardDescription>
           </CardHeader>
           <CardContent className="p-0 overflow-x-auto">
             {loading ? (
-              <div className="flex flex-col items-center justify-center py-20 text-gray-500">
+              <div className="flex flex-col items-center justify-center py-20 text-slate-500 dark:text-slate-500">
                 <RefreshCw className="animate-spin text-blue-500 mb-3" size={24} />
                 <p className="text-xs">Processing student statistics...</p>
               </div>
             ) : sortedStudents.length === 0 ? (
-              <p className="text-gray-500 text-sm text-center py-16">No student records match the selected filter conditions.</p>
+              <p className="text-slate-500 dark:text-slate-500 text-sm text-center py-16">No student records match the selected filter conditions.</p>
             ) : (
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
-                  <tr className="border-b border-gray-850 bg-gray-950 text-gray-400 select-none">
-                    <th className="p-4 font-semibold cursor-pointer hover:text-white" onClick={() => handleSort("name")}>
+                  <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-500 dark:text-slate-400 select-none">
+                    <th className="p-4 font-semibold cursor-pointer hover:text-slate-900 dark:text-white" onClick={() => handleSort("name")}>
                       Student Details <ArrowUpDown size={10} className="inline ml-1" />
                     </th>
-                    <th className="p-4 font-semibold text-center cursor-pointer hover:text-white" onClick={() => handleSort("totalTests")}>
+                    <th className="p-4 font-semibold text-center cursor-pointer hover:text-slate-900 dark:text-white" onClick={() => handleSort("totalTests")}>
                       Tests <ArrowUpDown size={10} className="inline ml-1" />
                     </th>
-                    <th className="p-4 font-semibold text-center cursor-pointer hover:text-white" onClick={() => handleSort("averagePercentage")}>
+                    <th className="p-4 font-semibold text-center cursor-pointer hover:text-slate-900 dark:text-white" onClick={() => handleSort("averagePercentage")}>
                       Avg Score % <ArrowUpDown size={10} className="inline ml-1" />
                     </th>
-                    <th className="p-4 font-semibold text-center cursor-pointer hover:text-white" onClick={() => handleSort("accuracy")}>
+                    <th className="p-4 font-semibold text-center cursor-pointer hover:text-slate-900 dark:text-white" onClick={() => handleSort("accuracy")}>
                       Accuracy <ArrowUpDown size={10} className="inline ml-1" />
                     </th>
-                    <th className="p-4 font-semibold text-center cursor-pointer hover:text-white" onClick={() => handleSort("totalStudyTime")}>
+                    <th className="p-4 font-semibold text-center cursor-pointer hover:text-slate-900 dark:text-white" onClick={() => handleSort("totalStudyTime")}>
                       Study Time <ArrowUpDown size={10} className="inline ml-1" />
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {sortedStudents.map((student) => (
-                    <tr key={student.id} className="border-b border-gray-850 hover:bg-gray-850/30">
+                    <tr key={student.id} className="border-b border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:bg-slate-800/30">
                       <td className="p-4">
-                        <p className="text-white font-bold">{student.name}</p>
-                        <p className="text-[10px] text-gray-500 truncate max-w-[150px]">{student.email}</p>
-                        <div className="flex flex-wrap gap-1 mt-1 text-[9px] font-semibold text-gray-400">
-                          <span className="bg-gray-950 px-1 py-0.5 rounded border border-gray-850 flex items-center gap-0.5">
+                        <p className="text-slate-900 dark:text-white font-bold">{student.name}</p>
+                        <p className="text-[10px] text-slate-500 dark:text-slate-500 truncate max-w-[150px]">{student.email}</p>
+                        <div className="flex flex-wrap gap-1 mt-1 text-[9px] font-semibold text-slate-500 dark:text-slate-400">
+                          <span className="bg-slate-50 dark:bg-slate-950 px-1 py-0.5 rounded border border-slate-200 dark:border-slate-800 flex items-center gap-0.5">
                             <Building2 size={8} /> {student.college}
                           </span>
-                          <span className="bg-gray-950 px-1 py-0.5 rounded border border-gray-850 flex items-center gap-0.5">
+                          <span className="bg-slate-50 dark:bg-slate-950 px-1 py-0.5 rounded border border-slate-200 dark:border-slate-800 flex items-center gap-0.5">
                             <GraduationCap size={8} /> {student.branch}
                           </span>
-                          <span className="bg-gray-950 px-1 py-0.5 rounded border border-gray-850 flex items-center gap-0.5">
+                          <span className="bg-slate-50 dark:bg-slate-950 px-1 py-0.5 rounded border border-slate-200 dark:border-slate-800 flex items-center gap-0.5">
                             <MapPin size={8} /> {student.state}
                           </span>
                         </div>
                       </td>
-                      <td className="p-4 text-center text-gray-200 font-semibold">{student.totalTests}</td>
+                      <td className="p-4 text-center text-slate-700 dark:text-slate-200 font-semibold">{student.totalTests}</td>
                       <td className="p-4 text-center text-blue-400 font-bold">{student.averagePercentage}%</td>
                       <td className="p-4 text-center text-emerald-400 font-semibold">{student.accuracy}%</td>
                       <td className="p-4 text-center text-purple-400">
@@ -254,7 +254,7 @@ export default function AdminPerformanceDashboard() {
                           <Clock size={10} />
                           <span>{Math.round((student.totalStudyTime / 60) * 10) / 10} hrs</span>
                         </div>
-                        <span className="text-[9px] text-gray-500 block">{student.totalQuestionsSolved} solved</span>
+                        <span className="text-[9px] text-slate-500 dark:text-slate-500 block">{student.totalQuestionsSolved} solved</span>
                       </td>
                     </tr>
                   ))}
@@ -268,19 +268,19 @@ export default function AdminPerformanceDashboard() {
         <div className="space-y-6">
           
           {/* Branch performance comparison chart */}
-          <Card className="bg-gray-900 border-gray-800">
-            <CardHeader className="pb-3 border-b border-gray-800">
-              <CardTitle className="text-white text-base">Branch ranking comparison</CardTitle>
-              <CardDescription className="text-gray-400 text-xs">Averages of branches compared globally</CardDescription>
+          <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800">
+            <CardHeader className="pb-3 border-b border-slate-200 dark:border-slate-800">
+              <CardTitle className="text-slate-900 dark:text-white text-base">Branch ranking comparison</CardTitle>
+              <CardDescription className="text-slate-500 dark:text-slate-400 text-xs">Averages of branches compared globally</CardDescription>
             </CardHeader>
             <CardContent className="pt-5">
               {loading ? (
-                <div className="h-[240px] flex items-center justify-center text-gray-500">
+                <div className="h-[240px] flex items-center justify-center text-slate-500 dark:text-slate-500">
                   <RefreshCw className="animate-spin text-purple-500 mr-2" size={16} />
                   Calculating branch distribution...
                 </div>
               ) : branchAggs.length === 0 ? (
-                <p className="text-gray-500 text-xs text-center py-20">No branch metrics logged yet.</p>
+                <p className="text-slate-500 dark:text-slate-500 text-xs text-center py-20">No branch metrics logged yet.</p>
               ) : (
                 <div className="space-y-5">
                   <div className="h-[180px]">
@@ -302,14 +302,14 @@ export default function AdminPerformanceDashboard() {
                   {/* Top branch badge list */}
                   <div className="space-y-2">
                     {branchAggs.map((br: any, idx: number) => (
-                      <div key={br.branch} className="flex justify-between items-center text-xs p-2.5 bg-gray-950 border border-gray-850 rounded-xl">
+                      <div key={br.branch} className="flex justify-between items-center text-xs p-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl">
                         <div className="flex items-center gap-2">
-                          <span className="font-bold text-gray-500">#{idx + 1}</span>
-                          <span className="text-white font-semibold">{br.branch}</span>
+                          <span className="font-bold text-slate-500 dark:text-slate-500">#{idx + 1}</span>
+                          <span className="text-slate-900 dark:text-white font-semibold">{br.branch}</span>
                         </div>
                         <div className="text-right">
                           <span className="font-bold text-blue-400 block">{br.averagePercentage}%</span>
-                          <span className="text-[9px] text-gray-500 block">{br.studentCount} students</span>
+                          <span className="text-[9px] text-slate-500 dark:text-slate-500 block">{br.studentCount} students</span>
                         </div>
                       </div>
                     ))}

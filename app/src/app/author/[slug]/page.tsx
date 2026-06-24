@@ -7,11 +7,12 @@ import { FadeIn } from "@/components/ui/fade-in";
 import Image from "next/image";
 import { Mail, MapPin, Award } from "lucide-react";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
   // Try to find author in DB, if not fallback for SEO
-  const author = await prisma.author.findUnique({ where: { slug: params.slug } });
+  const author = await prisma.author.findUnique({ where: { slug } });
   
-  if (!author && params.slug !== "nishant") return { title: "Author Not Found" };
+  if (!author && slug !== "nishant") return { title: "Author Not Found" };
 
   const name = author?.name || "Nishant";
   return {
@@ -20,11 +21,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function AuthorProfilePage({ params }: { params: { slug: string } }) {
-  let author = await prisma.author.findUnique({ where: { slug: params.slug } });
+export default async function AuthorProfilePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  let author = await prisma.author.findUnique({ where: { slug } });
 
   // Fallback for the founder if DB isn't seeded yet
-  if (!author && params.slug === "nishant") {
+  if (!author && slug === "nishant") {
     author = {
       id: "nishant-founder",
       name: "Nishant",

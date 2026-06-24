@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Send, Loader2, CheckCircle2, MessageSquare } from "lucide-react";
+import { Mail, Send, Loader2, CheckCircle2, MessageSquare, Phone, MapPin } from "lucide-react";
 import { useToast } from "@/components/ui/toaster";
 
 export default function ContactPage() {
@@ -76,184 +76,223 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-20">
-      {/* Hero Header */}
-      <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-b from-blue-50/50 to-transparent dark:from-blue-950/20 border-b border-gray-150 dark:border-gray-900">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold border border-blue-500/20">
-            <MessageSquare size={14} /> Get in Touch
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300 pb-20">
+      {/* Premium Header */}
+      <div className="relative py-16 sm:py-24 overflow-hidden bg-slate-900 dark:bg-slate-950">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] -z-10"></div>
+        <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] -z-10"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6">
+            <MessageSquare size={14} className="text-blue-400" />
+            <span className="text-sm font-bold text-white tracking-wide uppercase">Get in Touch</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-            Contact Our Team
+          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Our Team</span>
           </h1>
-          <p className="max-w-xl mx-auto text-sm sm:text-base text-gray-500 dark:text-gray-400">
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
             Have questions about exams, counselling, premium notes, or mock tests? Send us a message and we will respond as soon as possible.
           </p>
         </div>
-      </section>
+      </div>
 
       {/* Main Grid */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Info Column */}
-        <div className="md:col-span-1 space-y-6">
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 shadow-sm space-y-6">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-100 dark:border-gray-800 pb-2">
-              Contact Details
-            </h2>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          {/* Info Column */}
+          <div className="lg:col-span-1 space-y-6">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)]">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-4 mb-6">
+                Contact Details
+              </h2>
 
-            <div className="space-y-4">
-              <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center flex-shrink-0">
-                  <Mail size={18} />
+              <div className="space-y-8">
+                {/* Email */}
+                <div className="flex gap-4 items-start group">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Mail size={22} />
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Email Address</h4>
+                    <p className="text-base font-bold text-slate-900 dark:text-white">contact@btechleet.com</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Expect a response within 24 hours</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Email Address</h4>
-                  <p className="text-sm font-extrabold text-gray-850 dark:text-white mt-0.5">contact@btechleet.com</p>
-                  <p className="text-[10px] text-gray-500">Expect a response within 24 hours</p>
+
+                {/* Phone */}
+                <div className="flex gap-4 items-start group">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Phone size={22} />
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Support Line</h4>
+                    <p className="text-base font-bold text-slate-900 dark:text-white">+91 98765 43210</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Mon-Fri from 9am to 6pm</p>
+                  </div>
+                </div>
+
+                {/* Office */}
+                <div className="flex gap-4 items-start group">
+                  <div className="w-12 h-12 rounded-2xl bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <MapPin size={22} />
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Head Office</h4>
+                    <p className="text-base font-bold text-slate-900 dark:text-white">New Delhi, India</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">BTech LEET Education Center</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Form Column */}
-        <div className="md:col-span-2">
-          {isSubmitted ? (
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 sm:p-12 text-center shadow-sm space-y-4 max-w-xl mx-auto">
-              <CheckCircle2 className="mx-auto text-green-500 animate-bounce" size={56} />
-              <h3 className="font-extrabold text-gray-900 dark:text-white text-xl">Inquiry Submitted!</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 max-w-sm mx-auto">
-                Thank you, <strong>{name}</strong>. Your message was delivered successfully. Our representative will contact you at <strong>{email}</strong> shortly.
-              </p>
-              <button
-                onClick={() => {
-                  setIsSubmitted(false);
-                  setName("");
-                  setEmail("");
-                  setMobile("");
-                  setSubject("");
-                  setMessage("");
-                }}
-                className="mt-4 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-sm"
-              >
-                Send Another Message
-              </button>
+          {/* Form Column */}
+          <div className="lg:col-span-2">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] overflow-hidden relative">
+              {isSubmitted ? (
+                <div className="p-12 text-center flex flex-col items-center justify-center min-h-[500px]">
+                  <div className="w-24 h-24 bg-green-50 dark:bg-green-500/10 rounded-full flex items-center justify-center mb-6">
+                    <CheckCircle2 className="text-green-500 animate-bounce" size={48} />
+                  </div>
+                  <h3 className="font-black text-slate-900 dark:text-white text-3xl mb-4">Inquiry Submitted!</h3>
+                  <p className="text-lg text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-8">
+                    Thank you, <strong className="text-slate-900 dark:text-white">{name}</strong>. Your message was delivered successfully. Our representative will contact you at <strong className="text-slate-900 dark:text-white">{email}</strong> shortly.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setIsSubmitted(false);
+                      setName("");
+                      setEmail("");
+                      setMobile("");
+                      setSubject("");
+                      setMessage("");
+                    }}
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-slate-900 dark:bg-white hover:bg-blue-600 dark:hover:bg-blue-500 text-white dark:text-slate-900 hover:text-white font-bold text-sm transition-all shadow-md hover:shadow-lg active:scale-95"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="p-8 sm:p-10 space-y-6">
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                    Send a Message
+                  </h2>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm mb-8">
+                    Fill out the form below and we'll get back to you as soon as possible.
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {/* Name */}
+                    <div className="space-y-2">
+                      <label htmlFor="contact-name" className="text-[10px] font-black text-slate-400 uppercase tracking-wider block">
+                        Full Name <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        id="contact-name"
+                        type="text"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Enter your name"
+                        disabled={isLoading}
+                        className="w-full text-sm px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-2">
+                      <label htmlFor="contact-email" className="text-[10px] font-black text-slate-400 uppercase tracking-wider block">
+                        Email Address <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        id="contact-email"
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="name@example.com"
+                        disabled={isLoading}
+                        className="w-full text-sm px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {/* Mobile */}
+                    <div className="space-y-2">
+                      <label htmlFor="contact-mobile" className="text-[10px] font-black text-slate-400 uppercase tracking-wider block">
+                        Mobile Number (Optional)
+                      </label>
+                      <input
+                        id="contact-mobile"
+                        type="tel"
+                        value={mobile}
+                        onChange={(e) => setMobile(e.target.value)}
+                        placeholder="+91 XXXXX XXXXX"
+                        disabled={isLoading}
+                        className="w-full text-sm px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium"
+                      />
+                    </div>
+
+                    {/* Subject */}
+                    <div className="space-y-2">
+                      <label htmlFor="contact-subject" className="text-[10px] font-black text-slate-400 uppercase tracking-wider block">
+                        Subject <span className="text-rose-500">*</span>
+                      </label>
+                      <input
+                        id="contact-subject"
+                        type="text"
+                        required
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                        placeholder="How can we help you?"
+                        disabled={isLoading}
+                        className="w-full text-sm px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Message */}
+                  <div className="space-y-2">
+                    <label htmlFor="contact-message" className="text-[10px] font-black text-slate-400 uppercase tracking-wider block">
+                      Message <span className="text-rose-500">*</span>
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      required
+                      rows={5}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Describe your inquiry or question in detail..."
+                      disabled={isLoading}
+                      className="w-full text-sm px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium resize-none"
+                    />
+                  </div>
+
+                  {/* Submit */}
+                  <div className="pt-4">
+                    <button
+                      type="submit"
+                      disabled={isLoading}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-slate-900 dark:bg-white hover:bg-blue-600 dark:hover:bg-blue-500 text-white dark:text-slate-900 hover:text-white font-bold text-sm transition-all shadow-md hover:shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-900 disabled:hover:text-white disabled:dark:hover:bg-white disabled:dark:hover:text-slate-900"
+                    >
+                      {isLoading ? (
+                        <>
+                          <Loader2 size={18} className="animate-spin" /> Sending Message...
+                        </>
+                      ) : (
+                        <>
+                          <Send size={18} /> Send Message
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              )}
             </div>
-          ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8 shadow-sm space-y-5"
-            >
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-100 dark:border-gray-800 pb-2">
-                Send a Message
-              </h2>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Name */}
-                <div className="space-y-1">
-                  <label htmlFor="contact-name" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
-                    Full Name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter your name"
-                    disabled={isLoading}
-                    className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
-                  />
-                </div>
-
-                {/* Email */}
-                <div className="space-y-1">
-                  <label htmlFor="contact-email" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
-                    Email Address <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@example.com"
-                    disabled={isLoading}
-                    className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Mobile */}
-                <div className="space-y-1">
-                  <label htmlFor="contact-mobile" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
-                    Mobile Number (Optional)
-                  </label>
-                  <input
-                    id="contact-mobile"
-                    type="tel"
-                    value={mobile}
-                    onChange={(e) => setMobile(e.target.value)}
-                    placeholder="+91 XXXXX XXXXX"
-                    disabled={isLoading}
-                    className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
-                  />
-                </div>
-
-                {/* Subject */}
-                <div className="space-y-1">
-                  <label htmlFor="contact-subject" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
-                    Subject <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="contact-subject"
-                    type="text"
-                    required
-                    value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
-                    placeholder="How can we help you?"
-                    disabled={isLoading}
-                    className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
-                  />
-                </div>
-              </div>
-
-              {/* Message */}
-              <div className="space-y-1">
-                <label htmlFor="contact-message" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
-                  Message <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  id="contact-message"
-                  required
-                  rows={5}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Describe your inquiry or question in detail..."
-                  disabled={isLoading}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors resize-none"
-                />
-              </div>
-
-              {/* Submit */}
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors shadow-sm disabled:opacity-50"
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 size={16} className="animate-spin" /> Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send size={16} /> Send Message
-                  </>
-                )}
-              </button>
-            </form>
-          )}
+          </div>
         </div>
       </section>
     </div>

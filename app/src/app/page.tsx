@@ -13,6 +13,8 @@ import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { FAQSection } from "@/components/ui/faq-section";
 import { SubscribeSection } from "@/components/home/subscribe-section";
 
+import { PromoBanner } from "@/components/ui/promo-banner";
+
 export const dynamic = "force-dynamic";
 
 import { mergeSeoMetadata } from "@/lib/seo";
@@ -30,6 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-orange-500/30 selection:text-white transition-colors duration-300">
+      <PromoBanner />
       <Navbar />
       <main className="flex-1">
         <HeroSection />

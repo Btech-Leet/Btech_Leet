@@ -68,9 +68,8 @@ export async function mergeSeoMetadata(
   if (override.seoTitle) {
     metadata.title = override.seoTitle;
   }
-  if (override.metaDescription) {
-    metadata.description = override.metaDescription;
-  }
+  // Always ensure description is set (resolvedDescription already incorporates override + fallback)
+  metadata.description = resolvedDescription;
   if (override.keywords && override.keywords.length > 0) {
     metadata.keywords = override.keywords;
   }

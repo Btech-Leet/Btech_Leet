@@ -329,7 +329,7 @@ export default function AdminEmailMarketingPage() {
   };
 
   const campaignStatusColors = {
-    DRAFT: "bg-gray-100 text-gray-800 dark:bg-gray-950/30 dark:text-gray-400 border-gray-200 dark:border-gray-900/20",
+    DRAFT: "bg-gray-100 text-gray-800 dark:bg-slate-50 dark:bg-slate-950/30 dark:text-slate-500 dark:text-slate-400 border-gray-200 dark:border-gray-900/20",
     SENDING: "bg-blue-100 text-blue-800 dark:bg-blue-950/30 dark:text-blue-400 border-blue-200 dark:border-blue-900/20 animate-pulse",
     SENT: "bg-green-100 text-green-800 dark:bg-green-950/30 dark:text-green-400 border-green-200 dark:border-green-900/20",
     FAILED: "bg-red-100 text-red-800 dark:bg-red-950/30 dark:text-red-400 border-red-200 dark:border-red-900/20",
@@ -338,25 +338,25 @@ export default function AdminEmailMarketingPage() {
   return (
     <div className="space-y-6 p-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 dark:border-gray-800 pb-5">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 dark:border-slate-200 dark:border-slate-800 pb-5">
         <div className="space-y-1">
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-900 dark:text-white flex items-center gap-2">
             <Mail className="text-blue-500" size={24} />
             Email Marketing
           </h1>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">
             Build responsive HTML newsletters, configure custom templates, and fire bulk email campaigns to subscribers.
           </p>
         </div>
 
         {/* Tab switchers */}
-        <div className="flex rounded-xl bg-gray-100 dark:bg-gray-900 p-1 border border-gray-200 dark:border-gray-850">
+        <div className="flex rounded-xl bg-gray-100 dark:bg-white dark:bg-slate-900 p-1 border border-gray-200 dark:border-slate-200 dark:border-slate-800">
           <button
             onClick={() => setActiveTab("campaigns")}
             className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
               activeTab === "campaigns"
-                ? "bg-white dark:bg-gray-850 text-gray-950 dark:text-white shadow-sm"
-                : "text-gray-500 hover:text-gray-900 dark:hover:text-gray-300"
+                ? "bg-white dark:bg-slate-50 dark:bg-slate-800 text-gray-950 dark:text-slate-900 dark:text-white shadow-sm"
+                : "text-slate-500 dark:text-slate-500 hover:text-gray-900 dark:hover:text-slate-700 dark:hover:text-slate-300"
             }`}
           >
             Campaigns
@@ -365,8 +365,8 @@ export default function AdminEmailMarketingPage() {
             onClick={() => setActiveTab("templates")}
             className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
               activeTab === "templates"
-                ? "bg-white dark:bg-gray-850 text-gray-950 dark:text-white shadow-sm"
-                : "text-gray-500 hover:text-gray-900 dark:hover:text-gray-300"
+                ? "bg-white dark:bg-slate-50 dark:bg-slate-800 text-gray-950 dark:text-slate-900 dark:text-white shadow-sm"
+                : "text-slate-500 dark:text-slate-500 hover:text-gray-900 dark:hover:text-slate-700 dark:hover:text-slate-300"
             }`}
           >
             HTML Templates
@@ -382,19 +382,19 @@ export default function AdminEmailMarketingPage() {
         /* TEMPLATES TAB CONTENT */
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           {/* Create/Edit Form */}
-          <div className="lg:col-span-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm space-y-4">
-            <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-850 pb-2">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+          <div className="lg:col-span-1 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
+            <div className="flex justify-between items-center border-b border-gray-100 dark:border-slate-200 dark:border-slate-800 pb-2">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-slate-900 dark:text-white">
                 {editingTemplateId ? "Edit Template" : "New Template"}
               </h2>
 
               {/* View/Preview switch */}
-              <div className="flex rounded-lg bg-gray-50 dark:bg-gray-950 p-0.5 border border-gray-150 dark:border-gray-850">
+              <div className="flex rounded-lg bg-gray-50 dark:bg-slate-50 dark:bg-slate-950 p-0.5 border border-gray-150 dark:border-slate-200 dark:border-slate-800">
                 <button
                   type="button"
                   onClick={() => setPreviewTemplateMode("edit")}
                   className={`px-2.5 py-1 rounded text-[10px] font-bold ${
-                    previewTemplateMode === "edit" ? "bg-white dark:bg-gray-900 text-blue-600 shadow-sm" : "text-gray-500"
+                    previewTemplateMode === "edit" ? "bg-white dark:bg-white dark:bg-slate-900 text-blue-600 shadow-sm" : "text-slate-500 dark:text-slate-500"
                   }`}
                 >
                   Code
@@ -403,7 +403,7 @@ export default function AdminEmailMarketingPage() {
                   type="button"
                   onClick={() => setPreviewTemplateMode("preview")}
                   className={`px-2.5 py-1 rounded text-[10px] font-bold ${
-                    previewTemplateMode === "preview" ? "bg-white dark:bg-gray-900 text-blue-600 shadow-sm" : "text-gray-500"
+                    previewTemplateMode === "preview" ? "bg-white dark:bg-white dark:bg-slate-900 text-blue-600 shadow-sm" : "text-slate-500 dark:text-slate-500"
                   }`}
                 >
                   Preview
@@ -415,7 +415,7 @@ export default function AdminEmailMarketingPage() {
               {previewTemplateMode === "edit" ? (
                 <>
                   <div className="space-y-1">
-                    <label htmlFor="temp-name" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                    <label htmlFor="temp-name" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       Template Name
                     </label>
                     <input
@@ -426,12 +426,12 @@ export default function AdminEmailMarketingPage() {
                       onChange={(e) => setTemplateName(e.target.value)}
                       placeholder="June Newsletter"
                       disabled={isSaving}
-                      className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                      className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label htmlFor="temp-subject" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                    <label htmlFor="temp-subject" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       Email Subject
                     </label>
                     <input
@@ -442,12 +442,12 @@ export default function AdminEmailMarketingPage() {
                       onChange={(e) => setTemplateSubject(e.target.value)}
                       placeholder="Important Updates for LEET Aspirants!"
                       disabled={isSaving}
-                      className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                      className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label htmlFor="temp-content" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                    <label htmlFor="temp-content" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       HTML Content
                     </label>
                     <textarea
@@ -458,17 +458,17 @@ export default function AdminEmailMarketingPage() {
                       onChange={(e) => setTemplateContent(e.target.value)}
                       placeholder="<div style='padding:20px;'><h1>Hello!</h1></div>"
                       disabled={isSaving}
-                      className="w-full text-xs font-mono px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                      className="w-full text-xs font-mono px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                     />
                   </div>
                 </>
               ) : (
                 <div className="space-y-3">
-                  <div className="text-xs border border-gray-100 dark:border-gray-850 p-3 rounded-xl bg-gray-50 dark:bg-gray-950/20">
-                    <p className="text-gray-400 font-semibold uppercase">Subject:</p>
-                    <p className="font-bold text-gray-800 dark:text-white text-sm mt-0.5">{templateSubject || "(No Subject)"}</p>
+                  <div className="text-xs border border-gray-100 dark:border-slate-200 dark:border-slate-800 p-3 rounded-xl bg-gray-50 dark:bg-slate-50 dark:bg-slate-950/20">
+                    <p className="text-slate-500 dark:text-slate-400 font-semibold uppercase">Subject:</p>
+                    <p className="font-bold text-gray-800 dark:text-slate-900 dark:text-white text-sm mt-0.5">{templateSubject || "(No Subject)"}</p>
                   </div>
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden h-[300px] bg-white">
+                  <div className="border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden h-[300px] bg-white">
                     <iframe
                       srcDoc={templateContent || "<p style='padding:20px;text-align:center;color:#888;'>No preview content</p>"}
                       title="HTML Template Preview"
@@ -497,7 +497,7 @@ export default function AdminEmailMarketingPage() {
                       setTemplateContent("");
                       setPreviewTemplateMode("edit");
                     }}
-                    className="px-4 py-2.5 rounded-xl border border-gray-205 dark:border-gray-800 text-gray-500 hover:bg-gray-55 dark:hover:bg-gray-800 transition-colors"
+                    className="px-4 py-2.5 rounded-xl border border-gray-205 dark:border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-500 hover:bg-gray-55 dark:hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                   >
                     <X size={16} />
                   </button>
@@ -508,36 +508,36 @@ export default function AdminEmailMarketingPage() {
 
           {/* Templates List */}
           <div className="lg:col-span-2 space-y-4">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-55 dark:border-gray-800 pb-2">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-slate-900 dark:text-white border-b border-gray-55 dark:border-slate-200 dark:border-slate-800 pb-2">
               Saved Templates ({templates.length})
             </h2>
 
             {templates.length === 0 ? (
-              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-16 text-center text-gray-400 shadow-sm">
-                <FileText className="mx-auto text-gray-300 dark:text-gray-700 mb-4" size={48} />
-                <h3 className="font-bold text-gray-800 dark:text-gray-200">No Templates</h3>
-                <p className="text-xs text-gray-500 mt-1">Start by creating your first template on the left.</p>
+              <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-16 text-center text-slate-500 dark:text-slate-400 shadow-sm">
+                <FileText className="mx-auto text-slate-600 dark:text-slate-300 dark:text-gray-700 mb-4" size={48} />
+                <h3 className="font-bold text-gray-800 dark:text-slate-700 dark:text-slate-200">No Templates</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">Start by creating your first template on the left.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {templates.map((t) => (
                   <div
                     key={t.id}
-                    className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm space-y-4 flex flex-col justify-between"
+                    className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4 flex flex-col justify-between"
                   >
                     <div className="space-y-1.5">
-                      <h3 className="font-extrabold text-gray-900 dark:text-white text-base">
+                      <h3 className="font-extrabold text-gray-900 dark:text-slate-900 dark:text-white text-base">
                         {t.name}
                       </h3>
-                      <p className="text-xs text-gray-550 dark:text-gray-400 line-clamp-1">
-                        Subject: <strong className="text-gray-800 dark:text-gray-200">{t.subject}</strong>
+                      <p className="text-xs text-gray-550 dark:text-slate-500 dark:text-slate-400 line-clamp-1">
+                        Subject: <strong className="text-gray-800 dark:text-slate-700 dark:text-slate-200">{t.subject}</strong>
                       </p>
-                      <p className="text-[10px] text-gray-400">
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">
                         Created: {new Date(t.createdAt).toLocaleDateString("en-IN")}
                       </p>
                     </div>
 
-                    <div className="flex gap-2 justify-end pt-2 border-t border-gray-50 dark:border-gray-850/40">
+                    <div className="flex gap-2 justify-end pt-2 border-t border-gray-50 dark:border-slate-200 dark:border-slate-800/40">
                       <button
                         onClick={() => handleStartEditTemplate(t)}
                         className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 transition-colors"
@@ -561,18 +561,18 @@ export default function AdminEmailMarketingPage() {
         /* CAMPAIGNS TAB CONTENT */
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           {/* Create/Edit Campaign Form */}
-          <div className="lg:col-span-1 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm space-y-4">
-            <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-850 pb-2">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+          <div className="lg:col-span-1 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
+            <div className="flex justify-between items-center border-b border-gray-100 dark:border-slate-200 dark:border-slate-800 pb-2">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-slate-900 dark:text-white">
                 {editingCampaignId ? "Edit Campaign" : "New Campaign"}
               </h2>
 
-              <div className="flex rounded-lg bg-gray-50 dark:bg-gray-950 p-0.5 border border-gray-150 dark:border-gray-850">
+              <div className="flex rounded-lg bg-gray-50 dark:bg-slate-50 dark:bg-slate-950 p-0.5 border border-gray-150 dark:border-slate-200 dark:border-slate-800">
                 <button
                   type="button"
                   onClick={() => setPreviewCampaignMode("edit")}
                   className={`px-2.5 py-1 rounded text-[10px] font-bold ${
-                    previewCampaignMode === "edit" ? "bg-white dark:bg-gray-900 text-blue-600 shadow-sm" : "text-gray-500"
+                    previewCampaignMode === "edit" ? "bg-white dark:bg-white dark:bg-slate-900 text-blue-600 shadow-sm" : "text-slate-500 dark:text-slate-500"
                   }`}
                 >
                   Edit
@@ -581,7 +581,7 @@ export default function AdminEmailMarketingPage() {
                   type="button"
                   onClick={() => setPreviewCampaignMode("preview")}
                   className={`px-2.5 py-1 rounded text-[10px] font-bold ${
-                    previewCampaignMode === "preview" ? "bg-white dark:bg-gray-900 text-blue-600 shadow-sm" : "text-gray-500"
+                    previewCampaignMode === "preview" ? "bg-white dark:bg-white dark:bg-slate-900 text-blue-600 shadow-sm" : "text-slate-500 dark:text-slate-500"
                   }`}
                 >
                   Preview
@@ -594,14 +594,14 @@ export default function AdminEmailMarketingPage() {
                 <>
                   {/* Select Template dropdown */}
                   <div className="space-y-1">
-                    <label htmlFor="select-template" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                    <label htmlFor="select-template" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       Use Template
                     </label>
                     <select
                       id="select-template"
                       value={campaignTemplateId}
                       onChange={(e) => handleSelectCampaignTemplate(e.target.value)}
-                      className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                      className="w-full text-xs px-3 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                     >
                       <option value="">-- Choose Template (Optional) --</option>
                       {templates.map((temp) => (
@@ -613,7 +613,7 @@ export default function AdminEmailMarketingPage() {
                   </div>
 
                   <div className="space-y-1">
-                    <label htmlFor="camp-subject" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                    <label htmlFor="camp-subject" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       Campaign Subject
                     </label>
                     <input
@@ -624,12 +624,12 @@ export default function AdminEmailMarketingPage() {
                       onChange={(e) => setCampaignSubject(e.target.value)}
                       placeholder="Important Updates for LEET"
                       disabled={isSaving}
-                      className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                      className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label htmlFor="camp-content" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                    <label htmlFor="camp-content" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       Email Content (HTML)
                     </label>
                     <textarea
@@ -640,19 +640,19 @@ export default function AdminEmailMarketingPage() {
                       onChange={(e) => setCampaignContent(e.target.value)}
                       placeholder="HTML Content of the newsletter..."
                       disabled={isSaving}
-                      className="w-full text-xs font-mono px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                      className="w-full text-xs font-mono px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label htmlFor="camp-recipient-type" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                    <label htmlFor="camp-recipient-type" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                       Recipient Type
                     </label>
                     <select
                       id="camp-recipient-type"
                       value={recipientType}
                       onChange={(e) => setRecipientType(e.target.value as any)}
-                      className="w-full text-sm px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                      className="w-full text-sm px-3 py-2.5 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
                     >
                       <option value="ALL">All Users & Subscribers</option>
                       <option value="MANUAL">Manual List (Comma separated)</option>
@@ -662,7 +662,7 @@ export default function AdminEmailMarketingPage() {
 
                   {recipientType === "MANUAL" && (
                     <div className="space-y-1">
-                      <label htmlFor="camp-manual-emails" className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                      <label htmlFor="camp-manual-emails" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                         Emails (Comma separated)
                       </label>
                       <textarea
@@ -671,14 +671,14 @@ export default function AdminEmailMarketingPage() {
                         value={manualEmails}
                         onChange={(e) => setManualEmails(e.target.value)}
                         placeholder="admin@leet.com, test@example.com"
-                        className="w-full text-xs px-3.5 py-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="w-full text-xs px-3.5 py-2 rounded-xl border border-gray-200 dark:border-slate-200 dark:border-slate-800 bg-transparent text-gray-900 dark:text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                   )}
 
                   {recipientType === "CSV" && (
-                    <div className="space-y-2 border border-dashed border-gray-200 dark:border-gray-800 rounded-xl p-4 bg-gray-50/20 text-center">
-                      <Upload className="mx-auto text-gray-400" size={24} />
+                    <div className="space-y-2 border border-dashed border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-gray-50/20 text-center">
+                      <Upload className="mx-auto text-slate-500 dark:text-slate-400" size={24} />
                       <input
                         type="file"
                         ref={csvInputRef}
@@ -690,7 +690,7 @@ export default function AdminEmailMarketingPage() {
                         type="button"
                         disabled={isUploading}
                         onClick={() => csvInputRef.current?.click()}
-                        className="mt-1 inline-flex items-center gap-1 px-3 py-1.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg text-xs font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-850"
+                        className="mt-1 inline-flex items-center gap-1 px-3 py-1.5 bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-lg text-xs font-bold text-gray-700 dark:text-slate-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-50 dark:bg-slate-800"
                       >
                         {isUploading ? <Loader2 size={12} className="animate-spin text-blue-500" /> : <Upload size={12} />}
                         Choose CSV File
@@ -706,11 +706,11 @@ export default function AdminEmailMarketingPage() {
                 </>
               ) : (
                 <div className="space-y-3">
-                  <div className="text-xs border border-gray-100 dark:border-gray-850 p-3 rounded-xl bg-gray-50 dark:bg-gray-950/20">
-                    <p className="text-gray-400 font-semibold uppercase">Subject:</p>
-                    <p className="font-bold text-gray-850 dark:text-white text-sm mt-0.5">{campaignSubject || "(No Subject)"}</p>
+                  <div className="text-xs border border-gray-100 dark:border-slate-200 dark:border-slate-800 p-3 rounded-xl bg-gray-50 dark:bg-slate-50 dark:bg-slate-950/20">
+                    <p className="text-slate-500 dark:text-slate-400 font-semibold uppercase">Subject:</p>
+                    <p className="font-bold text-gray-850 dark:text-slate-900 dark:text-white text-sm mt-0.5">{campaignSubject || "(No Subject)"}</p>
                   </div>
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden h-[300px] bg-white">
+                  <div className="border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden h-[300px] bg-white">
                     <iframe
                       srcDoc={campaignContent || "<p style='padding:20px;text-align:center;color:#888;'>No content</p>"}
                       title="HTML Campaign Preview"
@@ -733,7 +733,7 @@ export default function AdminEmailMarketingPage() {
                   <button
                     type="button"
                     onClick={handleResetCampaignForm}
-                    className="px-4 py-2.5 rounded-xl border border-gray-205 dark:border-gray-800 text-gray-500 hover:bg-gray-55 dark:hover:bg-gray-800 transition-colors"
+                    className="px-4 py-2.5 rounded-xl border border-gray-205 dark:border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-500 hover:bg-gray-55 dark:hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                   >
                     <X size={16} />
                   </button>
@@ -744,27 +744,27 @@ export default function AdminEmailMarketingPage() {
 
           {/* Campaigns list */}
           <div className="lg:col-span-2 space-y-4">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-55 dark:border-gray-800 pb-2">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-slate-900 dark:text-white border-b border-gray-55 dark:border-slate-200 dark:border-slate-800 pb-2">
               Campaigns Logs & Drafts ({campaigns.length})
             </h2>
 
             {campaigns.length === 0 ? (
-              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-16 text-center text-gray-400 shadow-sm">
-                <Mail className="mx-auto text-gray-300 dark:text-gray-700 mb-4" size={48} />
-                <h3 className="font-bold text-gray-800 dark:text-gray-200">No Campaigns</h3>
-                <p className="text-xs text-gray-500 mt-1">Start by creating your first campaign draft on the left.</p>
+              <div className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-16 text-center text-slate-500 dark:text-slate-400 shadow-sm">
+                <Mail className="mx-auto text-slate-600 dark:text-slate-300 dark:text-gray-700 mb-4" size={48} />
+                <h3 className="font-bold text-gray-800 dark:text-slate-700 dark:text-slate-200">No Campaigns</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">Start by creating your first campaign draft on the left.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-4">
                 {campaigns.map((c) => (
                   <div
                     key={c.id}
-                    className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 shadow-sm space-y-3 flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:shadow-md transition-shadow duration-300"
+                    className="bg-white dark:bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3 flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:shadow-md transition-shadow duration-300"
                   >
                     {/* Campaign Info */}
                     <div className="space-y-2 flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-sm font-extrabold text-gray-900 dark:text-white">
+                        <span className="text-sm font-extrabold text-gray-900 dark:text-slate-900 dark:text-white">
                           {c.subject}
                         </span>
                         <span className={`text-[10px] font-bold px-2 py-0.5 border rounded-full ${campaignStatusColors[c.status]}`}>
@@ -772,14 +772,14 @@ export default function AdminEmailMarketingPage() {
                         </span>
                       </div>
 
-                      <div className="text-xs space-y-1 text-gray-500 dark:text-gray-400">
+                      <div className="text-xs space-y-1 text-slate-500 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400">
                         <p>
-                          Target: <strong className="text-gray-700 dark:text-gray-300">{c.recipientType}</strong>
+                          Target: <strong className="text-gray-700 dark:text-slate-600 dark:text-slate-300">{c.recipientType}</strong>
                         </p>
                         
                         {c.status !== "DRAFT" && (
                           <p>
-                            Recipients: <strong className="text-gray-700 dark:text-gray-300">{c.recipientCount}</strong> | Sent: <strong className="text-green-600 dark:text-green-400">{c.sentCount}</strong> | Failed: <strong className="text-red-500">{c.failedCount}</strong>
+                            Recipients: <strong className="text-gray-700 dark:text-slate-600 dark:text-slate-300">{c.recipientCount}</strong> | Sent: <strong className="text-green-600 dark:text-green-400">{c.sentCount}</strong> | Failed: <strong className="text-red-500">{c.failedCount}</strong>
                           </p>
                         )}
 
@@ -794,7 +794,7 @@ export default function AdminEmailMarketingPage() {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex sm:flex-col items-center sm:items-end justify-end gap-2 border-t sm:border-t-0 border-gray-50 dark:border-gray-850/40 pt-3 sm:pt-0">
+                    <div className="flex sm:flex-col items-center sm:items-end justify-end gap-2 border-t sm:border-t-0 border-gray-50 dark:border-slate-200 dark:border-slate-800/40 pt-3 sm:pt-0">
                       {c.status === "DRAFT" && (
                         <>
                           <button

@@ -5,14 +5,15 @@ import { prisma } from "@/lib/prisma";
 export const dynamic = "force-dynamic";
 
 interface CmsPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: CmsPageProps): Promise<Metadata> {
+  const { slug } = await params;
   const page = await prisma.cmsPage.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   });
 
   if (!page) {
@@ -29,8 +30,9 @@ export async function generateMetadata({ params }: CmsPageProps): Promise<Metada
 }
 
 export default async function CmsPageDetail({ params }: CmsPageProps) {
+  const { slug } = await params;
   const page = await prisma.cmsPage.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   });
 
   if (!page || page.status !== "PUBLISHED") {
@@ -38,7 +40,7 @@ export default async function CmsPageDetail({ params }: CmsPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-24">
+    <div className="pb-24">
       {/* Featured Image Banner (If available) */}
       {page.featuredImage && (
         <div className="relative w-full h-[300px] md:h-[400px] overflow-hidden bg-gray-150 dark:bg-gray-900 border-b border-gray-100 dark:border-gray-900">
