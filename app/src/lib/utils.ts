@@ -50,7 +50,7 @@ export function apiResponse<T>(
 }
 
 export function apiError(message: string, status = 400) {
-  return Response.json({ success: false, message, data: null }, { status });
+  return Response.json({ success: false, message, error: message, data: null }, { status });
 }
 
 export function getPaginationParams(searchParams: URLSearchParams) {

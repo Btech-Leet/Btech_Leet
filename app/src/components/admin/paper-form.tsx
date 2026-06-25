@@ -45,8 +45,16 @@ export function PaperForm({ exams }: { exams: { id: string; name: string }[] }) 
         body: formData, // form-data handles content type automatically
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to upload paper");
+      let data: any = {};
+      try {
+        data = await res.json();
+      } catch (jsonErr) {
+        throw new Error(`Server error (${res.status}). Please check server logs.`);
+      }
+
+      if (!res.ok) {
+        throw new Error(data.message || data.error || `Failed to upload paper (Status ${res.status})`);
+      }
 
       router.push("/admin/papers");
       router.refresh();

@@ -32,36 +32,41 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const auth = await requireAdminOrEditor(req);
-  if (isAuthResponse(auth)) return auth;
+  try {
+    const auth = await requireAdminOrEditor(req);
+    if (isAuthResponse(auth)) return auth;
 
-  const formData = await req.formData();
-  const file = formData.get("file") as File;
-  const metadata = JSON.parse(formData.get("metadata") as string || "{}");
+    const formData = await req.formData();
+    const file = formData.get("file") as File;
+    const metadata = JSON.parse(formData.get("metadata") as string || "{}");
 
-  const parsed = paperSchema.safeParse(metadata);
-  if (!parsed.success) return apiError(parsed.error.issues[0].message, 422);
+    const parsed = paperSchema.safeParse(metadata);
+    if (!parsed.success) return apiError(parsed.error.issues[0].message, 422);
 
-  if (!file) return apiError("File is required", 400);
+    if (!file) return apiError("File is required", 400);
 
-  const fileValidation = validateFile({ size: file.size, type: file.type }, "document");
-  if (!fileValidation.valid) return apiError(fileValidation.error!, 400);
+    const fileValidation = validateFile({ size: file.size, type: file.type }, "document");
+    if (!fileValidation.valid) return apiError(fileValidation.error!, 400);
 
-  const buffer = Buffer.from(await file.arrayBuffer());
-  const finalBuffer = await processAndCompressFile(buffer, file.type);
-  
-  const path = generateStoragePath("papers", file.name);
-  const { url } = await uploadToStorage(finalBuffer, path, file.type);
+    const buffer = Buffer.from(await file.arrayBuffer());
+    const finalBuffer = await processAndCompressFile(buffer, file.type);
+    
+    const path = generateStoragePath("papers", file.name);
+    const { url } = await uploadToStorage(finalBuffer, path, file.type);
 
-  const paper = await prisma.paper.create({
-    data: {
-      ...parsed.data,
-      fileUrl: url,
-      fileKey: path,
-      fileSize: finalBuffer.length,
-      mimeType: file.type,
-    },
-  });
+    const paper = await prisma.paper.create({
+      data: {
+        ...parsed.data,
+        fileUrl: url,
+        fileKey: path,
+        fileSize: finalBuffer.length,
+        mimeType: file.type,
+      },
+    });
 
-  return apiResponse(paper, "Paper uploaded", 201);
+    return apiResponse(paper, "Paper uploaded", 201);
+  } catch (err: any) {
+    console.error("Paper upload error:", err);
+    return apiError(err.message || "Failed to upload paper", 500);
+  }
 }

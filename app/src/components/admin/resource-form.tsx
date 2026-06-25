@@ -49,8 +49,16 @@ export function ResourceForm({ branches }: { branches: { id: string; name: strin
         body: formData,
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to upload resource");
+      let data: any = {};
+      try {
+        data = await res.json();
+      } catch (jsonErr) {
+        throw new Error(`Server error (${res.status}). Please check server logs.`);
+      }
+
+      if (!res.ok) {
+        throw new Error(data.message || data.error || `Failed to upload resource (Status ${res.status})`);
+      }
 
       router.push("/admin/resources");
       router.refresh();
