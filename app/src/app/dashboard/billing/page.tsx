@@ -10,6 +10,7 @@ import {
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CouponInput from "@/components/ui/coupon-input";
+import { useToast } from "@/components/ui/toaster";
 
 interface Plan {
   id: string;
@@ -48,6 +49,7 @@ declare global {
 }
 
 export default function BillingDashboard() {
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<"plans" | "history">("plans");
   const [plans, setPlans] = useState<Plan[]>([]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -107,13 +109,13 @@ export default function BillingDashboard() {
       });
       const json = await res.json();
       if (!res.ok || !json.success) {
-        alert(json.message || "Failed to create order");
+        toast({ title: "Payment Error", description: json.message || "Failed to create order", variant: "destructive" });
         return;
       }
 
       // Check if plan was unlocked for free via coupon
       if (json.data.free) {
-        alert("🎉 Premium plan activated successfully for free!");
+        toast({ title: "Success", description: "🎉 Premium plan activated successfully for free!", variant: "success" });
         fetchData();
         return;
       }
@@ -140,10 +142,10 @@ export default function BillingDashboard() {
           });
           const verifyJson = await verifyRes.json();
           if (verifyJson.success) {
-            alert("🎉 Payment successful! Premium activated.");
+            toast({ title: "Payment Successful", description: "🎉 Premium activated successfully.", variant: "success" });
             fetchData();
           } else {
-            alert("Payment verification failed. Please contact support.");
+            toast({ title: "Verification Failed", description: "Payment verification failed. Please contact support.", variant: "destructive" });
           }
         },
         theme: { color: "#6366f1" },
@@ -154,11 +156,11 @@ export default function BillingDashboard() {
         const rzp = new window.Razorpay(options);
         rzp.open();
       } else {
-        alert("Payment gateway is loading. Please try again.");
+        toast({ title: "Please Wait", description: "Payment gateway is loading. Please try again.", variant: "default" });
       }
     } catch (err) {
       console.error("Purchase error:", err);
-      alert("Failed to initiate payment");
+      toast({ title: "Error", description: "Failed to initiate payment", variant: "destructive" });
     } finally {
       setPaying(null);
     }
@@ -174,12 +176,12 @@ export default function BillingDashboard() {
       });
       const json = await res.json();
       if (json.success) {
-        alert("Refund request submitted.");
+        toast({ title: "Request Submitted", description: "Refund request submitted successfully.", variant: "success" });
         setShowRefundModal(null);
         setRefundReason("");
         fetchData();
       } else {
-        alert(json.message || "Failed to request refund");
+        toast({ title: "Request Failed", description: json.message || "Failed to request refund", variant: "destructive" });
       }
     } catch (err) {
       console.error("Refund request error:", err);

@@ -78,7 +78,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         {/* Preconnect hints for critical 3rd-party origins */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -109,7 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}} />
         <BaseSchema />
       </head>
-      <body className={`${inter.variable} font-sans antialiased bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-orange-500/30 selection:text-white transition-colors duration-300 overflow-x-hidden`}>
+      <body className={`${inter.variable} font-sans antialiased bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-blue-500/30 selection:text-blue-900 dark:selection:text-blue-100 transition-colors duration-300 overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <LeetLoadingProvider>
             <AuthProvider>

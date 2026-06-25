@@ -137,6 +137,65 @@ export async function POST(req: NextRequest) {
       }, "Coupon applied successfully. Access granted for free!");
     }
 
+    // In development without Razorpay keys, simulate a successful purchase
+    if (process.env.NODE_ENV === "development" && (!RAZORPAY_KEY_ID || !RAZORPAY_KEY_SECRET)) {
+      console.warn("Razorpay keys missing in development mode. Simulating successful purchase.");
+      
+      const invoiceNumber = `LEET-INV-DEV-${Date.now().toString(36).toUpperCase()}`;
+      
+      const transaction = await prisma.transaction.create({
+        data: {
+          userId: auth.userId,
+          orderId: `dev_${Date.now()}`,
+          paymentId: "DEV_MOCK_PAYMENT",
+          signature: "DEV_MOCK",
+          amount: amount, // Record actual amount, but process as free/mock
+          currency: "INR",
+          status: "SUCCESSFUL",
+          purchaseType: purchaseType as "PLAN" | "BOOK" | "RESOURCE",
+          purchaseItemId,
+          purchaseName,
+          invoiceNumber,
+        },
+      });
+
+      if (purchaseType === "PLAN") {
+        const plan = await prisma.premiumPlan.findUnique({ where: { id: purchaseItemId } });
+        if (plan) {
+          const user = await prisma.user.findUnique({ where: { id: auth.userId } });
+          const startDate = new Date();
+          const endDate = new Date();
+          endDate.setDate(endDate.getDate() + plan.duration);
+
+          await prisma.premiumAccess.create({
+            data: {
+              userId: auth.userId,
+              userName: user?.name ?? "",
+              email: user?.email ?? "",
+              mobile: user?.mobile ?? null,
+              planName: plan.name,
+              startDate,
+              endDate,
+              status: "ACTIVE",
+              grantedBy: "RAZORPAY_DEV_MOCK",
+              notes: `Mock payment in development`,
+            },
+          });
+
+          await prisma.user.update({
+            where: { id: auth.userId },
+            data: { premiumStatus: true },
+          });
+        }
+      }
+
+      return apiResponse({
+        free: true,
+        transactionId: transaction.id,
+        invoiceNumber,
+      }, "Development mode: Mock payment successful!");
+    }
+
     // Create Razorpay order via their REST API
     const orderPayload = {
       amount: Math.round(amount * 100), // Razorpay expects paise

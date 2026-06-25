@@ -32,7 +32,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col justify-between">
       <div>
         <Navbar />
-        <div className="flex flex-col md:flex-row max-w-[1440px] mx-auto w-full pt-20">
+        <div className="flex flex-col md:flex-row max-w-[1440px] mx-auto w-full">
           <DashboardNav user={user} />
           
           <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 bg-slate-50 dark:bg-slate-950">
