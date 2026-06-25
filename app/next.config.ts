@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "lh3.googleusercontent.com" }
     ],
   },
-  serverExternalPackages: ["bcryptjs", "jsonwebtoken"],
+  serverExternalPackages: ["bcryptjs", "jsonwebtoken", "sharp", "pdf-lib"],
   experimental: {},
   async headers() {
     return [
