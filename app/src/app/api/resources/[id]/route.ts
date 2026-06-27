@@ -30,6 +30,7 @@ export async function DELETE(
 
     try {
       revalidatePath("/resources");
+      revalidatePath("/(public)/resources");
       revalidatePath("/admin/resources");
     } catch (revalidateErr) {
       console.warn("Failed to revalidate path:", revalidateErr);
