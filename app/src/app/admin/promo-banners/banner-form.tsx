@@ -71,8 +71,9 @@ export function BannerForm() {
         <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-slate-900 dark:text-white">Create New Banner</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-slate-600 dark:text-slate-300 mb-1">Banner Title *</label>
+            <label htmlFor="banner-title" className="block text-sm font-bold text-gray-700 dark:text-slate-600 dark:text-slate-300 mb-1">Banner Title *</label>
             <input 
+              id="banner-title"
               type="text" 
               required 
               value={title} 
@@ -82,7 +83,7 @@ export function BannerForm() {
             />
           </div>
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-slate-600 dark:text-slate-300 mb-1">Banner Image *</label>
+            <span className="block text-sm font-bold text-gray-700 dark:text-slate-600 dark:text-slate-300 mb-1">Banner Image *</span>
             <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-slate-300 dark:border-slate-700 border-dashed rounded-xl relative overflow-hidden group">
               {preview ? (
                 <img src={preview} alt="Preview" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-30 transition-opacity" />
@@ -100,8 +101,9 @@ export function BannerForm() {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-slate-600 dark:text-slate-300 mb-1">Link URL (Optional)</label>
+            <label htmlFor="banner-link" className="block text-sm font-bold text-gray-700 dark:text-slate-600 dark:text-slate-300 mb-1">Link URL (Optional)</label>
             <input 
+              id="banner-link"
               type="url" 
               value={linkUrl} 
               onChange={e => setLinkUrl(e.target.value)} 

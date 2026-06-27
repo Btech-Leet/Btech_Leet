@@ -275,8 +275,9 @@ export default function AdminBillingPage() {
       {activeTab === "transactions" && (
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
           <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
-            <label className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Filter:</label>
+            <label htmlFor="billing-filter" className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Filter:</label>
             <select
+              id="billing-filter"
               value={statusFilter}
               onChange={(e) => { setStatusFilter(e.target.value); }}
               className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-900 dark:text-white"
@@ -368,21 +369,22 @@ export default function AdminBillingPage() {
               <h4 className="text-sm font-bold text-slate-900 dark:text-white">{editPlan ? "Edit Plan" : "Create New Plan"}</h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Plan Name</label>
-                  <input value={planName} onChange={(e) => setPlanName(e.target.value)} placeholder="e.g. 3 Months Premium" className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white" />
+                  <label htmlFor="plan-name" className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Plan Name</label>
+                  <input id="plan-name" value={planName} onChange={(e) => setPlanName(e.target.value)} placeholder="e.g. 3 Months Premium" className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white" />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Price (₹)</label>
-                  <input type="number" value={planPrice} onChange={(e) => setPlanPrice(e.target.value)} placeholder="699" className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white" />
+                  <label htmlFor="plan-price" className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Price (₹)</label>
+                  <input id="plan-price" type="number" value={planPrice} onChange={(e) => setPlanPrice(e.target.value)} placeholder="699" className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white" />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Duration (Days)</label>
-                  <input type="number" value={planDuration} onChange={(e) => setPlanDuration(e.target.value)} placeholder="90" className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white" />
+                  <label htmlFor="plan-duration" className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Duration (Days)</label>
+                  <input id="plan-duration" type="number" value={planDuration} onChange={(e) => setPlanDuration(e.target.value)} placeholder="90" className="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-white" />
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Features (one per line)</label>
+                <label htmlFor="plan-features" className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase">Features (one per line)</label>
                 <textarea
+                  id="plan-features"
                   value={planFeatures}
                   onChange={(e) => setPlanFeatures(e.target.value)}
                   rows={4}

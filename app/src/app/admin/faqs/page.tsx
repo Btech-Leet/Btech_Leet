@@ -210,8 +210,9 @@ export default function AdminFAQsPage() {
 
           <form onSubmit={handleSave} className="space-y-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Page URL</label>
+              <label htmlFor="page-url" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Page URL</label>
               <input
+                id="page-url"
                 type="text"
                 required
                 value={pageUrl}
@@ -225,8 +226,9 @@ export default function AdminFAQsPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Question</label>
+              <label htmlFor="faq-question" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Question</label>
               <input
+                id="faq-question"
                 type="text"
                 required
                 value={question}
@@ -237,8 +239,9 @@ export default function AdminFAQsPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Answer</label>
+              <label htmlFor="faq-answer" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Answer</label>
               <textarea
+                id="faq-answer"
                 required
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
@@ -250,8 +253,9 @@ export default function AdminFAQsPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Sort Order</label>
+                <label htmlFor="sort-order" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Sort Order</label>
                 <input
+                  id="sort-order"
                   type="number"
                   value={order}
                   onChange={(e) => setOrder(Number(e.target.value))}

@@ -175,15 +175,15 @@ export default function AdminBestAnswersPage() {
           <form onSubmit={handleSave} className="space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Page Title</label>
-                <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)}
+                <label htmlFor="ba-title" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Page Title</label>
+                <input id="ba-title" type="text" required value={title} onChange={(e) => setTitle(e.target.value)}
                   placeholder="What is BTech LEET? Complete Guide 2026"
                   className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Status</label>
-                <select value={status} onChange={(e) => setStatus(e.target.value)}
+                <label htmlFor="ba-status" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Status</label>
+                <select id="ba-status" value={status} onChange={(e) => setStatus(e.target.value)}
                   className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500">
                   <option value="DRAFT">Draft</option>
                   <option value="PUBLISHED">Published</option>
@@ -193,8 +193,8 @@ export default function AdminBestAnswersPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Content (HTML or Markdown)</label>
-              <textarea value={content} onChange={(e) => setContent(e.target.value)}
+              <label htmlFor="ba-content" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Content (HTML or Markdown)</label>
+              <textarea id="ba-content" value={content} onChange={(e) => setContent(e.target.value)}
                 placeholder="Write the full answer content here..."
                 rows={10}
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none font-mono" />
@@ -202,23 +202,23 @@ export default function AdminBestAnswersPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">SEO Title (max 70 chars)</label>
-                <input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} maxLength={70}
+                <label htmlFor="ba-seo-title" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">SEO Title (max 70 chars)</label>
+                <input id="ba-seo-title" type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} maxLength={70}
                   placeholder="BTech LEET - Full Guide"
                   className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Keywords (comma-separated)</label>
-                <input type="text" value={keywords} onChange={(e) => setKeywords(e.target.value)}
+                <label htmlFor="ba-keywords" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Keywords (comma-separated)</label>
+                <input id="ba-keywords" type="text" value={keywords} onChange={(e) => setKeywords(e.target.value)}
                   placeholder="leet, btech lateral entry, engineering"
                   className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
               </div>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Meta Description (max 160 chars)</label>
-              <textarea value={metaDesc} onChange={(e) => setMetaDesc(e.target.value)} maxLength={160} rows={2}
+              <label htmlFor="ba-meta-desc" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Meta Description (max 160 chars)</label>
+              <textarea id="ba-meta-desc" value={metaDesc} onChange={(e) => setMetaDesc(e.target.value)} maxLength={160} rows={2}
                 placeholder="Comprehensive guide about BTech Lateral Entry..."
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none" />
             </div>

@@ -4,6 +4,7 @@ import { resourceSchema } from "@/lib/validations";
 import { requireAdminOrEditor, isAuthResponse } from "@/lib/middleware";
 import { apiResponse, apiError, getPaginationParams } from "@/lib/utils";
 import { uploadToStorage, generateStoragePath, validateFile, processAndCompressFile } from "@/lib/storage";
+import { revalidatePath } from "next/cache";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -65,6 +66,9 @@ export async function POST(req: NextRequest) {
         mimeType: file.type,
       },
     });
+
+    revalidatePath("/resources");
+    revalidatePath("/admin/resources");
 
     return apiResponse(resource, "Resource uploaded", 201);
   } catch (err: any) {

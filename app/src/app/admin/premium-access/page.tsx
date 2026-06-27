@@ -258,7 +258,7 @@ export default function AdminPremiumAccessPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* User Search & Display */}
             <div className="space-y-1 relative">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+              <label htmlFor="search-user" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 Select User
               </label>
               
@@ -287,6 +287,7 @@ export default function AdminPremiumAccessPage() {
                     <div className="relative flex-1">
                       <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400" size={16} />
                       <input
+                        id="search-user"
                         type="text"
                         value={searchQuery}
                         onChange={(e) => handleSearchChange(e.target.value)}

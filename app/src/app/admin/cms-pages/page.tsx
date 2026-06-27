@@ -199,15 +199,15 @@ export default function AdminCmsPagesPage() {
           <form onSubmit={handleSave} className="space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               <div className="lg:col-span-2 flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Page Title</label>
-                <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)}
+                <label htmlFor="cms-title" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Page Title</label>
+                <input id="cms-title" type="text" required value={title} onChange={(e) => setTitle(e.target.value)}
                   placeholder="About Us"
                   className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Status</label>
-                <select value={status} onChange={(e) => setStatus(e.target.value)}
+                <label htmlFor="cms-status" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Status</label>
+                <select id="cms-status" value={status} onChange={(e) => setStatus(e.target.value)}
                   className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500">
                   <option value="DRAFT">Draft</option>
                   <option value="PUBLISHED">Published</option>
@@ -241,8 +241,8 @@ export default function AdminCmsPagesPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Content (HTML)</label>
-              <textarea value={content} onChange={(e) => setContent(e.target.value)}
+              <label htmlFor="cms-content" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Content (HTML)</label>
+              <textarea id="cms-content" value={content} onChange={(e) => setContent(e.target.value)}
                 placeholder="<h2>Welcome</h2><p>Your content here...</p>"
                 rows={12}
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none font-mono" />
@@ -250,21 +250,21 @@ export default function AdminCmsPagesPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">SEO Title</label>
-                <input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} maxLength={70}
+                <label htmlFor="cms-seo-title" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">SEO Title</label>
+                <input id="cms-seo-title" type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} maxLength={70}
                   className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Keywords</label>
-                <input type="text" value={keywords} onChange={(e) => setKeywords(e.target.value)}
+                <label htmlFor="cms-keywords" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Keywords</label>
+                <input id="cms-keywords" type="text" value={keywords} onChange={(e) => setKeywords(e.target.value)}
                   placeholder="about, btech leet, lateral entry"
                   className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
               </div>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Meta Description</label>
-              <textarea value={metaDesc} onChange={(e) => setMetaDesc(e.target.value)} maxLength={160} rows={2}
+              <label htmlFor="cms-meta-desc" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Meta Description</label>
+              <textarea id="cms-meta-desc" value={metaDesc} onChange={(e) => setMetaDesc(e.target.value)} maxLength={160} rows={2}
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none" />
             </div>
 

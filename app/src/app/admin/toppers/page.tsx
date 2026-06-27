@@ -307,8 +307,9 @@ export default function AdminToppersPage() {
 
             {/* Name */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Student Name</label>
+              <label htmlFor="student-name" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Student Name</label>
               <input
+                id="student-name"
                 type="text"
                 required
                 value={name}
@@ -321,8 +322,9 @@ export default function AdminToppersPage() {
             <div className="grid grid-cols-2 gap-4">
               {/* Rank */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">LEET Rank</label>
+                <label htmlFor="leet-rank" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">LEET Rank</label>
                 <input
+                  id="leet-rank"
                   type="number"
                   value={rank}
                   onChange={(e) => setRank(e.target.value ? Number(e.target.value) : "")}
@@ -333,8 +335,9 @@ export default function AdminToppersPage() {
 
               {/* Score */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Score/Marks</label>
+                <label htmlFor="leet-score" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Score/Marks</label>
                 <input
+                  id="leet-score"
                   type="text"
                   value={score}
                   onChange={(e) => setScore(e.target.value)}
@@ -347,8 +350,9 @@ export default function AdminToppersPage() {
             <div className="grid grid-cols-2 gap-4">
               {/* Year */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Year</label>
+                <label htmlFor="leet-year" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Year</label>
                 <select
+                  id="leet-year"
                   value={year}
                   onChange={(e) => setYear(e.target.value ? Number(e.target.value) : "")}
                   className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500"
@@ -362,8 +366,9 @@ export default function AdminToppersPage() {
 
               {/* Order */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Order</label>
+                <label htmlFor="leet-order" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Order</label>
                 <input
+                  id="leet-order"
                   type="number"
                   value={order}
                   onChange={(e) => setOrder(Number(e.target.value))}
@@ -376,8 +381,9 @@ export default function AdminToppersPage() {
             {/* College & Branch */}
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">College</label>
+                <label htmlFor="leet-college" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">College</label>
                 <input
+                  id="leet-college"
                   type="text"
                   value={collegeName}
                   onChange={(e) => setCollegeName(e.target.value)}
@@ -387,8 +393,9 @@ export default function AdminToppersPage() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Branch</label>
+                <label htmlFor="leet-branch" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Branch</label>
                 <input
+                  id="leet-branch"
                   type="text"
                   value={branch}
                   onChange={(e) => setBranch(e.target.value)}
@@ -400,8 +407,9 @@ export default function AdminToppersPage() {
 
             {/* Description */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Brief Subtitle/Tagline</label>
+              <label htmlFor="leet-tagline" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Brief Subtitle/Tagline</label>
               <input
+                id="leet-tagline"
                 type="text"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -412,8 +420,9 @@ export default function AdminToppersPage() {
 
             {/* Success story */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Success Story / Preparation Tips</label>
+              <label htmlFor="leet-story" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Success Story / Preparation Tips</label>
               <textarea
+                id="leet-story"
                 value={successStory}
                 onChange={(e) => setSuccessStory(e.target.value)}
                 placeholder="Rahul's strategy was solving previous year question papers and attending daily tests..."

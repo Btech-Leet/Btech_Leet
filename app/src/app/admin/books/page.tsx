@@ -286,15 +286,15 @@ export default function AdminBooksPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Book / Notes Title</label>
-              <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Engineering Mathematics for LEET"
+              <label htmlFor="book-title" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Book / Notes Title</label>
+              <input id="book-title" type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Engineering Mathematics for LEET"
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Category</label>
-                <select value={category} onChange={(e) => setCategory(e.target.value)}
+                <label htmlFor="book-category" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Category</label>
+                <select id="book-category" value={category} onChange={(e) => setCategory(e.target.value)}
                   className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500">
                   <option value="">Select</option>
                   {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -302,7 +302,7 @@ export default function AdminBooksPage() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Resource Type</label>
+                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Resource Type</span>
                 <div className="flex bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg p-0.5">
                   <button
                     type="button"
@@ -340,8 +340,9 @@ export default function AdminBooksPage() {
 
             {paymentType === "paid" && (
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Amount (₹)</label>
+                <label htmlFor="book-price" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Amount (₹)</label>
                 <input
+                  id="book-price"
                   type="number"
                   required
                   min={1}
@@ -354,8 +355,8 @@ export default function AdminBooksPage() {
             )}
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Author</label>
-              <select value={authorId} onChange={(e) => setAuthorId(e.target.value)}
+              <label htmlFor="book-author" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Author</label>
+              <select id="book-author" value={authorId} onChange={(e) => setAuthorId(e.target.value)}
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500">
                 <option value="">No author</option>
                 {authors.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
@@ -363,13 +364,13 @@ export default function AdminBooksPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Description</label>
-              <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Brief description of this book or notes..." rows={3}
+              <label htmlFor="book-description" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Description</label>
+              <textarea id="book-description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Brief description of this book or notes..." rows={3}
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none" />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PDF / Book File</label>
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PDF / Book File</span>
               <div className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg">
                 <div className="flex-1 min-w-0">
                   {fileUploading ? (

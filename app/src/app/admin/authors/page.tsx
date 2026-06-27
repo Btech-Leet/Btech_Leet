@@ -210,32 +210,32 @@ export default function AdminAuthorsPage() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Full Name</label>
-              <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Prof. Rajesh Gupta"
+              <label htmlFor="author-name" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Full Name</label>
+              <input id="author-name" type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Prof. Rajesh Gupta"
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Designation</label>
-              <input type="text" value={designation} onChange={(e) => setDesignation(e.target.value)} placeholder="Professor, Dept. of Mathematics"
+              <label htmlFor="author-designation" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Designation</label>
+              <input id="author-designation" type="text" value={designation} onChange={(e) => setDesignation(e.target.value)} placeholder="Professor, Dept. of Mathematics"
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">LinkedIn URL</label>
-              <input type="url" value={linkedinUrl} onChange={(e) => setLinkedinUrl(e.target.value)} placeholder="https://linkedin.com/in/username"
+              <label htmlFor="author-linkedin" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">LinkedIn URL</label>
+              <input id="author-linkedin" type="url" value={linkedinUrl} onChange={(e) => setLinkedinUrl(e.target.value)} placeholder="https://linkedin.com/in/username"
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700" />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Experience</label>
-              <textarea value={experience} onChange={(e) => setExperience(e.target.value)} placeholder="20+ years in teaching..." rows={3}
+              <label htmlFor="author-experience" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Experience</label>
+              <textarea id="author-experience" value={experience} onChange={(e) => setExperience(e.target.value)} placeholder="20+ years in teaching..." rows={3}
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none" />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Biography</label>
-              <textarea value={biography} onChange={(e) => setBiography(e.target.value)} placeholder="Short bio about the author..." rows={3}
+              <label htmlFor="author-bio" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Biography</label>
+              <textarea id="author-bio" value={biography} onChange={(e) => setBiography(e.target.value)} placeholder="Short bio about the author..." rows={3}
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 placeholder-gray-700 resize-none" />
             </div>
 

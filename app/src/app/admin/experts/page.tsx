@@ -298,8 +298,9 @@ export default function AdminExpertsPage() {
 
             {/* Name */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Full Name</label>
+              <label htmlFor="expert-name" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Full Name</label>
               <input
+                id="expert-name"
                 type="text"
                 required
                 value={name}
@@ -311,8 +312,9 @@ export default function AdminExpertsPage() {
 
             {/* Designation */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Designation</label>
+              <label htmlFor="expert-designation" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Designation</label>
               <input
+                id="expert-designation"
                 type="text"
                 value={designation}
                 onChange={(e) => setDesignation(e.target.value)}
@@ -323,8 +325,9 @@ export default function AdminExpertsPage() {
 
             {/* Qualification */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Qualification</label>
+              <label htmlFor="expert-qualification" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Qualification</label>
               <input
+                id="expert-qualification"
                 type="text"
                 value={qualification}
                 onChange={(e) => setQualification(e.target.value)}
@@ -335,8 +338,9 @@ export default function AdminExpertsPage() {
 
             {/* LinkedIn URL */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">LinkedIn URL</label>
+              <label htmlFor="expert-linkedin" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">LinkedIn URL</label>
               <input
+                id="expert-linkedin"
                 type="url"
                 value={linkedinUrl}
                 onChange={(e) => setLinkedinUrl(e.target.value)}
@@ -348,8 +352,9 @@ export default function AdminExpertsPage() {
             <div className="grid grid-cols-2 gap-4">
               {/* Order */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Display Order</label>
+                <label htmlFor="expert-order" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Display Order</label>
                 <input
+                  id="expert-order"
                   type="number"
                   value={order}
                   onChange={(e) => setOrder(Number(e.target.value))}
@@ -360,7 +365,7 @@ export default function AdminExpertsPage() {
 
               {/* Active toggle */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Status</label>
+                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Status</span>
                 <button
                   type="button"
                   onClick={() => setActive(!active)}
@@ -378,8 +383,9 @@ export default function AdminExpertsPage() {
 
             {/* Experience */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Experience / Specialization</label>
+              <label htmlFor="expert-experience" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Experience / Specialization</label>
               <textarea
+                id="expert-experience"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
                 placeholder="15+ years in teaching Engineering Mathematics, Calculus, and Linear Algebra..."
@@ -390,8 +396,9 @@ export default function AdminExpertsPage() {
 
             {/* Description/Bio */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Short Bio / Description</label>
+              <label htmlFor="expert-bio" className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Short Bio / Description</label>
               <textarea
+                id="expert-bio"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Award-winning educator known for making complex concepts simple..."

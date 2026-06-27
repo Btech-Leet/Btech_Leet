@@ -315,10 +315,11 @@ export default function AdminContactPage() {
                 {/* Reply Composer inline */}
                 {isReplying && (
                   <div className="pl-4 sm:pl-6 border-l-2 border-blue-500 space-y-2">
-                    <label className="text-xs font-bold text-gray-450 uppercase tracking-wider block">
+                    <label htmlFor="reply-remarks" className="text-xs font-bold text-gray-450 uppercase tracking-wider block">
                       Draft Reply Remarks
                     </label>
                     <textarea
+                      id="reply-remarks"
                       value={replyText}
                       onChange={(e) => setReplyText(e.target.value)}
                       rows={3}

@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireAdminOrEditor, isAuthResponse } from "@/lib/middleware";
 import { apiResponse, apiError } from "@/lib/utils";
+import { revalidatePath } from "next/cache";
 
 export async function DELETE(
   req: NextRequest,
@@ -26,6 +27,9 @@ export async function DELETE(
     }
 
     await prisma.resource.delete({ where: { id } });
+
+    revalidatePath("/resources");
+    revalidatePath("/admin/resources");
 
     return apiResponse(null, "Resource deleted successfully");
   } catch (err: any) {

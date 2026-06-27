@@ -178,12 +178,13 @@ export default function AdminCounsellingPage() {
             <CardContent className="space-y-4">
               <form onSubmit={handleUpdatePrice} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2">Counselling Service Price (INR)</label>
+                  <label htmlFor="counselling-price" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2">Counselling Service Price (INR)</label>
                   <div className="relative rounded-xl shadow-sm">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500 dark:text-slate-500 text-sm">
                       ₹
                     </div>
                     <input
+                      id="counselling-price"
                       type="number"
                       required
                       value={inputPrice}

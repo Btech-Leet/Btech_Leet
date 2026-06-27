@@ -16,8 +16,9 @@ export default function AdminSettingsPage() {
         
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-slate-600 dark:text-slate-300 mb-1">Platform Name</label>
+            <label htmlFor="platform-name" className="block text-sm font-medium text-slate-600 dark:text-slate-300 mb-1">Platform Name</label>
             <input 
+              id="platform-name"
               type="text" 
               defaultValue="BTech LEET" 
               className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-700 dark:text-slate-200 focus:border-blue-500 focus:outline-none"
@@ -25,8 +26,9 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-600 dark:text-slate-300 mb-1">Contact Email</label>
+            <label htmlFor="contact-email" className="block text-sm font-medium text-slate-600 dark:text-slate-300 mb-1">Contact Email</label>
             <input 
+              id="contact-email"
               type="email" 
               defaultValue="support@btechleet.com" 
               className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-700 dark:text-slate-200 focus:border-blue-500 focus:outline-none"
@@ -38,8 +40,8 @@ export default function AdminSettingsPage() {
               <p className="text-sm font-medium text-slate-900 dark:text-white">Maintenance Mode</p>
               <p className="text-xs text-slate-500 dark:text-slate-500 mt-0.5">Disable public access to the platform temporarily</p>
             </div>
-            <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" className="sr-only peer" />
+            <label htmlFor="maintenance-mode" className="relative inline-flex items-center cursor-pointer">
+              <input id="maintenance-mode" type="checkbox" className="sr-only peer" />
               <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
             </label>
           </div>
@@ -49,8 +51,8 @@ export default function AdminSettingsPage() {
               <p className="text-sm font-medium text-slate-900 dark:text-white">Enable User Registration</p>
               <p className="text-xs text-slate-500 dark:text-slate-500 mt-0.5">Allow new users to sign up via Email or Google</p>
             </div>
-            <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" defaultChecked className="sr-only peer" />
+            <label htmlFor="enable-registration" className="relative inline-flex items-center cursor-pointer">
+              <input id="enable-registration" type="checkbox" defaultChecked className="sr-only peer" />
               <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
             </label>
           </div>
