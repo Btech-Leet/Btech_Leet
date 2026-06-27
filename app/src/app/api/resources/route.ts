@@ -67,8 +67,12 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    revalidatePath("/resources");
-    revalidatePath("/admin/resources");
+    try {
+      revalidatePath("/resources");
+      revalidatePath("/admin/resources");
+    } catch (revalidateErr) {
+      console.warn("Failed to revalidate path:", revalidateErr);
+    }
 
     return apiResponse(resource, "Resource uploaded", 201);
   } catch (err: any) {

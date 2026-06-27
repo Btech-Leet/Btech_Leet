@@ -28,8 +28,12 @@ export async function DELETE(
 
     await prisma.resource.delete({ where: { id } });
 
-    revalidatePath("/resources");
-    revalidatePath("/admin/resources");
+    try {
+      revalidatePath("/resources");
+      revalidatePath("/admin/resources");
+    } catch (revalidateErr) {
+      console.warn("Failed to revalidate path:", revalidateErr);
+    }
 
     return apiResponse(null, "Resource deleted successfully");
   } catch (err: any) {
