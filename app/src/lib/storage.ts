@@ -1,6 +1,4 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import sharp from "sharp";
-import { PDFDocument } from "pdf-lib";
 const bucket = process.env.SUPABASE_STORAGE_BUCKET || "btechleet";
 
 // Lazy-initialized server-only client with service role (full access)
@@ -87,6 +85,7 @@ export async function processAndCompressFile(
     
     // Convert to webp and aggressively compress to hit < 2MB
     let quality = 80;
+    const sharp = (await import("sharp")).default;
     let compressed = await sharp(buffer)
       .resize(1920, 1920, { fit: "inside", withoutEnlargement: true })
       .webp({ quality })
@@ -113,6 +112,7 @@ export async function processAndCompressFile(
     }
     
     try {
+      const { PDFDocument } = await import("pdf-lib");
       const pdfDoc = await PDFDocument.load(buffer, { ignoreEncryption: true });
       // Saving with useObjectStreams attempts to compress the internal PDF structure
       const uint8Array = await pdfDoc.save({ useObjectStreams: true });
